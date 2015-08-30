@@ -17,9 +17,32 @@
 #include "Parser.h"
 #include "Lexer.h"
 #include "TokenManager.h"
+#include "../TokenType.h"
+#include "../NodeType.h"
+
+int ttypeNumber = -2;
+int ntypeNumber = -2;
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-variable"
+
+createTokenType(TTYPE_NOTOKEN);
+createTokenType(TTYPE_INVTOKEN);
+
+#pragma GCC diagnostic pop
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-variable"
+
+createNodeType(NTYPE_NONODE);
+createNodeType(NTYPE_INVNODE);
+createNodeType(NTYPE_STMT);
+
+#pragma GCC diagnostic pop
 
 namespace parser
 {
+
     Parser::Parser(Lexer lexr) :
         lexr(lexr)
     {

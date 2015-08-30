@@ -25,16 +25,8 @@
  *
  */
 
-int ttypeNumber = -2;
+extern int ttypeNumber;
 
 #define createTokenType(name) extern const int name = ++ttypeNumber
-
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-variable"
-
-createTokenType(TTYPE_NOTOKEN);
-createTokenType(TTYPE_INVTOKEN);
-
-#pragma GCC diagnostic pop
 
 #endif // TOKENTYPE_H_INCLUDED
