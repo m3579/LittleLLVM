@@ -22,3 +22,56 @@
 	"Lexer.h"
 	"Scanner.h"
 
+1440883745 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\cfmain.cpp
+	"Lexer_test.h"
+
+1440893863 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\lexer_test.h
+	"Lexer.h"
+
+1440883418 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\lexer.h
+	<vector>
+	<functional>
+	"Scanner.h"
+	"Token.h"
+
+1440883343 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\scanner.h
+
+1440900639 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\token.h
+	<string>
+	<map>
+
+1440883409 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\lexer.cpp
+	<iostream>
+	"Lexer.h"
+	"Scanner.h"
+
+1440900484 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\node.cpp
+	"Node.h"
+
+1440900478 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\node.h
+	<vector>
+	"Token.h"
+
+1440900415 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\parser.cpp
+	"Parser.h"
+
+1440900505 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\parser.h
+	<string>
+	"SyntaxTree.h"
+
+1440883474 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\syntaxtree.h
+	"Node.h"
+
+1440883329 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\scanner.cpp
+	<iostream>
+	<cstring>
+	"Scanner.h"
+
+1440901001 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\syntaxtree.cpp
+	"SyntaxTree.h"
+
+1440900532 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\token.cpp
+	<sstream>
+	<iostream>
+	"Token.h"
+

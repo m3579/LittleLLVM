@@ -24,7 +24,7 @@
 namespace token
 {
     Token::Token() :
-        ln(0), cn(0), text(""), type(-1)
+        lineNumber(0), columnNumber(0), text(""), type(-1)
     {
 
     }

@@ -14,19 +14,14 @@
  *
  */
 
-#include "SyntaxTree.h"
+#include "TokenManager.h"
 
-namespace ast
+TokenManager::TokenManager()
 {
+    //ctor
+}
 
-    SyntaxTree:: SyntaxTree()
-    {
-
-    }
-
-     SyntaxTree::~ SyntaxTree()
-    {
-
-    }
-
-} /* namespace ast */
+TokenManager::~TokenManager()
+{
+    //dtor
+}

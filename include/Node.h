@@ -29,10 +29,13 @@ namespace node
     class Node
     {
         public:
+            Node();
             Node(Token token, int type);
             ~Node();
 
             void addNode(Node node);
+
+            Node getNode(unsigned int index);
 
         private:
             Token token;

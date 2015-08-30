@@ -40,10 +40,10 @@ namespace node
         nodes.push_back(node);
     }
 
-    Node Node::getNode(int index)
+    Node Node::getNode(unsigned int index)
     {
         if (index >= 0 && index < nodes.size()) {
-            return nodes.at(i);
+            return nodes.at(index);
         }
 
         return Node();
