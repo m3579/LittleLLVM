@@ -16,6 +16,7 @@
 
 #include "Parser.h"
 #include "Lexer.h"
+#include "TokenManager.h"
 
 namespace parser
 {

@@ -14,17 +14,17 @@
  *
  */
 
-#ifndef TOKENMANAGER_H
-#define TOKENMANAGER_H
+#ifndef TOKENINTERPRETER_H
+#define TOKENINTERPRETER_H
 
 
-class TokenManager
+class TokenInterpreter
 {
     public:
-        TokenManager();
-        virtual ~TokenManager();
+        TokenInterpreter();
+        virtual ~TokenInterpreter();
     protected:
     private:
 };
 
-#endif // TOKENMANAGER_H
+#endif // TOKENINTERPRETER_H

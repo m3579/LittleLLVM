@@ -36,6 +36,8 @@
 		<Unit filename="Lexer_test.h">
 			<Option target="Debug" />
 		</Unit>
+		<Unit filename="NodeType.txt" />
+		<Unit filename="TokenType.txt" />
 		<Unit filename="cfmain.cpp" />
 		<Unit filename="include/Lexer.h" />
 		<Unit filename="include/Node.h" />
