@@ -29,4 +29,9 @@ namespace ast
 
     }
 
+    void SyntaxTree::print(std::string tabs)
+    {
+
+    }
+
 } /* namespace ast */

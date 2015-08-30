@@ -22,15 +22,14 @@
 	"Lexer.h"
 	"Scanner.h"
 
-1440959772 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\cfmain.cpp
-	"Lexer_test.h"
+1440963954 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\cfmain.cpp
+	"Parser_test.h"
 
 1440960210 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\lexer_test.h
 	"Lexer.h"
 
-1440960205 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\lexer.h
+1440964496 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\lexer.h
 	<vector>
-	<functional>
 	"Scanner.h"
 	"Token.h"
 
@@ -40,32 +39,32 @@
 	<string>
 	<map>
 
-1440883409 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\lexer.cpp
+1440960192 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\lexer.cpp
 	<iostream>
 	"Lexer.h"
 	"Scanner.h"
 
-1440956175 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\node.cpp
+1440959694 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\node.cpp
 	"Node.h"
 
-1440956139 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\node.h
+1440959826 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\node.h
 	<vector>
 	"Token.h"
 
-1440956315 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\parser.cpp
+1440963860 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\parser.cpp
 	"Parser.h"
 	"Lexer.h"
 	"TokenManager.h"
-	"../NodeType.h"
 
-1440955923 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\parser.h
+1440963869 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\parser.h
 	<string>
 	"SyntaxTree.h"
 	"Lexer.h"
 	"Terminal.h"
 	"TokenManager.h"
+	"../NodeType.h"
 
-1440883474 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\syntaxtree.h
+1440962619 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\syntaxtree.h
 	"Node.h"
 
 1440883329 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\scanner.cpp
@@ -73,7 +72,7 @@
 	<cstring>
 	"Scanner.h"
 
-1440901001 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\syntaxtree.cpp
+1440962609 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\syntaxtree.cpp
 	"SyntaxTree.h"
 
 1440956196 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\token.cpp
@@ -81,32 +80,39 @@
 	<iostream>
 	"Token.h"
 
-1440956397 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\terminal.h
+1440962104 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\terminal.h
 	<vector>
 	"Token.h"
 
-1440956603 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\tokenmanager.h
+1440962171 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\tokenmanager.h
 	<vector>
 	"Token.h"
 	"Node.h"
 	"../Ref.h"
 
-1440954998 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\ref.h
+1440960015 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\ref.h
 
-1440955682 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\nodetype.h
+1440964391 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\nodetype.h
 
-1440956476 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\terminal.cpp
+1440962110 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\terminal.cpp
 	"Terminal.h"
 
-1440956707 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\tokenmanager.cpp
-	<vector>
-	<iostream>
-	<stack>
-	<algorithm>
-	<string>
-	<cmath>
-	<cstring>
+1440963972 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\tokenmanager.cpp
 	"Token.h"
 	"TokenManager.h"
 	"Node.h"
+
+1440964544 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\parser_test.h
+	<iostream>
+	"../TokenType.h"
+	"Lexer.h"
+	"Parser.h"
+
+1440964062 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\tokentype.h
+
+1440963092 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\tokentype.cpp
+	"TokenType.h"
+
+1440963533 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\nodetype.cpp
+	"NodeType.h"
 

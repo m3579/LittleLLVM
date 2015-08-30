@@ -60,6 +60,8 @@ namespace parser
 
             void consume(int);
 
+            bool hasMoreTokens();
+
         private:
             std::vector<Token> tokens;
 

@@ -18,8 +18,8 @@
 
 namespace ast
 {
-    Terminal::Terminal(Token token, afterFind actionAfterFind, int nodeType) :
-        actionAfterFind(actionAfterFind), nodeType(nodeType), token(token)
+    Terminal::Terminal(int tokenType, afterFind actionAfterFind, int nodeType) :
+        actionAfterFind(actionAfterFind), tokenType(tokenType), nodeType(nodeType)
     {
 
     }
@@ -29,15 +29,20 @@ namespace ast
 
     }
 
-    Terminal Terminal::addTerminal(Terminal nextTerminal)
+    Terminal Terminal::addTerminal(Terminal& nextTerminal)
     {
         nextTerminals.push_back(nextTerminal);
         return nextTerminal;
     }
 
-    Token Terminal::getToken()
+    int Terminal::getTokenType()
     {
-        return token;
+        return tokenType;
+    }
+
+    int Terminal::getNodeType()
+    {
+        return nodeType;
     }
 
     std::vector<Terminal> Terminal::getNextTerminals()

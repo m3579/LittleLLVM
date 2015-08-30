@@ -19,7 +19,6 @@
 
 
 #include <vector>
-#include <functional>
 
 #include "Scanner.h"
 #include "Token.h"

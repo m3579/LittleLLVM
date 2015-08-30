@@ -14,9 +14,9 @@
  *
  */
 
-#include "Lexer_test.h"
+#include "Parser_test.h"
 
 int main(int argc, const char* argv[])
 {
-    lexerGo();
+    parserGo();
 }

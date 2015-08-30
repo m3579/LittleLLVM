@@ -23,6 +23,7 @@
 #include "Lexer.h"
 #include "Terminal.h"
 #include "TokenManager.h"
+#include "../NodeType.h"
 
 using namespace ast;
 using namespace lexer;
@@ -32,7 +33,7 @@ namespace parser
     class Parser
     {
         public:
-            Parser(std::string sourceCode, Lexer lexr);
+            Parser(Lexer lexr);
             ~Parser();
 
             SyntaxTree createSyntaxTree();
@@ -41,8 +42,6 @@ namespace parser
             bool assembleTerminal(Node supernode, Terminal terminal, SyntaxTree& syntaxTree, TokenManager& tm);
 
         private:
-            std::string sourceCode;
-
             Lexer lexr;
 
             std::vector<Terminal> terminals;

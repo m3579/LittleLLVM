@@ -23,28 +23,33 @@
 
 using namespace token;
 
+namespace parser
+{
+    class TokenManager;
+}
+
 namespace ast
 {
-    typedef void (*afterFind)(Token);
+    typedef void (*afterFind)(parser::TokenManager&);
 
     class Terminal
     {
         public:
-            Terminal(Token token, afterFind actionAfterFind, int nodeType);
+            Terminal(int tokenType, afterFind actionAfterFind, int nodeType);
             ~Terminal();
 
-            Terminal addTerminal(Terminal nextTerminal);
+            Terminal addTerminal(Terminal& nextTerminal);
 
-            Token getToken();
+            int getTokenType();
+            int getNodeType();
 
             std::vector<Terminal> getNextTerminals();
 
             afterFind actionAfterFind;
 
-            int nodeType;
-
         private:
-            Token token;
+            int tokenType;
+            int nodeType;
 
             std::vector<Terminal> nextTerminals;
     };

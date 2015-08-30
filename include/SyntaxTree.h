@@ -32,6 +32,8 @@ namespace ast
 
             void addStatement(Node node);
 
+            void print(std::string tabs);
+
         private:
             std::vector<Node> statements;
 

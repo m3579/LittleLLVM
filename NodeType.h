@@ -24,11 +24,19 @@
  *           0       Invalid node
  *           1       Statement
  *
- *
  */
 
-#define NTYPE_NONODE    -1
-#define NTYPE_INVNODE   0
-#define NTYPE_STMT      1
+int ntypeNumber = -2;
+
+#define createNodeType(name) extern const int name = ++ntypeNumber
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-variable"
+
+createNodeType(NTYPE_NONODE);
+createNodeType(NTYPE_INVNODE);
+createNodeType(NTYPE_STMT);
+
+#pragma GCC diagnostic pop
 
 #endif // NODETYPE_H_INCLUDED

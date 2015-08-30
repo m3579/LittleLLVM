@@ -17,12 +17,11 @@
 #include "Parser.h"
 #include "Lexer.h"
 #include "TokenManager.h"
-#include "../NodeType.h"
 
 namespace parser
 {
-    Parser::Parser(std::string sourceCode, Lexer lexr) :
-        sourceCode(sourceCode), lexr(lexr)
+    Parser::Parser(Lexer lexr) :
+        lexr(lexr)
     {
 
     }
@@ -40,8 +39,10 @@ namespace parser
 
         TokenManager tm(tokens);
 
-        for (auto terminal = terminals.begin(); terminal != terminals.end(); ++terminal) {
-            assembleTerminal(Node(Token(), NTYPE_STMT), *terminal, syntaxTree, tm);
+        while (tm.hasMoreTokens()) {
+            for (auto terminal = terminals.begin(); terminal != terminals.end(); ++terminal) {
+                assembleTerminal(Node(Token(), NTYPE_STMT), *terminal, syntaxTree, tm);
+            }
         }
 
         return syntaxTree;
@@ -49,13 +50,13 @@ namespace parser
 
     bool Parser::assembleTerminal(Node supernode, Terminal terminal, SyntaxTree& syntaxTree, TokenManager& tm)
     {
-        int type = terminal.getToken().getType();
+        int type = terminal.getTokenType();
 
         if (tm.found(type)) {
 
-            terminal.actionAfterFind(tm.getCurrentToken());
+            terminal.actionAfterFind(tm);
 
-            Node node(tm.getCurrentToken(), terminal.nodeType);
+            Node node(tm.getCurrentToken(), terminal.getNodeType());
 
             supernode.addNode(node);
 

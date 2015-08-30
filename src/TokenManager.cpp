@@ -14,13 +14,7 @@
  *
  */
 
-#include <vector>
-#include <iostream>
-#include <stack>
-#include <algorithm>
-#include <string>
-#include <cmath>
-#include <cstring>
+
 
 #include "Token.h"
 #include "TokenManager.h"
@@ -152,6 +146,14 @@ namespace parser
         if (fetchNextToken().getType() == type) {
             moveToNextToken();      // move to token
         }
+    }
+
+    bool TokenManager::hasMoreTokens()
+    {
+        if (currentTokenIndex == tokens.size() - 1) {
+            return false;
+        }
+        return true;
     }
 
 } /* namespace parser */
