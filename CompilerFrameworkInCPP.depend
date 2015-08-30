@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1440883745 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\compilerframeworkincpp\cfmain.cpp
+	"Lexer_test.h"
+
+1440893863 c:\users\mihir kasmalkar\documents\programs\codeblocks\compilerframeworkincpp\lexer_test.h
+	"Lexer.h"
+
+1440883418 c:\users\mihir kasmalkar\documents\programs\codeblocks\compilerframeworkincpp\include\lexer.h
+	<vector>
+	<functional>
+	"Scanner.h"
+	"Token.h"
+
+1440883343 c:\users\mihir kasmalkar\documents\programs\codeblocks\compilerframeworkincpp\include\scanner.h
+
+1440884037 c:\users\mihir kasmalkar\documents\programs\codeblocks\compilerframeworkincpp\include\token.h
+	<string>
+	<map>
+
+1440883409 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\compilerframeworkincpp\src\lexer.cpp
+	<iostream>
+	"Lexer.h"
+	"Scanner.h"
+
