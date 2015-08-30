@@ -20,9 +20,9 @@
 
 #include "Token.h"
 #include "Node.h"
+#include "../Ref.h"
 
 using namespace token;
-using namespace ast;
 
 namespace parser
 {
@@ -33,7 +33,7 @@ namespace parser
     class TokenManager
     {
         public:
-            TokenManager(std::vector<Token>, Ref<Database>);
+            TokenManager(std::vector<Token>);
             ~TokenManager();
 
             // The methods that take a string an a bool as arguments
@@ -56,10 +56,9 @@ namespace parser
             // move back to token that was current token when startCounting was called
             void reset();
 
-            bool found(TokenType);
+            bool found(int);
 
-            void consume(TokenType);
-            void consumeWhitespace();
+            void consume(int);
 
         private:
             std::vector<Token> tokens;

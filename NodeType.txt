@@ -5,3 +5,4 @@ try to use the arg constructor and set the type to another Node type (like Inval
 
 -1      No node
 0       Invalid node
+1       Statement

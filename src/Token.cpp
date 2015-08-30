@@ -23,12 +23,6 @@
 
 namespace token
 {
-    Token::Token() :
-        lineNumber(0), columnNumber(0), text(""), type(-1)
-    {
-
-    }
-
 	Token::Token(int ln, int cn, std::string text, int type) :
 		lineNumber(ln), columnNumber(cn), text(text), type(type)
 	{

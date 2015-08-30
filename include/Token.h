@@ -25,8 +25,7 @@ namespace token
     class Token
 	{
         public:
-            Token();
-            Token(int lineNumber, int columnNumber, std::string text, int type);
+            Token(int lineNumber = -1, int columnNumber = -1, std::string text = "", int type = -1);
 
             // Two methods for readability
             bool isOfType(int);

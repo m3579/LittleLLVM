@@ -18,12 +18,6 @@
 
 namespace node
 {
-    Node::Node() :
-        token(Token()), type(-1)
-    {
-
-    }
-
     Node::Node(Token token, int type) :
         token(token), type(type)
     {

@@ -29,8 +29,7 @@ namespace node
     class Node
     {
         public:
-            Node();
-            Node(Token token, int type);
+            Node(Token token = Token(), int type = -1);
             ~Node();
 
             void addNode(Node node);

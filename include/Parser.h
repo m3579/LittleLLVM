@@ -21,6 +21,8 @@
 
 #include "SyntaxTree.h"
 #include "Lexer.h"
+#include "Terminal.h"
+#include "TokenManager.h"
 
 using namespace ast;
 using namespace lexer;
@@ -35,11 +37,15 @@ namespace parser
 
             SyntaxTree createSyntaxTree();
 
+            // Return whether or not the terminal was found
+            bool assembleTerminal(Node supernode, Terminal terminal, SyntaxTree& syntaxTree, TokenManager& tm);
+
         private:
             std::string sourceCode;
 
             Lexer lexr;
 
+            std::vector<Terminal> terminals;
     };
 
 } /* namespace parser */
