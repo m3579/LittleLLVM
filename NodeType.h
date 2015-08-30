@@ -28,6 +28,15 @@
 
 extern int ntypeNumber;
 
-#define createNodeType(name) extern const int name = ++ntypeNumber
+#define createNodeType(NAME) const int NAME = ++ntypeNumber
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-variable"
+
+createNodeType(NTYPE_NONODE);
+createNodeType(NTYPE_INVNODE);
+createNodeType(NTYPE_STMT);
+
+#pragma GCC diagnostic pop
 
 #endif // NODETYPE_H_INCLUDED
