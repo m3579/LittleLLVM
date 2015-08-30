@@ -94,6 +94,8 @@ void parserGo()
     },
                               NTYPE_NUMONE);
 
+    parser.addTerminal(startingTerminal);
+
     Terminal plusTerminal(TTYPE_PLUS,
     [] (TokenManager& tm)
     {

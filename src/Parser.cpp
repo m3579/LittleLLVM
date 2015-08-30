@@ -51,6 +51,11 @@ namespace parser
         return syntaxTree;
     }
 
+    void Parser::addTerminal(Terminal& terminal)
+    {
+        terminals.push_back(terminal);
+    }
+
     bool Parser::assembleTerminal(Node supernode, Terminal terminal, SyntaxTree& syntaxTree, TokenManager& tm)
     {
         int type = terminal.getTokenType();
