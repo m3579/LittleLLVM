@@ -23,8 +23,8 @@ namespace lexer
 {
     bool finished = false;
 
-	Lexer::Lexer(std::string sourceCode, std::vector<testXxx> testFunctions) :
-		sourceCode(sourceCode), testFunctions(testFunctions), scanner(sourceCode.c_str())
+	Lexer::Lexer(std::string sourceCode) :
+		sourceCode(sourceCode), scanner(sourceCode.c_str())
 	{
 
 	}
@@ -80,6 +80,11 @@ namespace lexer
 
 		return tokens;
 
+	}
+
+	void Lexer::addTest(testXxx test)
+	{
+	    testFunctions.push_back(test);
 	}
 
 } /* namespace lexer */

@@ -7,7 +7,7 @@
  * /Project/Headers/include/Filename.h
  *
  *       Author: Mihir Kasmalkar
- * Date created: Mon Da, Year
+ * Date created: Aug 28, 2015
  *
  *      Purpose:
  *
@@ -25,9 +25,10 @@ Token testHi(Scanner& sc);
 
 void lexerGo()
 {
-    Lexer lexer("Hi", std::vector<testXxx> { testHi });
+    Lexer lexr("Hi");
+    lexr.addTest(testHi);
 
-    std::vector<Token> tokens(lexer.tokenizeSource());
+    std::vector<Token> tokens(lexr.tokenizeSource());
 
     for (auto it = tokens.begin(); it != tokens.end(); ++it) {
         it->print("");

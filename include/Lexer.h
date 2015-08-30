@@ -7,7 +7,7 @@
  * /Project/Headers/include/Filename.h
  *
  *       Author: Mihir Kasmalkar
- * Date created: Mon Da, Year
+ * Date created: Aug 28, 2015
  *
  *      Purpose:
  *
@@ -36,12 +36,14 @@ namespace lexer
 	class Lexer
 	{
 		public:
-			Lexer(std::string sourceCode, std::vector<testXxx> handlers);
+			Lexer(std::string sourceCode);
 			~Lexer();
 
             Token getNextToken();
 
 			std::vector<Token> tokenizeSource();
+
+            void addTest(testXxx testFunction);
 
 			std::string sourceCode;
 

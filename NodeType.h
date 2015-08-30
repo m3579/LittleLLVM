@@ -7,7 +7,7 @@
  * /Project/Headers/include/Filename.h
  *
  *       Author: Mihir Kasmalkar
- * Date created: Mon Da, Year
+ * Date created: Aug 30, 2015
  *
  *      Purpose:
  *

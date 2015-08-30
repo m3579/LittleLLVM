@@ -4,7 +4,7 @@
  * /Project/Sources/src/Filename.cpp
  *
  *       Author: Mihir Kasmalkar
- * Date created: Mon Da, Year
+ * Date created: Aug 29, 2015
  *
  *      Purpose:
  *
