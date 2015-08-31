@@ -30,7 +30,7 @@ namespace ast
             SyntaxTree();
             ~SyntaxTree();
 
-            void addStatement(Node node);
+            Node addStatement(Node statement);
 
             void print(std::string tabs);
 

@@ -87,42 +87,51 @@ void parserGo()
     Parser parser(lexer);
 
     Terminal startingTerminal(TTYPE_NUMONE,
-    [] (TokenManager& tm)
-    {
-        std::cout << "Found number 1\n";
-        tm.moveToNextToken();
-    },
-                              NTYPE_NUMONE);
+        [] (TokenManager& tm)
+        {
+            std::cout << "Found number 1\n";
+            tm.moveToNextToken();
+            std::cout << "Next token: |" << tm.getCurrentToken().getText() << "|\n";
+
+            return Node(tm.getCurrentToken(), NTYPE_NUMONE);
+        }
+    );
 
     parser.addTerminal(startingTerminal);
 
     Terminal plusTerminal(TTYPE_PLUS,
-    [] (TokenManager& tm)
-    {
-        std::cout << "Found plus sign\n";
-        tm.moveToNextToken();
-    },
-                          NTYPE_PLUS);
+        [] (TokenManager& tm)
+        {
+            std::cout << "Found plus sign\n";
+            tm.moveToNextToken();
+            std::cout << "Next token: |" << tm.getCurrentToken().getText() << "|\n";
+
+            return Node(tm.getCurrentToken(), NTYPE_PLUS);
+        }
+    );
 
     startingTerminal.addTerminal(plusTerminal);
 
     Terminal finalTerminal(TTYPE_NUMONE,
-    [] (TokenManager& tm)
-    {
-        std::cout << "Found final number 1\n";
-        tm.moveToNextToken();
-    },
-                          NTYPE_NUMONE
+        [] (TokenManager& tm)
+        {
+            std::cout << "Found final number 1\n";
+            tm.moveToNextToken();
+            std::cout << "Next token: |" << tm.getCurrentToken().getText() << "|\n";
+
+            return Node(tm.getCurrentToken(), NTYPE_NUMONE);
+        }
     );
 
     plusTerminal.addTerminal(finalTerminal);
 
     Terminal endTerminal(TTYPE_END,
-    [] (TokenManager& tm)
-    {
-        std::cout << "Found end\n";
-    },
-                         NTYPE_END
+        [] (TokenManager& tm)
+        {
+            std::cout << "Found end\n";
+
+            return Node(tm.getCurrentToken(), NTYPE_END);
+        }
     );
 
     finalTerminal.addTerminal(endTerminal);

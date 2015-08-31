@@ -14,6 +14,8 @@
  *
  */
 
+#include <iostream>
+
 #include "Parser.h"
 #include "Lexer.h"
 #include "TokenManager.h"
@@ -44,7 +46,7 @@ namespace parser
 
         while (tm.hasMoreTokens()) {
             for (auto terminal = terminals.begin(); terminal != terminals.end(); ++terminal) {
-                assembleTerminal(Node(Token(), NTYPE_STMT), *terminal, syntaxTree, tm);
+                assembleTerminal(*terminal, syntaxTree, tm);
             }
         }
 
@@ -56,22 +58,20 @@ namespace parser
         terminals.push_back(terminal);
     }
 
-    bool Parser::assembleTerminal(Node supernode, Terminal terminal, SyntaxTree& syntaxTree, TokenManager& tm)
+    bool Parser::assembleTerminal(Terminal terminal, SyntaxTree& syntaxTree, TokenManager& tm)
     {
         int type = terminal.getTokenType();
 
         if (tm.found(type)) {
 
-            terminal.actionAfterFind(tm);
+            Node node(terminal.actionAfterFind(tm));
 
-            Node node(tm.getCurrentToken(), terminal.getNodeType());
-
-            supernode.addNode(node);
+            syntaxTree.addStatement(node);
 
             std::vector<Terminal> nextTerminals(terminal.getNextTerminals());
 
             for (auto next = nextTerminals.begin(); next != nextTerminals.end(); ++next) {
-                if (assembleTerminal(node, *next, syntaxTree, tm)) {
+                if (assembleTerminal(*next, syntaxTree, tm)) {
                     break;
                 }
             }

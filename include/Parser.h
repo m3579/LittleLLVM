@@ -41,7 +41,7 @@ namespace parser
             void addTerminal(Terminal& terminal);
 
             // Return whether or not the terminal was found
-            bool assembleTerminal(Node supernode, Terminal terminal, SyntaxTree& syntaxTree, TokenManager& tm);
+            bool assembleTerminal(Terminal terminal, SyntaxTree& syntaxTree, TokenManager& tm);
 
         private:
             Lexer lexr;

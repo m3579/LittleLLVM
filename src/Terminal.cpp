@@ -14,12 +14,14 @@
  *
  */
 
+#include <iostream>
+
 #include "Terminal.h"
 
 namespace ast
 {
-    Terminal::Terminal(int tokenType, afterFind actionAfterFind, int nodeType) :
-        actionAfterFind(actionAfterFind), tokenType(tokenType), nodeType(nodeType)
+    Terminal::Terminal(int tokenType, afterFind actionAfterFind) :
+        actionAfterFind(actionAfterFind), tokenType(tokenType)
     {
 
     }
@@ -38,11 +40,6 @@ namespace ast
     int Terminal::getTokenType()
     {
         return tokenType;
-    }
-
-    int Terminal::getNodeType()
-    {
-        return nodeType;
     }
 
     std::vector<Terminal> Terminal::getNextTerminals()

@@ -29,6 +29,12 @@ namespace ast
 
     }
 
+    Node SyntaxTree::addStatement(Node statement)
+    {
+        statements.push_back(statement);
+        return statement;
+    }
+
     void SyntaxTree::print(std::string tabs)
     {
 

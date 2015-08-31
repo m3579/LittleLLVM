@@ -20,6 +20,7 @@
 #include <vector>
 
 #include "Token.h"
+#include "Node.h"
 
 using namespace token;
 
@@ -30,18 +31,17 @@ namespace parser
 
 namespace ast
 {
-    typedef void (*afterFind)(parser::TokenManager&);
+    typedef node::Node (*afterFind)(parser::TokenManager&);
 
     class Terminal
     {
         public:
-            Terminal(int tokenType, afterFind actionAfterFind, int nodeType);
+            Terminal(int tokenType, afterFind actionAfterFind);
             ~Terminal();
 
             Terminal addTerminal(Terminal& nextTerminal);
 
             int getTokenType();
-            int getNodeType();
 
             std::vector<Terminal> getNextTerminals();
 
@@ -49,7 +49,6 @@ namespace ast
 
         private:
             int tokenType;
-            int nodeType;
 
             std::vector<Terminal> nextTerminals;
     };
