@@ -28,7 +28,7 @@
 1440960210 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\lexer_test.h
 	"Lexer.h"
 
-1441073037 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\lexer.h
+1441076557 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\lexer.h
 	<vector>
 	"Scanner.h"
 	"Token.h"
@@ -39,7 +39,7 @@
 	<string>
 	<map>
 
-1441073517 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\lexer.cpp
+1441076562 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\lexer.cpp
 	<iostream>
 	"Lexer.h"
 	"Scanner.h"
@@ -52,7 +52,7 @@
 	<vector>
 	"Token.h"
 
-1441073495 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\parser.cpp
+1441073546 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\parser.cpp
 	<iostream>
 	"Parser.h"
 	"Lexer.h"
@@ -85,7 +85,7 @@
 	<iostream>
 	"Token.h"
 
-1441072570 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\terminal.h
+1441077646 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\include\terminal.h
 	<vector>
 	"Token.h"
 	"Node.h"
@@ -100,7 +100,7 @@
 
 1440971799 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\nodetype.h
 
-1441072631 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\terminal.cpp
+1441077632 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\src\terminal.cpp
 	<iostream>
 	"Terminal.h"
 
@@ -110,11 +110,12 @@
 	"TokenManager.h"
 	"Node.h"
 
-1441073476 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\parser_test.h
+1441081851 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\parser_test.h
 	<iostream>
 	"../TokenType.h"
 	"Lexer.h"
 	"Parser.h"
+	"cleancode.h"
 
 1440971752 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\tokentype.h
 
@@ -123,4 +124,7 @@
 
 1440971797 source:c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\nodetype.cpp
 	"NodeType.h"
+
+1441081813 c:\users\mihir kasmalkar\documents\programs\codeblocks\thecompilerframework\cleancode.h
+	"Lexer.h"
 

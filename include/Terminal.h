@@ -36,7 +36,7 @@ namespace ast
     class Terminal
     {
         public:
-            Terminal(int tokenType, astAction actionAfterFind, std::string id);
+            Terminal(int tokenType, std::string id, astAction actionAfterFind);
             ~Terminal();
 
             Terminal addTerminal(Terminal& nextTerminal);

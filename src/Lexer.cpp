@@ -82,7 +82,7 @@ namespace lexer
 
 	}
 
-	void Lexer::addTest(testXxx test)
+	void Lexer::addTest(test test)
 	{
 	    testFunctions.push_back(test);
 	}

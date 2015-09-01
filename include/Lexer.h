@@ -28,7 +28,7 @@ using namespace token;
 
 namespace lexer
 {
-    typedef Token (*testXxx)(Scanner&);
+    typedef Token (*test)(Scanner&);
 
     extern bool finished;
 
@@ -42,12 +42,12 @@ namespace lexer
 
 			std::vector<Token> tokenizeSource();
 
-            void addTest(testXxx testFunction);
+            void addTest(test testFunction);
 
 			std::string sourceCode;
 
         private:
-            std::vector<testXxx> testFunctions;
+            std::vector<test> testFunctions;
 
             Scanner scanner;
 

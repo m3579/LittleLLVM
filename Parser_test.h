@@ -22,6 +22,7 @@
 #include "../TokenType.h"
 #include "Lexer.h"
 #include "Parser.h"
+#include "cleancode.h"
 
 createTokenType(TTYPE_NUMONE);
 createTokenType(TTYPE_PLUS);
@@ -38,102 +39,112 @@ void parserGo()
 {
     Lexer lexer("1 + 1");
 
+    setLexer(lexer);
+
     // 1 1 1 1 1
-    lexer.addTest(
-        [] (Scanner& sc)
-        {
-            if (sc.getCurrentChar() == '1') {
-                return Token(sc.getLineNumber(), sc.getColumnNumber(), "1", TTYPE_NUMONE);
-            }
-            return Token();
+    makeTest(sc)
+    {
+        if (sc.getCurrentChar() == '1') {
+            return Token(sc.getLineNumber(), sc.getColumnNumber(), "1", TTYPE_NUMONE);
         }
-    );
+        return Token();
+    }
+    endTest
 
     // + + + + +
-    lexer.addTest(
-        [] (Scanner& sc)
-        {
-            if (sc.getCurrentChar() == '+') {
-                return Token(sc.getLineNumber(), sc.getColumnNumber(), "+", TTYPE_PLUS);
-            }
-            return Token();
+    makeTest(sc)
+    {
+        if (sc.getCurrentChar() == '+') {
+            return Token(sc.getLineNumber(), sc.getColumnNumber(), "+", TTYPE_PLUS);
         }
-    );
+        return Token();
+    }
+    endTest
 
     // SPACE SPACE SPACE SPACE SPACE
-    lexer.addTest(
-        [] (Scanner& sc)
-        {
-            if (sc.getCurrentChar() == ' ') {
+    makeTest(sc)
+    {
+        if (sc.getCurrentChar() == ' ') {
                 sc.moveToNextChar();
-            }
-
-            return Token();
         }
-    );
+
+        return Token();
+    }
+    endTest
 
     // END END END END END
-    lexer.addTest(
-        [] (Scanner& sc)
-        {
-            if (sc.getCurrentChar() == '\0') {
-                finished = true;
-                return Token(sc.getLineNumber(), sc.getColumnNumber(), "\0", TTYPE_END);
-            }
-            return Token();
+    makeTest(sc)
+    {
+        if (sc.getCurrentChar() == '\0') {
+            finished = true;
+            return Token(sc.getLineNumber(), sc.getColumnNumber(), "\0", TTYPE_END);
         }
-    );
+        return Token();
+    }
+    endTest
 
     Parser parser(lexer);
 
-    Terminal startingTerminal(TTYPE_NUMONE,
-        [] (TokenManager& tm)
+    createTerminal(startingTerminal)
+    forTokenType(TTYPE_NUMONE)
+    withId("Starting terminal")
+
+        astAction(tm)
         {
             tm.moveToNextToken();
 
             return Node(tm.fetchPreviousToken(), NTYPE_NUMONE);
-        },
-        "Starting terminal"
-    );
+        }
+
+    endTerminal
 
     parser.addTerminal(startingTerminal);
 
-    Terminal plusTerminal(TTYPE_PLUS,
-        [] (TokenManager& tm)
+    createTerminal(plusTerminal)
+    forTokenType(TTYPE_PLUS)
+    withId("Plus Terminal")
+
+        astAction(tm)
         {
             tm.moveToNextToken();
 
             return Node(tm.fetchPreviousToken(), NTYPE_PLUS);
-        },
-        "Plus Terminal"
-    );
+        }
+
+    endTerminal
 
     startingTerminal.addTerminal(plusTerminal);
 
-    Terminal finalTerminal(TTYPE_NUMONE,
-        [] (TokenManager& tm)
+    createTerminal(finalTerminal)
+    forTokenType(TTYPE_NUMONE)
+    withId("Final Terminal")
+
+        astAction(tm)
         {
             tm.moveToNextToken();
 
             return Node(tm.fetchPreviousToken(), NTYPE_NUMONE);
-        },
-        "Final Terminal"
-    );
+        }
+
+    endTerminal
 
     plusTerminal.addTerminal(finalTerminal);
 
-    Terminal endTerminal(TTYPE_END,
-        [] (TokenManager& tm)
+    createTerminal(eolTerminal)
+    forTokenType(TTYPE_END)
+    withId("End")
+
+        astAction(tm)
         {
             return Node(tm.getCurrentToken(), NTYPE_END);
-        },
-        "End"
-    );
+        }
 
-    finalTerminal.addTerminal(endTerminal);
+    endTerminal
+
+    finalTerminal.addTerminal(eolTerminal);
 
     parser.noFind =
-        [] (TokenManager& tm)
+        astAction(tm)
         {
             std::cout << "Error!";
             exit = true;
