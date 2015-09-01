@@ -14,6 +14,8 @@
  *
  */
 
+#include <iostream>
+
 #include "Node.h"
 
 namespace node
@@ -41,6 +43,13 @@ namespace node
         }
 
         return Node();
+    }
+
+    void Node::print(std::string tabs)
+    {
+        std::cout << tabs << "Node: " << token.getText() << "\n"
+                  << tabs << "\tType: " << type
+                  << "\n";
     }
 
 } /* namespace node */

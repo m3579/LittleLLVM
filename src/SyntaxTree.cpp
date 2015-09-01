@@ -14,6 +14,8 @@
  *
  */
 
+#include <iostream>
+
 #include "SyntaxTree.h"
 
 namespace ast
@@ -37,7 +39,10 @@ namespace ast
 
     void SyntaxTree::print(std::string tabs)
     {
-
+        std::cout << "Syntax Tree:\n\n";
+        for (auto it = statements.begin(); it != statements.end(); ++it) {
+            it->print("\t");
+        }
     }
 
 } /* namespace ast */

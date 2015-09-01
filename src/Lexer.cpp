@@ -78,6 +78,13 @@ namespace lexer
             }
 		}
 
+        std::cout << "LEXER---\n";
+
+        for (auto it = tokens.begin(); it != tokens.end(); ++it) {
+            std::cout << it->getType() << " ";
+        }
+        std::cout << "\nLEXER---\n";
+
 		return tokens;
 
 	}

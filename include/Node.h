@@ -36,6 +36,8 @@ namespace node
 
             Node getNode(unsigned int index);
 
+            void print(std::string tabs);
+
         private:
             Token token;
 

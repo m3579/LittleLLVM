@@ -62,16 +62,22 @@ namespace parser
     {
         int type = terminal.getTokenType();
 
+        std::cout << "Actual: " << tm.getCurrentToken().getType() << "\n";
+        std::cout << "Desired: " << type << "\n";
+
         if (tm.found(type)) {
 
-            Node node(terminal.actionAfterFind(tm));
+            std::cout << "Found\n";
 
-            syntaxTree.addStatement(node);
+            syntaxTree.addStatement(terminal.actionAfterFind(tm));
 
             std::vector<Terminal> nextTerminals(terminal.getNextTerminals());
 
+            syntaxTree.print("");
+
             for (auto next = nextTerminals.begin(); next != nextTerminals.end(); ++next) {
-                if (assembleTerminal(*next, syntaxTree, tm)) {
+                bool found = assembleTerminal(*next, syntaxTree, tm);
+                if (found) {
                     break;
                 }
             }
