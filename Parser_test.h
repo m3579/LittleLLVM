@@ -124,10 +124,10 @@ void parserGo()
         },
         "End"
     );
+    startingTerminal.addTerminal(plusTerminal);
+    plusTerminal.addTerminal(finalTerminal);
 
     finalTerminal.addTerminal(endTerminal);
-    plusTerminal.addTerminal(finalTerminal);
-    startingTerminal.addTerminal(plusTerminal);
 
     parser.addTerminal(startingTerminal);
 

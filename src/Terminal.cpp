@@ -33,7 +33,7 @@ namespace ast
 
     Terminal Terminal::addTerminal(Terminal& nextTerminal)
     {
-        nextTerminals.push_back(nextTerminal);
+        nextTerminals.push_back(&nextTerminal);
         return nextTerminal;
     }
 
@@ -42,7 +42,7 @@ namespace ast
         return tokenType;
     }
 
-    std::vector<Terminal> Terminal::getNextTerminals()
+    std::vector<Terminal*> Terminal::getNextTerminals()
     {
         return nextTerminals;
     }

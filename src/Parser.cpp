@@ -46,7 +46,7 @@ namespace parser
 
         while (tm.hasMoreTokens()) {
             for (auto terminal = terminals.begin(); terminal != terminals.end(); ++terminal) {
-                assembleTerminal(*terminal, syntaxTree, tm);
+                assembleTerminal(**terminal, syntaxTree, tm);
             }
         }
 
@@ -55,7 +55,7 @@ namespace parser
 
     void Parser::addTerminal(Terminal& terminal)
     {
-        terminals.push_back(terminal);
+        terminals.push_back(&terminal);
     }
 
     bool Parser::assembleTerminal(Terminal terminal, SyntaxTree& syntaxTree, TokenManager& tm)
@@ -73,12 +73,12 @@ namespace parser
 
             syntaxTree.addStatement(terminal.actionAfterFind(tm));
 
-            std::vector<Terminal> nextTerminals(terminal.getNextTerminals());
+            std::vector<Terminal*> nextTerminals(terminal.getNextTerminals());
 
             syntaxTree.print("");
 
             for (auto next = nextTerminals.begin(); next != nextTerminals.end(); ++next) {
-                bool found = assembleTerminal(*next, syntaxTree, tm);
+                bool found = assembleTerminal(**next, syntaxTree, tm);
                 if (found) {
                     break;
                 }

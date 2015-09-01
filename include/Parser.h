@@ -46,7 +46,7 @@ namespace parser
         private:
             Lexer lexr;
 
-            std::vector<Terminal> terminals;
+            std::vector<Terminal*> terminals;
     };
 
 } /* namespace parser */

@@ -43,7 +43,7 @@ namespace ast
 
             int getTokenType();
 
-            std::vector<Terminal> getNextTerminals();
+            std::vector<Terminal*> getNextTerminals();
 
             afterFind actionAfterFind;
 
@@ -52,7 +52,7 @@ namespace ast
         private:
             int tokenType;
 
-            std::vector<Terminal> nextTerminals;
+            std::vector<Terminal*> nextTerminals;
     };
 
 } /* namespace ast */
