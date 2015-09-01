@@ -96,6 +96,8 @@ void parserGo()
         "Starting terminal"
     );
 
+    parser.addTerminal(startingTerminal);
+
     Terminal plusTerminal(TTYPE_PLUS,
         [] (TokenManager& tm)
         {
@@ -105,6 +107,8 @@ void parserGo()
         },
         "Plus Terminal"
     );
+
+    startingTerminal.addTerminal(plusTerminal);
 
     Terminal finalTerminal(TTYPE_NUMONE,
         [] (TokenManager& tm)
@@ -116,14 +120,17 @@ void parserGo()
         "Final Terminal"
     );
 
+    plusTerminal.addTerminal(finalTerminal);
+
     Terminal endTerminal(TTYPE_END,
         [] (TokenManager& tm)
         {
-            std::cout << "End\n";
-            return Node(tm.fetchPreviousToken(), NTYPE_END);
+            return Node(tm.getCurrentToken(), NTYPE_END);
         },
         "End"
     );
+
+    finalTerminal.addTerminal(endTerminal);
 
     parser.noFind =
         [] (TokenManager& tm)
@@ -134,19 +141,9 @@ void parserGo()
             return Node();
         };
 
-    finalTerminal.addTerminal(endTerminal);
-    startingTerminal.addTerminal(plusTerminal);
-    plusTerminal.addTerminal(finalTerminal);
-
-    parser.addTerminal(endTerminal);
-
-    std::cout << "One: " << TTYPE_NUMONE << "\n"
-              << "Plus: " << TTYPE_PLUS << "\n"
-              << "End: " << TTYPE_END << "\n\n";
-
     SyntaxTree tree(parser.createSyntaxTree());
 
-    // tree.print("");
+    tree.print("");
 
 }
 

@@ -15,7 +15,6 @@
  */
 
 #include <iostream>
-#include <windows.h>
 
 #include "Parser.h"
 #include "Lexer.h"
@@ -63,7 +62,6 @@ namespace parser
             }
 
             if (exit) {
-                Sleep(1000);
                 break;
             }
         }
@@ -80,20 +78,11 @@ namespace parser
     {
         int type = terminal.getTokenType();
 
-        std::cout << "\n\n------" << terminal.id << "------\n";
-
-        std::cout << "Actual: " << tm.getCurrentToken().getType() << "\n";
-        std::cout << "Desired: " << type << "\n";
-
         if (tm.found(type)) {
-
-            std::cout << "\nFound!\n\n";
 
             syntaxTree.addStatement(terminal.actionAfterFind(tm));
 
             std::vector<Terminal*> nextTerminals(terminal.getNextTerminals());
-
-            syntaxTree.print("");
 
             for (auto next = nextTerminals.begin(); next != nextTerminals.end(); ++next) {
                 bool found = assembleTerminal(**next, syntaxTree, tm);
@@ -102,12 +91,8 @@ namespace parser
                 }
             }
 
-            std::cout << "\n\n";
-
             return true;
         }
-
-        std::cout << "\n\n";
 
         return false;
     }
