@@ -20,7 +20,7 @@
 
 namespace ast
 {
-    Terminal::Terminal(int tokenType, afterFind actionAfterFind, std::string id) :
+    Terminal::Terminal(int tokenType, astAction actionAfterFind, std::string id) :
         actionAfterFind(actionAfterFind), id(id), tokenType(tokenType)
     {
 

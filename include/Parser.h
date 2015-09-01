@@ -30,6 +30,8 @@ using namespace lexer;
 
 namespace parser
 {
+    extern bool exit;
+
     class Parser
     {
         public:
@@ -42,6 +44,8 @@ namespace parser
 
             // Return whether or not the terminal was found
             bool assembleTerminal(Terminal terminal, SyntaxTree& syntaxTree, TokenManager& tm);
+
+            astAction noFind;
 
         private:
             Lexer lexr;

@@ -124,12 +124,21 @@ void parserGo()
         },
         "End"
     );
+
+    parser.noFind =
+        [] (TokenManager& tm)
+        {
+            std::cout << "Error!";
+            exit = true;
+
+            return Node();
+        };
+
+    finalTerminal.addTerminal(endTerminal);
     startingTerminal.addTerminal(plusTerminal);
     plusTerminal.addTerminal(finalTerminal);
 
-    finalTerminal.addTerminal(endTerminal);
-
-    parser.addTerminal(startingTerminal);
+    parser.addTerminal(endTerminal);
 
     std::cout << "One: " << TTYPE_NUMONE << "\n"
               << "Plus: " << TTYPE_PLUS << "\n"

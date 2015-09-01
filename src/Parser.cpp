@@ -15,6 +15,7 @@
  */
 
 #include <iostream>
+#include <windows.h>
 
 #include "Parser.h"
 #include "Lexer.h"
@@ -24,6 +25,7 @@
 
 namespace parser
 {
+    bool exit = false;
 
     Parser::Parser(Lexer lexr) :
         lexr(lexr)
@@ -45,8 +47,24 @@ namespace parser
         TokenManager tm(tokens);
 
         while (tm.hasMoreTokens()) {
+            bool found;
             for (auto terminal = terminals.begin(); terminal != terminals.end(); ++terminal) {
-                assembleTerminal(**terminal, syntaxTree, tm);
+                found = assembleTerminal(**terminal, syntaxTree, tm);
+                if (found) {
+                    break;
+                }
+            }
+
+            if (found) {
+                continue;
+            }
+            else {
+                noFind(tm);
+            }
+
+            if (exit) {
+                Sleep(1000);
+                break;
             }
         }
 

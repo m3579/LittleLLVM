@@ -31,12 +31,12 @@ namespace parser
 
 namespace ast
 {
-    typedef node::Node (*afterFind)(parser::TokenManager&);
+    typedef node::Node (*astAction)(parser::TokenManager&);
 
     class Terminal
     {
         public:
-            Terminal(int tokenType, afterFind actionAfterFind, std::string id);
+            Terminal(int tokenType, astAction actionAfterFind, std::string id);
             ~Terminal();
 
             Terminal addTerminal(Terminal& nextTerminal);
@@ -45,7 +45,7 @@ namespace ast
 
             std::vector<Terminal*> getNextTerminals();
 
-            afterFind actionAfterFind;
+            astAction actionAfterFind;
 
             std::string id;
 
