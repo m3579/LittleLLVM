@@ -92,7 +92,8 @@ void parserGo()
             tm.moveToNextToken();
 
             return Node(tm.fetchPreviousToken(), NTYPE_NUMONE);
-        }
+        },
+        "Starting terminal"
     );
 
     Terminal plusTerminal(TTYPE_PLUS,
@@ -101,7 +102,8 @@ void parserGo()
             tm.moveToNextToken();
 
             return Node(tm.fetchPreviousToken(), NTYPE_PLUS);
-        }
+        },
+        "Plus Terminal"
     );
 
     Terminal finalTerminal(TTYPE_NUMONE,
@@ -110,7 +112,8 @@ void parserGo()
             tm.moveToNextToken();
 
             return Node(tm.fetchPreviousToken(), NTYPE_NUMONE);
-        }
+        },
+        "Final Terminal"
     );
 
     Terminal endTerminal(TTYPE_END,
@@ -118,12 +121,13 @@ void parserGo()
         {
             std::cout << "End\n";
             return Node(tm.fetchPreviousToken(), NTYPE_END);
-        }
+        },
+        "End"
     );
 
-    startingTerminal.addTerminal(plusTerminal);
-    plusTerminal.addTerminal(finalTerminal);
     finalTerminal.addTerminal(endTerminal);
+    plusTerminal.addTerminal(finalTerminal);
+    startingTerminal.addTerminal(plusTerminal);
 
     parser.addTerminal(startingTerminal);
 

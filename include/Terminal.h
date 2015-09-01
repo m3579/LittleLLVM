@@ -36,7 +36,7 @@ namespace ast
     class Terminal
     {
         public:
-            Terminal(int tokenType, afterFind actionAfterFind);
+            Terminal(int tokenType, afterFind actionAfterFind, std::string id);
             ~Terminal();
 
             Terminal addTerminal(Terminal& nextTerminal);
@@ -46,6 +46,8 @@ namespace ast
             std::vector<Terminal> getNextTerminals();
 
             afterFind actionAfterFind;
+
+            std::string id;
 
         private:
             int tokenType;

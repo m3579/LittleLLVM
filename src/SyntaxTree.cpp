@@ -43,6 +43,7 @@ namespace ast
         for (auto it = statements.begin(); it != statements.end(); ++it) {
             it->print("\t");
         }
+        std::cout << "\n\n";
     }
 
 } /* namespace ast */

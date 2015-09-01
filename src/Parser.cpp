@@ -62,12 +62,14 @@ namespace parser
     {
         int type = terminal.getTokenType();
 
+        std::cout << "\n\n------" << terminal.id << "------\n";
+
         std::cout << "Actual: " << tm.getCurrentToken().getType() << "\n";
         std::cout << "Desired: " << type << "\n";
 
         if (tm.found(type)) {
 
-            std::cout << "Found\n";
+            std::cout << "\nFound!\n\n";
 
             syntaxTree.addStatement(terminal.actionAfterFind(tm));
 
@@ -82,8 +84,12 @@ namespace parser
                 }
             }
 
+            std::cout << "\n\n";
+
             return true;
         }
+
+        std::cout << "\n\n";
 
         return false;
     }
