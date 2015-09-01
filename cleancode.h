@@ -19,6 +19,7 @@
 
 #include "Lexer.h"
 
+
 #define test(scanner) [] (Scanner& scanner)
 
 lexer::Lexer* __lexer;

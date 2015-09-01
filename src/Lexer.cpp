@@ -1,14 +1,16 @@
 /*
- * Filename.cpp
+ * Lexer.cpp
  *
- * /Project/Sources/src/Filename.cpp
+ * /TheCompilerFramework/Sources/src/Lexer.cpp
  *
  *       Author: Mihir Kasmalkar
  * Date created: Aug 28, 2015
  *
- *      Purpose:
+ *      Purpose: Converts the source code into tokens for the parser to assemble into an AST.
+ *               The user will define what Tokens to generate by means of "tests", where the
+ *               lexer will test for a particular type of token.
  *
- *        Usage:
+ *        Usage: The user will supply the test functions. The Parser will use the lexer.
  *
  *        Notes:
  *

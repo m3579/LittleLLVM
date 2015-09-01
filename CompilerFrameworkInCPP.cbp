@@ -36,21 +36,32 @@
 		<Unit filename="Lexer_test.h">
 			<Option target="Debug" />
 		</Unit>
-		<Unit filename="NodeType.txt" />
-		<Unit filename="TokenType.txt" />
+		<Unit filename="NodeType.cpp" />
+		<Unit filename="NodeType.h" />
+		<Unit filename="Parser_test.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Ref.h" />
+		<Unit filename="TokenType.cpp" />
+		<Unit filename="TokenType.h" />
 		<Unit filename="cfmain.cpp" />
+		<Unit filename="cleancode.h" />
 		<Unit filename="include/Lexer.h" />
 		<Unit filename="include/Node.h" />
 		<Unit filename="include/Parser.h" />
 		<Unit filename="include/Scanner.h" />
 		<Unit filename="include/SyntaxTree.h" />
+		<Unit filename="include/Terminal.h" />
 		<Unit filename="include/Token.h" />
+		<Unit filename="include/TokenManager.h" />
 		<Unit filename="src/Lexer.cpp" />
 		<Unit filename="src/Node.cpp" />
 		<Unit filename="src/Parser.cpp" />
 		<Unit filename="src/Scanner.cpp" />
 		<Unit filename="src/SyntaxTree.cpp" />
+		<Unit filename="src/Terminal.cpp" />
 		<Unit filename="src/Token.cpp" />
+		<Unit filename="src/TokenManager.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
