@@ -31,7 +31,7 @@ namespace ast
 
     }
 
-    Terminal Terminal::addTerminal(Terminal& nextTerminal)
+    Terminal Terminal::addNextTerminal(Terminal& nextTerminal)
     {
         nextTerminals.push_back(&nextTerminal);
         return nextTerminal;

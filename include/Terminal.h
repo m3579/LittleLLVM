@@ -39,7 +39,7 @@ namespace ast
             Terminal(int tokenType, std::string id, astAction actionAfterFind);
             ~Terminal();
 
-            Terminal addTerminal(Terminal& nextTerminal);
+            Terminal addNextTerminal(Terminal& nextTerminal);
 
             int getTokenType();
 

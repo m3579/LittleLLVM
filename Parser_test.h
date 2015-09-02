@@ -113,7 +113,7 @@ void parserGo()
 
     endTerminal
 
-    startingTerminal.addTerminal(plusTerminal);
+    startingTerminal.addNextTerminal(plusTerminal);
 
     createTerminal(finalTerminal)
     forTokenType(TTYPE_NUMONE)
@@ -128,7 +128,7 @@ void parserGo()
 
     endTerminal
 
-    plusTerminal.addTerminal(finalTerminal);
+    plusTerminal.addNextTerminal(finalTerminal);
 
     createTerminal(eolTerminal)
     forTokenType(TTYPE_END)
@@ -141,7 +141,7 @@ void parserGo()
 
     endTerminal
 
-    finalTerminal.addTerminal(eolTerminal);
+    finalTerminal.addNextTerminal(eolTerminal);
 
     parser.noFind =
         astAction(tm)
