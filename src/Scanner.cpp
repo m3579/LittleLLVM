@@ -1,7 +1,7 @@
 /*
  * Scanner.cpp
  *
- * /Project/Sources/src/Scanner.cpp
+ * /TheCompilerFramework/Sources/src/Scanner.cpp
  *
  *       Author: Mihir Kasmalkar
  * Date created: Aug 28, 2015
@@ -19,7 +19,7 @@
 #include <iostream>
 #include <cstring>
 
-#include "Scanner.h"
+#include "Scanner.hpp"
 
 namespace scanner
 {

@@ -2,9 +2,9 @@
 #define PARSER_TEST_H_INCLUDED
 
 /*
- * Filename.h
+ * Filename.hpp
  *
- * /Project/Headers/include/Filename.h
+ * /Project/Headers/include/Filename.hpp
  *
  *       Author: Mihir Kasmalkar
  * Date created: Aug 30, 2015
@@ -20,8 +20,8 @@
 #include <iostream>
 
 #include "../TokenType.h"
-#include "Lexer.h"
-#include "Parser.h"
+#include "Lexer.hpp"
+#include "Parser.hpp"
 #include "cleancode.h"
 
 createTokenType(TTYPE_NUMONE);

@@ -1,7 +1,7 @@
 /*
- * Filename.h
+ * Filename.hpp
  *
- * /Project/Headers/include/Filename.h
+ * /Project/Headers/include/Filename.hpp
  *
  *       Author: Mihir Kasmalkar
  * Date created: Aug 29, 2015
@@ -19,10 +19,10 @@
 
 #include <string>
 
-#include "SyntaxTree.h"
-#include "Lexer.h"
-#include "Terminal.h"
-#include "TokenManager.h"
+#include "SyntaxTree.hpp"
+#include "Lexer.hpp"
+#include "Terminal.hpp"
+#include "TokenManager.hpp"
 #include "../NodeType.h"
 
 using namespace ast;

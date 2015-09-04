@@ -22,9 +22,9 @@
 
 #include <iostream>
 
-#include "Parser.h"
-#include "Lexer.h"
-#include "TokenManager.h"
+#include "Parser.hpp"
+#include "Lexer.hpp"
+#include "TokenManager.hpp"
 #include "../TokenType.h"
 #include "../NodeType.h"
 

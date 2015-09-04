@@ -2,9 +2,9 @@
 #define LEXER_TEST_H_INCLUDED
 
 /*
- * Filename.h
+ * Filename.hpp
  *
- * /Project/Headers/include/Filename.h
+ * /Project/Headers/include/Filename.hpp
  *
  *       Author: Mihir Kasmalkar
  * Date created: Aug 28, 2015
@@ -17,7 +17,7 @@
  *
  */
 
-#include "Lexer.h"
+#include "Lexer.hpp"
 
 using namespace lexer;
 

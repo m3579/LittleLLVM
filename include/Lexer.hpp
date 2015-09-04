@@ -2,9 +2,9 @@
 #define LEXER_H
 
 /*
- * Filename.h
+ * Filename.hpp
  *
- * /Project/Headers/include/Filename.h
+ * /Project/Headers/include/Filename.hpp
  *
  *       Author: Mihir Kasmalkar
  * Date created: Aug 28, 2015
@@ -20,8 +20,8 @@
 
 #include <vector>
 
-#include "Scanner.h"
-#include "Token.h"
+#include "Scanner.hpp"
+#include "Token.hpp"
 
 using namespace scanner;
 using namespace token;

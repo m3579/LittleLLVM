@@ -1,7 +1,7 @@
 /*
- * Filename.h
+ * Filename.hpp
  *
- * /Project/Headers/include/Filename.h
+ * /Project/Headers/include/Filename.hpp
  *
  *       Author: Mihir Kasmalkar
  * Date created: Aug 29, 2015
@@ -17,7 +17,7 @@
 #ifndef SYNTAXTREE_H
 #define SYNTAXTREE_H
 
-#include "Node.h"
+#include "Node.hpp"
 
 using namespace node;
 

@@ -1,7 +1,7 @@
 /*
  * Terminal.cpp
  *
- * /Project/Sources/src/Terminal.cpp
+ * /TheCompilerFramework/Sources/src/Terminal.cpp
  *
  *       Author: Mihir Kasmalkar
  * Date created: Aug 29, 2015
@@ -19,7 +19,7 @@
 
 #include <iostream>
 
-#include "Terminal.h"
+#include "Terminal.hpp"
 
 namespace ast
 {

@@ -18,8 +18,8 @@
 
 #include <iostream>
 
-#include "Lexer.h"
-#include "Scanner.h"
+#include "Lexer.hpp"
+#include "Scanner.hpp"
 
 namespace lexer
 {

@@ -1,7 +1,7 @@
 /*
- * Filename.h
+ * Filename.hpp
  *
- * /Project/Headers/include/Filename.h
+ * /Project/Headers/include/Filename.hpp
  *
  *       Author: Mihir Kasmalkar
  * Date created: Aug 29, 2015
@@ -18,9 +18,9 @@
 
 #include <vector>
 
-#include "Token.h"
-#include "Node.h"
-#include "../Ref.h"
+#include "Token.hpp"
+#include "Node.hpp"
+#include "../Ref.hpp"
 
 using namespace token;
 

@@ -17,7 +17,7 @@
 
 #include <iostream>
 
-#include "Node.h"
+#include "Node.hpp"
 
 namespace node
 {

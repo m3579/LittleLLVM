@@ -17,7 +17,7 @@
 
 #include <iostream>
 
-#include "SyntaxTree.h"
+#include "SyntaxTree.hpp"
 
 namespace ast
 {

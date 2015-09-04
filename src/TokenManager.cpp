@@ -1,7 +1,7 @@
 /*
  * Filename.cpp
  *
- * /Project/Sources/src/Filename.cpp
+ * /TheCompilerFramework/Sources/src/Filename.cpp
  *
  *       Author: Mihir Kasmalkar
  * Date created: Aug 29, 2015
@@ -16,9 +16,9 @@
 
 #include <iostream>
 
-#include "Token.h"
-#include "TokenManager.h"
-#include "Node.h"
+#include "Token.hpp"
+#include "TokenManager.hpp"
+#include "Node.hpp"
 
 using namespace token;
 using namespace node;

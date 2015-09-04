@@ -2,9 +2,9 @@
 #define TOKENTYPE_H_INCLUDED
 
 /*
- * Filename.h
+ * Filename.hpp
  *
- * /Project/Headers/include/Filename.h
+ * /Project/Headers/include/Filename.hpp
  *
  *       Author: Mihir Kasmalkar
  * Date created: Aug 30, 2015
