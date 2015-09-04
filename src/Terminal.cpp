@@ -1,14 +1,17 @@
 /*
- * Filename.cpp
+ * Terminal.cpp
  *
- * /Project/Sources/src/Filename.cpp
+ * /Project/Sources/src/Terminal.cpp
  *
  *       Author: Mihir Kasmalkar
  * Date created: Aug 29, 2015
  *
- *      Purpose:
+ *      Purpose: Represents a Terminal in the source code. See Parser.cpp/hpp for more information.
+ *               Each Terminal contains a list of Terminals that are the next possible Terminals in
+ *               the statement.
  *
- *        Usage:
+ *        Usage: Will be created by the user and given to the Parser. The Parser will use Terminals
+ *               to find matches in the source code for different types of statements.
  *
  *        Notes:
  *

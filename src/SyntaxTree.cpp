@@ -1,14 +1,15 @@
 /*
- * Filename.cpp
+ * SyntaxTree.cpp
  *
- * /Project/Sources/src/Filename.cpp
+ * /Project/Sources/src/SyntaxTree.cpp
  *
  *       Author: Mihir Kasmalkar
  * Date created: Aug 29, 2015
  *
- *      Purpose:
+ *      Purpose: A SyntaxTree represents the AST (or CST if you want to use it that way) of the source code.
  *
- *        Usage:
+ *        Usage: Will be created by the Parser and used to generate code/interpret and execute the source code
+ *               by the code generator.
  *
  *        Notes:
  *

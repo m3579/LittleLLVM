@@ -1,14 +1,15 @@
 /*
- * Filename.cpp
+ * Scanner.cpp
  *
- * /Project/Sources/src/Filename.cpp
+ * /Project/Sources/src/Scanner.cpp
  *
  *       Author: Mihir Kasmalkar
  * Date created: Aug 28, 2015
  *
- *      Purpose:
+ *      Purpose: The Scanner's job is to read characters from the source code and feed them to whoever is using the
+ *               Scanner. In this compiler framework, that will usually and should only be the lexer.
  *
- *        Usage:
+ *        Usage: Will usually be (and should only be) invoked by the lexer.
  *
  *        Notes:
  *

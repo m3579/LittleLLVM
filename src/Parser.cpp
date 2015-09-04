@@ -6,9 +6,15 @@
  *       Author: Mihir Kasmalkar
  * Date created: Aug 29, 2015
  *
- *      Purpose:
+ *      Purpose: Takes tokens from the lexer and assembles them into an Abstract Syntax Tree. In this case, the parser
+ *               creates and returns a SyntaxTree object.
  *
- *        Usage:
+ *        Usage: The parser contains a list of Terminals. (By the way, I do not use the strict definitions of "terminal" and
+ *               "nonterminal". The parser will look for a match with the current Token it is parsing; if it finds one, then it
+ *               will invoke the Terminal's actionAfterFind method. The user is responsible for returning a Node from the
+ *               actionAfterFind. That node will be added to the AST to represent any nonterminals that follow the terminal.
+ *               Each of these nodes will be added directly to the SyntaxTree object; to add Nodes to other Nodes, you will
+ *               have to do that in the actionAfterFind method.
  *
  *        Notes:
  *
