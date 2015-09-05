@@ -20,12 +20,9 @@
 #include "TokenManager.hpp"
 #include "Node.hpp"
 
-using namespace token;
-using namespace node;
-
 namespace parser
 {
-    TokenManager::TokenManager(std::vector<Token> tokens) :
+    TokenManager::TokenManager(std::vector<token::Token> tokens) :
         tokens(tokens), currentTokenIndex(0), currentToken(tokens.at(currentTokenIndex))
     {
 
@@ -36,22 +33,22 @@ namespace parser
 
     }
 
-    Token TokenManager::getCurrentToken()
+    token::Token TokenManager::getCurrentToken()
     {
         return currentToken;
     }
 
-    Token TokenManager::fetchNextToken()
+    token::Token TokenManager::fetchNextToken()
     {
         return lookAhead(1);
     }
 
-    Token TokenManager::fetchPreviousToken()
+    token::Token TokenManager::fetchPreviousToken()
     {
         return lookBehind(1);
     }
 
-    Token TokenManager::lookAhead(int spaces)
+    token::Token TokenManager::lookAhead(int spaces)
     {
         if (currentTokenIndex + spaces < tokens.size()) {
             return tokens.at(currentTokenIndex + spaces);
@@ -60,7 +57,7 @@ namespace parser
         return tokens.back();
     }
 
-    Token TokenManager::lookBehind(int spaces)
+    token::Token TokenManager::lookBehind(int spaces)
     {
         if (currentTokenIndex - spaces > 0) {
             return tokens.at(currentTokenIndex - spaces);
@@ -69,7 +66,7 @@ namespace parser
         return tokens.front();
     }
 
-    Token TokenManager::moveToNextToken()
+    token::Token TokenManager::moveToNextToken()
     {
         if (currentTokenIndex + 1 < tokens.size()) {
             if (counting) {
@@ -82,7 +79,7 @@ namespace parser
         return tokens.back();
     }
 
-    Token TokenManager::moveToPreviousToken()
+    token::Token TokenManager::moveToPreviousToken()
     {
         if (currentTokenIndex - 1 > 0) {
             if (counting) {

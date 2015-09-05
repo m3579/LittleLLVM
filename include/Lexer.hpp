@@ -22,13 +22,11 @@
 
 #include "Scanner.hpp"
 #include "Token.hpp"
-
-using namespace scanner;
-using namespace token;
+#include "../TokenType.h"
 
 namespace lexer
 {
-    typedef Token (*test)(Scanner&);
+    typedef token::Token (*test)(scanner::Scanner&);
 
     extern bool finished;
 
@@ -38,9 +36,9 @@ namespace lexer
 			Lexer(std::string sourceCode);
 			~Lexer();
 
-            Token getNextToken();
+            token::Token getNextToken();
 
-			std::vector<Token> tokenizeSource();
+			std::vector<token::Token> tokenizeSource();
 
             void addTest(test testFunction);
 
@@ -49,7 +47,7 @@ namespace lexer
         private:
             std::vector<test> testFunctions;
 
-            Scanner scanner;
+            scanner::Scanner scanner;
 
 	};
 

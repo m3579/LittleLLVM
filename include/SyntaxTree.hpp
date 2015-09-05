@@ -19,8 +19,6 @@
 
 #include "Node.hpp"
 
-using namespace node;
-
 namespace ast
 {
 
@@ -30,12 +28,12 @@ namespace ast
             SyntaxTree();
             ~SyntaxTree();
 
-            Node addStatement(Node statement);
+            node::Node addStatement(node::Node statement);
 
             void print(std::string tabs);
 
         private:
-            std::vector<Node> statements;
+            std::vector<node::Node> statements;
 
     };
 } /* namespace ast */

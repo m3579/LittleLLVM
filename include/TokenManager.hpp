@@ -22,31 +22,25 @@
 #include "Node.hpp"
 #include "../Ref.hpp"
 
-using namespace token;
-
 namespace parser
 {
-    class TokenManager;
-
-    typedef bool (TokenManager::*isXxx) (Token);
-
     class TokenManager
     {
         public:
-            TokenManager(std::vector<Token>);
+            TokenManager(std::vector<token::Token>);
             ~TokenManager();
 
             // The methods that take a string an a bool as arguments
             // have the capability to log an error (the string is the message, the bool
             // whether or not it is fatal)
 
-            Token getCurrentToken();
-            Token fetchNextToken();
-            Token fetchPreviousToken();
-            Token lookAhead(int);
-            Token lookBehind(int);
-            Token moveToNextToken();
-            Token moveToPreviousToken();
+            token::Token getCurrentToken();
+            token::Token fetchNextToken();
+            token::Token fetchPreviousToken();
+            token::Token lookAhead(int);
+            token::Token lookBehind(int);
+            token::Token moveToNextToken();
+            token::Token moveToPreviousToken();
 
             // Start counting how many tokens have been read since the current token at the time
             // of method call
@@ -63,11 +57,11 @@ namespace parser
             bool hasMoreTokens();
 
         private:
-            std::vector<Token> tokens;
+            std::vector<token::Token> tokens;
 
             unsigned int currentTokenIndex;
 
-            Token currentToken;
+            token::Token currentToken;
 
             bool counting;
             int places;

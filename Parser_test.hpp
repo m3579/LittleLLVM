@@ -24,6 +24,12 @@
 #include "Parser.hpp"
 #include "cleancode.h"
 
+using namespace lexer;
+using namespace token;
+using namespace parser;
+using namespace node;
+using namespace ast;
+
 createTokenType(TTYPE_NUMONE);
 createTokenType(TTYPE_PLUS);
 createTokenType(TTYPE_END);

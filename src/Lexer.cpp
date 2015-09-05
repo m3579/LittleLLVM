@@ -36,11 +36,11 @@ namespace lexer
 
 	}
 
-	Token Lexer::getNextToken()
+	token::Token Lexer::getNextToken()
 	{
 	    for (auto test = testFunctions.begin(); test != testFunctions.end(); ++test) {
 
-            Token token = (*test)(scanner);
+            token::Token token = (*test)(scanner);
 
             if (token) {
                 scanner.moveToNextChar();
@@ -50,21 +50,21 @@ namespace lexer
 
         }
 
-        return Token(0, 0, "", -1);
+        return token::Token(0, 0, "", -1);
 	}
 
-	std::vector<Token> Lexer::tokenizeSource()
+	std::vector<token::Token> Lexer::tokenizeSource()
 	{
-		Scanner sc(sourceCode.c_str());
+		scanner::Scanner sc(sourceCode.c_str());
 
-        std::vector<Token> tokens;
+        std::vector<token::Token> tokens;
 
         bool lexing = true;
 
 		while (lexing) {
             for (auto test = testFunctions.begin(); test != testFunctions.end(); ++test) {
 
-                Token token = (*test)(sc);
+                token::Token token = (*test)(sc);
 
                 if (token) {
                     tokens.push_back(token);

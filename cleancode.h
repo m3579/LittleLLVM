@@ -20,7 +20,7 @@
 #include "Lexer.hpp"
 
 
-#define test(scanner) [] (Scanner& scanner)
+#define test(sc) [] (scanner::Scanner& sc)
 
 lexer::Lexer* __lexer;
 
@@ -31,13 +31,13 @@ lexer::Lexer* __lexer;
 #define endTest );
 
 
-#define createTerminal(terminal) Terminal terminal(
+#define createTerminal(terminal) ast::Terminal terminal(
 
 #define forTokenType(type) type,
 
 #define withId(id)         id,
 
-#define astAction(tokenManager) [] (TokenManager& tokenManager)
+#define astAction(tokenManager) [] (parser::TokenManager& tokenManager)
 
 #define endTerminal     );
 

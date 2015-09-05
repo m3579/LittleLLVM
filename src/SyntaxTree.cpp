@@ -32,7 +32,7 @@ namespace ast
 
     }
 
-    Node SyntaxTree::addStatement(Node statement)
+    node::Node SyntaxTree::addStatement(node::Node statement)
     {
         statements.push_back(statement);
         return statement;

@@ -22,8 +22,6 @@
 #include "Token.hpp"
 #include "Node.hpp"
 
-using namespace token;
-
 namespace parser
 {
     class TokenManager;

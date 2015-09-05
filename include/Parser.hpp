@@ -25,9 +25,6 @@
 #include "TokenManager.hpp"
 #include "../NodeType.h"
 
-using namespace ast;
-using namespace lexer;
-
 namespace parser
 {
     extern bool exit;
@@ -35,22 +32,22 @@ namespace parser
     class Parser
     {
         public:
-            Parser(Lexer lexr);
+            Parser(lexer::Lexer lexr);
             ~Parser();
 
-            SyntaxTree createSyntaxTree();
+            ast::SyntaxTree createSyntaxTree();
 
-            void addTerminal(Terminal& terminal);
+            void addTerminal(ast::Terminal& terminal);
 
             // Return whether or not the terminal was found
-            bool assembleTerminal(Terminal terminal, SyntaxTree& syntaxTree, TokenManager& tm);
+            bool assembleTerminal(ast::Terminal terminal, ast::SyntaxTree& syntaxTree, parser::TokenManager& tm);
 
-            astAction noFind;
+            ast::astAction noFind;
 
         private:
-            Lexer lexr;
+            lexer::Lexer lexr;
 
-            std::vector<Terminal*> terminals;
+            std::vector<ast::Terminal*> terminals;
     };
 
 } /* namespace parser */

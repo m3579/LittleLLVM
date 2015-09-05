@@ -21,15 +21,13 @@
 
 #include "Token.hpp"
 
-using namespace token;
-
 namespace node
 {
 
     class Node
     {
         public:
-            Node(Token token = Token(), int type = -1);
+            Node(token::Token token = token::Token(), int type = -1);
             ~Node();
 
             void addNode(Node node);
@@ -39,7 +37,7 @@ namespace node
             void print(std::string tabs);
 
         private:
-            Token token;
+            token::Token token;
 
             int type;
 

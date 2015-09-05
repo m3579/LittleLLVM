@@ -32,7 +32,7 @@ namespace parser
 {
     bool exit = false;
 
-    Parser::Parser(Lexer lexr) :
+    Parser::Parser(lexer::Lexer lexr) :
         lexr(lexr)
     {
 
@@ -43,13 +43,13 @@ namespace parser
 
     }
 
-    SyntaxTree Parser::createSyntaxTree()
+    ast::SyntaxTree Parser::createSyntaxTree()
     {
-        SyntaxTree syntaxTree;
+        ast::SyntaxTree syntaxTree;
 
-        std::vector<Token> tokens(lexr.tokenizeSource());
+        std::vector<token::Token> tokens(lexr.tokenizeSource());
 
-        TokenManager tm(tokens);
+        parser::TokenManager tm(tokens);
 
         while (tm.hasMoreTokens()) {
             bool found;
@@ -75,12 +75,12 @@ namespace parser
         return syntaxTree;
     }
 
-    void Parser::addTerminal(Terminal& terminal)
+    void Parser::addTerminal(ast::Terminal& terminal)
     {
         terminals.push_back(&terminal);
     }
 
-    bool Parser::assembleTerminal(Terminal terminal, SyntaxTree& syntaxTree, TokenManager& tm)
+    bool Parser::assembleTerminal(ast::Terminal terminal, ast::SyntaxTree& syntaxTree, parser::TokenManager& tm)
     {
         int type = terminal.getTokenType();
 
@@ -88,7 +88,7 @@ namespace parser
 
             syntaxTree.addStatement(terminal.actionAfterFind(tm));
 
-            std::vector<Terminal*> nextTerminals(terminal.getNextTerminals());
+            std::vector<ast::Terminal*> nextTerminals(terminal.getNextTerminals());
 
             for (auto next = nextTerminals.begin(); next != nextTerminals.end(); ++next) {
                 bool found = assembleTerminal(**next, syntaxTree, tm);
