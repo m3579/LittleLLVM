@@ -25,7 +25,7 @@ namespace scanner
 {
 
 	Scanner::Scanner(const char* sourceCode) :
-		sourceCodePointer(sourceCode)
+        finished(false), sourceCodePointer(sourceCode)
 	{
 		currentChar = *sourceCodePointer;
 

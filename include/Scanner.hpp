@@ -42,6 +42,8 @@ namespace scanner
 
 			int getCurrentIndex();
 
+			bool finished;
+
 		private:
 			const char* sourceCodePointer;
 

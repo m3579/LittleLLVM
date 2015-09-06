@@ -28,8 +28,6 @@ namespace lexer
 {
     typedef token::Token (*test)(scanner::Scanner&);
 
-    extern bool finished;
-
 	class Lexer
 	{
 		public:

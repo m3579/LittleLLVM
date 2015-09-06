@@ -82,7 +82,7 @@ void parserGo()
     makeTest(sc)
     {
         if (sc.getCurrentChar() == '\0') {
-            finished = true;
+            sc.finished = true;
             return Token(sc.getLineNumber(), sc.getColumnNumber(), "\0", TTYPE_END);
         }
         return Token();

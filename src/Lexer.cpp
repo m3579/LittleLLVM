@@ -23,8 +23,6 @@
 
 namespace lexer
 {
-    bool finished = false;
-
 	Lexer::Lexer(std::string sourceCode) :
 		sourceCode(sourceCode), scanner(sourceCode.c_str())
 	{
@@ -71,7 +69,7 @@ namespace lexer
 
                     sc.moveToNextChar();
 
-                    if (finished) {
+                    if (sc.finished) {
                         lexing = false;
                         break;
                     }
