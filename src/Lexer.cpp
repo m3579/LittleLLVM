@@ -60,23 +60,24 @@ namespace lexer
         bool lexing = true;
 
 		while (lexing) {
+
             for (auto test = testFunctions.begin(); test != testFunctions.end(); ++test) {
 
-                token::Token token = (*test)(sc);
+                token::Token token( ((*test)(sc)) );
+
+                if (sc.finished) {
+                    lexing = false;
+                    break;
+                }
 
                 if (token) {
                     tokens.push_back(token);
-
                     sc.moveToNextChar();
-
-                    if (sc.finished) {
-                        lexing = false;
-                        break;
-                    }
                 }
 
             }
-		}
+
+        }
 
 		return tokens;
 

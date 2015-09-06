@@ -133,7 +133,7 @@
 
 1441413154 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\nodetype.h
 
-1441504914 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\lexer.cpp
+1441560937 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\lexer.cpp
 	<iostream>
 	"Lexer.hpp"
 	"Scanner.hpp"
@@ -158,13 +158,13 @@
 	"Parser.hpp"
 	"cleancode.h"
 
-1441504894 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\lexer.hpp
+1441559623 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\lexer.hpp
 	<vector>
 	"Scanner.hpp"
 	"Token.hpp"
 	"../TokenType.h"
 
-1441504881 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\scanner.hpp
+1441559662 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\scanner.hpp
 
 1441413154 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\token.hpp
 	<string>
@@ -209,7 +209,7 @@
 	"../TokenType.h"
 	"../NodeType.h"
 
-1441413154 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\scanner.cpp
+1441561013 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\scanner.cpp
 	<iostream>
 	<cstring>
 	"Scanner.hpp"

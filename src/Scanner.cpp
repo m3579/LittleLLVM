@@ -15,8 +15,6 @@
  *
  */
 
-
-#include <iostream>
 #include <cstring>
 
 #include "Scanner.hpp"
@@ -29,7 +27,7 @@ namespace scanner
 	{
 		currentChar = *sourceCodePointer;
 
-		if (fetchNextChar() == '\0') {
+		if (getCurrentChar() == '\0') {
 			hasMore = false;
 		}
 		else {
