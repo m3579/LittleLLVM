@@ -145,7 +145,7 @@
 1441413356 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\tokentype.cpp
 	"TokenType.h"
 
-1441413154 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\tokentype.h
+1441562156 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\tokentype.h
 
 1441504396 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\mycompiler.cpp
 	<string>
@@ -201,7 +201,7 @@
 1441434868 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\cleancode.h
 	"Lexer.hpp"
 
-1441435238 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\parser.cpp
+1441562111 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\parser.cpp
 	<iostream>
 	"Parser.hpp"
 	"Lexer.hpp"
@@ -226,9 +226,10 @@
 	<iostream>
 	"Token.hpp"
 
-1441435279 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\tokenmanager.cpp
+1441562364 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\tokenmanager.cpp
 	<iostream>
 	"Token.hpp"
 	"TokenManager.hpp"
 	"Node.hpp"
+	"../TokenType.h"
 

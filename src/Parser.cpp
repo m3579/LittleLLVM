@@ -49,21 +49,19 @@ namespace parser
 
         std::vector<token::Token> tokens(lexr.tokenizeSource());
 
-        std::cout << "[ ";
-        for (auto it = tokens.begin(); it != tokens.end(); ++it) {
-            std::cout << it->getText() << ", ";
-        }
-        std::cout << "]\n";
-
         parser::TokenManager tm(tokens);
 
-        while (tm.hasMoreTokens()) {
+        while (true) {
             bool found;
             for (auto terminal = terminals.begin(); terminal != terminals.end(); ++terminal) {
                 found = assembleTerminal(**terminal, syntaxTree, tm);
                 if (found) {
                     break;
                 }
+            }
+
+            if (exit) {
+                break;
             }
 
             if (found) {
@@ -75,9 +73,6 @@ namespace parser
                 }
             }
 
-            if (exit) {
-                break;
-            }
         }
 
         return syntaxTree;

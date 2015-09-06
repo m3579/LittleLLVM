@@ -19,6 +19,7 @@
 #include "Token.hpp"
 #include "TokenManager.hpp"
 #include "Node.hpp"
+#include "../TokenType.h"
 
 namespace parser
 {
@@ -54,7 +55,7 @@ namespace parser
             return tokens.at(currentTokenIndex + spaces);
         }
 
-        return tokens.back();
+        return token::Token(-1, -1, "", TTYPE_OUTOFRANGE);
     }
 
     token::Token TokenManager::lookBehind(int spaces)
@@ -63,7 +64,7 @@ namespace parser
             return tokens.at(currentTokenIndex - spaces);
         }
 
-        return tokens.front();
+        return token::Token(-1, -1, "", TTYPE_OUTOFRANGE);
     }
 
     token::Token TokenManager::moveToNextToken()
@@ -76,7 +77,7 @@ namespace parser
             return (currentToken = tokens.at(++currentTokenIndex));
         }
 
-        return tokens.back();
+        return token::Token(-1, -1, "", TTYPE_OUTOFRANGE);
     }
 
     token::Token TokenManager::moveToPreviousToken()
@@ -88,7 +89,7 @@ namespace parser
             return (currentToken = tokens.at(--currentTokenIndex));
         }
 
-        return tokens.front();
+        return token::Token(-1, -1, "", TTYPE_OUTOFRANGE);
     }
 
     void TokenManager::startCounting()
