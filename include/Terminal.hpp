@@ -45,6 +45,8 @@ namespace ast
 
             astAction actionAfterFind;
 
+            astAction noFind;
+
             std::string id;
 
         private:

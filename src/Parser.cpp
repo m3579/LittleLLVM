@@ -49,6 +49,12 @@ namespace parser
 
         std::vector<token::Token> tokens(lexr.tokenizeSource());
 
+        std::cout << "[ ";
+        for (auto it = tokens.begin(); it != tokens.end(); ++it) {
+            std::cout << it->getText() << ", ";
+        }
+        std::cout << "]\n";
+
         parser::TokenManager tm(tokens);
 
         while (tm.hasMoreTokens()) {
@@ -64,7 +70,9 @@ namespace parser
                 continue;
             }
             else {
-                noFind(tm);
+                if (noFind != nullptr) {
+                    noFind(tm);
+                }
             }
 
             if (exit) {
@@ -90,10 +98,17 @@ namespace parser
 
             std::vector<ast::Terminal*> nextTerminals(terminal.getNextTerminals());
 
+            bool found;
             for (auto next = nextTerminals.begin(); next != nextTerminals.end(); ++next) {
-                bool found = assembleTerminal(**next, syntaxTree, tm);
+                found = assembleTerminal(**next, syntaxTree, tm);
                 if (found) {
                     break;
+                }
+            }
+
+            if (!found) {
+                if (terminal.noFind != nullptr) {
+                    terminal.noFind(tm);
                 }
             }
 
