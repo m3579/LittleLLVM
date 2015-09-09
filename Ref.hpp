@@ -13,7 +13,8 @@
  *
  *        Usage:
  *
- *        Notes:
+ *        Notes: I based this code off of code from CodeProject.com:
+ *                  http://www.codeproject.com/Articles/15351/Implementing-a-simple-smart-pointer-in-c
  *
  */
 
