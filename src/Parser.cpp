@@ -9,10 +9,10 @@
  *      Purpose: Takes tokens from the lexer and assembles them into an Abstract Syntax Tree. In this case, the parser
  *               creates and returns a SyntaxTree object.
  *
- *        Usage: The parser contains a list of Symbols. (By the way, I do not use the strict definitions of "terminal" and
- *               "nonterminal". The parser will look for a match with the current Token it is parsing; if it finds one, then it
+ *        Usage: The parser contains a list of Symbols. The parser will look for a match with the current Token it is parsing;
+ *               if it finds one, then it
  *               will invoke the Symbol's actionAfterFind method. The user is responsible for returning a Node from the
- *               actionAfterFind. That node will be added to the AST to represent any nonterminals that follow the terminal.
+ *               actionAfterFind. That node will be added to the AST to represent any nonterminals that follow the symbol
  *               Each of these nodes will be added directly to the SyntaxTree object; to add Nodes to other Nodes, you will
  *               have to do that in the actionAfterFind method.
  *
