@@ -31,7 +31,7 @@ lexer::Lexer* __lexer;
 #define endTest );
 
 
-#define createTerminal(terminal) ast::Terminal terminal(
+#define createSymbol(terminal) ast::Symbol terminal(
 
 #define forTokenType(type) type,
 
@@ -39,7 +39,7 @@ lexer::Lexer* __lexer;
 
 #define astAction(tokenManager) [] (parser::TokenManager& tokenManager)
 
-#define endTerminal     );
+#define endSymbol     );
 
 
 #endif // CLEANCODE_H_INCLUDED

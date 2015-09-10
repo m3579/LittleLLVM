@@ -151,7 +151,7 @@
 	<string>
 	"Parser_test.hpp"
 
-1441504929 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\parser_test.hpp
+1441847262 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\parser_test.hpp
 	<iostream>
 	"../TokenType.h"
 	"Lexer.hpp"
@@ -170,11 +170,11 @@
 	<string>
 	<map>
 
-1441434815 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\parser.hpp
+1441847263 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\parser.hpp
 	<string>
 	"SyntaxTree.hpp"
 	"Lexer.hpp"
-	"Terminal.hpp"
+	"Symbol.hpp"
 	"TokenManager.hpp"
 	"../NodeType.h"
 
@@ -196,9 +196,9 @@
 	"Node.hpp"
 	"../Ref.hpp"
 
-1441413154 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\ref.hpp
+1441770723 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\ref.hpp
 
-1441434868 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\cleancode.h
+1441847264 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\cleancode.h
 	"Lexer.hpp"
 
 1441562111 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\parser.cpp
@@ -232,4 +232,9 @@
 	"TokenManager.hpp"
 	"Node.hpp"
 	"../TokenType.h"
+
+1441847434 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\symbol.hpp
+	<vector>
+	"Token.hpp"
+	"Node.hpp"
 

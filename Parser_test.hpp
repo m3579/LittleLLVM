@@ -91,7 +91,7 @@ void parserGo()
 
     Parser parser(lexer);
 
-    createTerminal(startingTerminal)
+    createSymbol(startingSymbol)
     forTokenType(TTYPE_NUMONE)
     withId("Starting terminal")
 
@@ -102,13 +102,13 @@ void parserGo()
             return Node(tm.fetchPreviousToken(), NTYPE_NUMONE);
         }
 
-    endTerminal
+    endSymbol
 
-    parser.addTerminal(startingTerminal);
+    parser.addSymbol(startingSymbol);
 
-    createTerminal(plusTerminal)
+    createSymbol(plusSymbol)
     forTokenType(TTYPE_PLUS)
-    withId("Plus Terminal")
+    withId("Plus Symbol")
 
         astAction(tm)
         {
@@ -117,13 +117,13 @@ void parserGo()
             return Node(tm.fetchPreviousToken(), NTYPE_PLUS);
         }
 
-    endTerminal
+    endSymbol
 
-    startingTerminal.addNextTerminal(plusTerminal);
+    startingSymbol.addNextSymbol(plusSymbol);
 
-    createTerminal(finalTerminal)
+    createSymbol(finalSymbol)
     forTokenType(TTYPE_NUMONE)
-    withId("Final Terminal")
+    withId("Final Symbol")
 
         astAction(tm)
         {
@@ -132,11 +132,11 @@ void parserGo()
             return Node(tm.fetchPreviousToken(), NTYPE_NUMONE);
         }
 
-    endTerminal
+    endSymbol
 
-    plusTerminal.addNextTerminal(finalTerminal);
+    plusSymbol.addNextSymbol(finalSymbol);
 
-    createTerminal(eolTerminal)
+    createSymbol(eolSymbol)
     forTokenType(TTYPE_END)
     withId("End")
 
@@ -145,9 +145,9 @@ void parserGo()
             return Node(tm.getCurrentToken(), NTYPE_END);
         }
 
-    endTerminal
+    endSymbol
 
-    finalTerminal.addNextTerminal(eolTerminal);
+    finalSymbol.addNextSymbol(eolSymbol);
 
     parser.noFind =
         astAction(tm)

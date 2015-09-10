@@ -21,7 +21,7 @@
 
 #include "SyntaxTree.hpp"
 #include "Lexer.hpp"
-#include "Terminal.hpp"
+#include "Symbol.hpp"
 #include "TokenManager.hpp"
 #include "../NodeType.h"
 
@@ -37,17 +37,17 @@ namespace parser
 
             ast::SyntaxTree createSyntaxTree();
 
-            void addTerminal(ast::Terminal& terminal);
+            void addSymbol(ast::Symbol& terminal);
 
             // Return whether or not the terminal was found
-            bool assembleTerminal(ast::Terminal terminal, ast::SyntaxTree& syntaxTree, parser::TokenManager& tm);
+            bool assembleSymbol(ast::Symbol terminal, ast::SyntaxTree& syntaxTree, parser::TokenManager& tm);
 
             ast::astAction noFind;
 
         private:
             lexer::Lexer lexr;
 
-            std::vector<ast::Terminal*> terminals;
+            std::vector<ast::Symbol*> terminals;
     };
 
 } /* namespace parser */
