@@ -93,7 +93,7 @@ void parserGo()
 
     createSymbol(startingSymbol)
     forTokenType(TTYPE_NUMONE)
-    withId("Starting terminal")
+    withId("Starting symbol")
 
         astAction(tm)
         {

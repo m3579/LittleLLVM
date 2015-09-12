@@ -37,17 +37,17 @@ namespace parser
 
             ast::SyntaxTree createSyntaxTree();
 
-            void addSymbol(ast::Symbol& terminal);
+            void addSymbol(ast::Symbol& symbol);
 
-            // Return whether or not the terminal was found
-            bool assembleSymbol(ast::Symbol terminal, ast::SyntaxTree& syntaxTree, parser::TokenManager& tm);
+            // Return whether or not the symbol was found
+            bool assembleSymbol(ast::Symbol symbol, ast::SyntaxTree& syntaxTree, parser::TokenManager& tm);
 
             ast::astAction noFind;
 
         private:
             lexer::Lexer lexr;
 
-            std::vector<ast::Symbol*> terminals;
+            std::vector<ast::Symbol*> symbols;
     };
 
 } /* namespace parser */

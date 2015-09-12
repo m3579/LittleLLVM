@@ -31,7 +31,7 @@ lexer::Lexer* __lexer;
 #define endTest );
 
 
-#define createSymbol(terminal) ast::Symbol terminal(
+#define createSymbol(symbol) ast::Symbol symbol(
 
 #define forTokenType(type) type,
 

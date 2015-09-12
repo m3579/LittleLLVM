@@ -12,7 +12,7 @@
  *        Usage: The parser contains a list of Symbols. The parser will look for a match with the current Token it is parsing;
  *               if it finds one, then it
  *               will invoke the Symbol's actionAfterFind method. The user is responsible for returning a Node from the
- *               actionAfterFind. That node will be added to the AST to represent any nonterminals that follow the symbol
+ *               actionAfterFind. That node will be added to the AST to represent any nonsymbols that follow the symbol
  *               Each of these nodes will be added directly to the SyntaxTree object; to add Nodes to other Nodes, you will
  *               have to do that in the actionAfterFind method.
  *
@@ -53,8 +53,8 @@ namespace parser
 
         while (true) {
             bool found;
-            for (auto terminal = terminals.begin(); terminal != terminals.end(); ++terminal) {
-                found = assembleSymbol(**terminal, syntaxTree, tm);
+            for (auto symbol = symbols.begin(); symbol != symbols.end(); ++symbol) {
+                found = assembleSymbol(**symbol, syntaxTree, tm);
                 if (found) {
                     break;
                 }
@@ -78,20 +78,20 @@ namespace parser
         return syntaxTree;
     }
 
-    void Parser::addSymbol(ast::Symbol& terminal)
+    void Parser::addSymbol(ast::Symbol& symbol)
     {
-        terminals.push_back(&terminal);
+        symbols.push_back(&symbol);
     }
 
-    bool Parser::assembleSymbol(ast::Symbol terminal, ast::SyntaxTree& syntaxTree, parser::TokenManager& tm)
+    bool Parser::assembleSymbol(ast::Symbol symbol, ast::SyntaxTree& syntaxTree, parser::TokenManager& tm)
     {
-        int type = terminal.getTokenType();
+        int type = symbol.getTokenType();
 
         if (tm.found(type)) {
 
-            syntaxTree.addStatement(terminal.actionAfterFind(tm));
+            syntaxTree.addStatement(symbol.actionAfterFind(tm));
 
-            std::vector<ast::Symbol*> nextSymbols(terminal.getNextSymbols());
+            std::vector<ast::Symbol*> nextSymbols(symbol.getNextSymbols());
 
             bool found;
             for (auto next = nextSymbols.begin(); next != nextSymbols.end(); ++next) {
@@ -102,8 +102,8 @@ namespace parser
             }
 
             if (!found) {
-                if (terminal.noFind != nullptr) {
-                    terminal.noFind(tm);
+                if (symbol.noFind != nullptr) {
+                    symbol.noFind(tm);
                 }
             }
 
