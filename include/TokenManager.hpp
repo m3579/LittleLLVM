@@ -28,35 +28,35 @@ namespace parser
     {
         public:
             TokenManager(std::vector<token::Token>);
-            ~TokenManager();
+            virtual ~TokenManager();
 
             // The methods that take a string an a bool as arguments
             // have the capability to log an error (the string is the message, the bool
             // whether or not it is fatal)
 
-            token::Token getCurrentToken();
-            token::Token fetchNextToken();
-            token::Token fetchPreviousToken();
-            token::Token lookAhead(int);
-            token::Token lookBehind(int);
-            token::Token moveToNextToken();
-            token::Token moveToPreviousToken();
+            virtual token::Token getCurrentToken();
+            virtual token::Token fetchNextToken();
+            virtual token::Token fetchPreviousToken();
+            virtual token::Token lookAhead(int);
+            virtual token::Token lookBehind(int);
+            virtual token::Token moveToNextToken();
+            virtual token::Token moveToPreviousToken();
 
             // Start counting how many tokens have been read since the current token at the time
             // of method call
-            void startCounting();
+            virtual void startCounting();
             // Stop counting and return number of tokens
-            int stopCounting();
+            virtual int stopCounting();
             // move back to token that was current token when startCounting was called
-            void reset();
+            virtual void reset();
 
-            bool found(int);
+            virtual bool found(int);
 
-            void consume(int);
+            virtual void consume(int);
 
-            bool hasMoreTokens();
+            virtual bool hasMoreTokens();
 
-        private:
+        protected:
             std::vector<token::Token> tokens;
 
             unsigned int currentTokenIndex;

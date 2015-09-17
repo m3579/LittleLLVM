@@ -29,6 +29,11 @@ namespace token
 
 	}
 
+	Token::~Token()
+	{
+
+	}
+
 	bool Token::isOfType(int type)
 	{
 	    return this->type == type;

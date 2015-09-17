@@ -32,17 +32,17 @@ namespace lexer
 	{
 		public:
 			Lexer(std::string sourceCode);
-			~Lexer();
+			virtual ~Lexer();
 
-            token::Token getNextToken();
+            virtual token::Token getNextToken();
 
-			std::vector<token::Token> tokenizeSource();
+			virtual std::vector<token::Token> tokenizeSource();
 
-            void addTest(test testFunction);
+            virtual void addTest(test testFunction);
 
 			std::string sourceCode;
 
-        private:
+        protected:
             std::vector<test> testFunctions;
 
             scanner::Scanner scanner;

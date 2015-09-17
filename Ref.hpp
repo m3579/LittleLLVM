@@ -38,24 +38,24 @@ namespace smartPointer
 				rc++;
 			}
 
-			~Ref()
+			virtual ~Ref()
 			{
 				if (--rc == 0) {
 					delete ptr;
 				}
 			}
 
-			T& operator*()
+			virtual T& operator*()
 			{
 				return *ptr;
 			}
 
-			T* operator->()
+			virtual T* operator->()
 			{
 				return ptr;
 			}
 
-            Ref<T>& operator=(Ref<T>& r)
+            virtual Ref<T>& operator=(Ref<T>& r)
 			{
 				if (&r != this) {
 
@@ -72,17 +72,17 @@ namespace smartPointer
 				return *this;
 			}
 
-			T* getInnerPointer()
+			virtual T* getInnerPointer()
 			{
 				return ptr;
 			}
 
-			T getValue()
+			virtual T getValue()
 			{
 				return *ptr;
 			}
 
-            int getReferenceCount()
+            virtual int getReferenceCount()
 			{
 				return rc;
 			}

@@ -28,15 +28,15 @@ namespace node
     {
         public:
             Node(token::Token token = token::Token(), int type = -1);
-            ~Node();
+            virtual ~Node();
 
-            void addNode(Node node);
+            virtual void addNode(Node node);
 
-            Node getNode(unsigned int index);
+            virtual Node getNode(unsigned int index);
 
-            void print(std::string tabs);
+            virtual void print(std::string tabs);
 
-        private:
+        protected:
             token::Token token;
 
             int type;

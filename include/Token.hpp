@@ -26,29 +26,30 @@ namespace token
 	{
         public:
             Token(int lineNumber = -1, int columnNumber = -1, std::string text = "", int type = -1);
+            virtual ~Token();
 
             // Two methods for readability
-            bool isOfType(int);
-            bool isNotOfType(int);
+            virtual bool isOfType(int);
+            virtual bool isNotOfType(int);
 
-            std::string toString();
+            virtual std::string toString();
 
-            explicit operator bool() const;
+            virtual explicit operator bool() const;
 
-            Token& operator=(Token token);
+            virtual Token& operator=(Token token);
 
-            int getLineNumber();
-            int getColumnNumber();
+            virtual int getLineNumber();
+            virtual int getColumnNumber();
 
-            std::string getText();
+            virtual std::string getText();
 
-            int getType();
+            virtual int getType();
 
-            std::string getErrorMessage();
+            virtual std::string getErrorMessage();
 
-            void print(std::string tabs);
+            virtual void print(std::string tabs);
 
-        private:
+        protected:
             int lineNumber;
             int columnNumber;
 

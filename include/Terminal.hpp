@@ -35,13 +35,13 @@ namespace ast
     {
         public:
             Symbol(int tokenType, std::string id, astAction actionAfterFind);
-            ~Symbol();
+            virtual ~Symbol();
 
-            Symbol addNextSymbol(Symbol& nextSymbol);
+            virtual Symbol addNextSymbol(Symbol& nextSymbol);
 
-            int getTokenType();
+            virtual int getTokenType();
 
-            std::vector<Symbol*> getNextSymbols();
+            virtual std::vector<Symbol*> getNextSymbols();
 
             astAction actionAfterFind;
 
@@ -49,7 +49,7 @@ namespace ast
 
             std::string id;
 
-        private:
+        protected:
             int tokenType;
 
             std::vector<Symbol*> nextSymbols;

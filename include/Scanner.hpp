@@ -23,28 +23,28 @@ namespace scanner
 	{
 		public:
 			Scanner(const char* sourceCodePointer);
-			~Scanner();
+			virtual ~Scanner();
 
-			const char getCurrentChar();
+			virtual const char getCurrentChar();
 
 			// Will update the currentChar variable; "moves" to the next char...
-			const char moveToNextChar();
+			virtual const char moveToNextChar();
 
 			// ...whereas these two don't update the currentChar variable. Subsequent calls to
 			// fetchNext/PrevChar() will return the same character.
-			const char fetchNextChar();
-			const char fetchPreviousChar();
+			virtual const char fetchNextChar();
+			virtual const char fetchPreviousChar();
 
-			bool hasMoreSource();
+			virtual bool hasMoreSource();
 
-			int getLineNumber();
-			int getColumnNumber();
+			virtual int getLineNumber();
+			virtual int getColumnNumber();
 
-			int getCurrentIndex();
+			virtual int getCurrentIndex();
 
-			bool finished;
+            bool finished;
 
-		private:
+		protected:
 			const char* sourceCodePointer;
 
 			char currentChar;

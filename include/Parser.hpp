@@ -33,18 +33,18 @@ namespace parser
     {
         public:
             Parser(lexer::Lexer lexr);
-            ~Parser();
+            virtual ~Parser();
 
-            ast::SyntaxTree createSyntaxTree();
+            virtual ast::SyntaxTree createSyntaxTree();
 
-            void addSymbol(ast::Symbol& symbol);
+            virtual void addSymbol(ast::Symbol& symbol);
 
             // Return whether or not the symbol was found
-            bool assembleSymbol(ast::Symbol symbol, ast::SyntaxTree& syntaxTree, parser::TokenManager& tm);
+            virtual bool assembleSymbol(ast::Symbol symbol, ast::SyntaxTree& syntaxTree, parser::TokenManager& tm);
 
             ast::astAction noFind;
 
-        private:
+        protected:
             lexer::Lexer lexr;
 
             std::vector<ast::Symbol*> symbols;

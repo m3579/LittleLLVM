@@ -26,13 +26,13 @@ namespace ast
     {
         public:
             SyntaxTree();
-            ~SyntaxTree();
+            virtual ~SyntaxTree();
 
-            node::Node addStatement(node::Node statement);
+            virtual node::Node addStatement(node::Node statement);
 
-            void print(std::string tabs);
+            virtual void print(std::string tabs);
 
-        private:
+        protected:
             std::vector<node::Node> statements;
 
     };
