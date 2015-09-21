@@ -45,8 +45,6 @@ namespace token
 
             virtual int getType();
 
-            virtual std::string getErrorMessage();
-
             virtual void print(std::string tabs);
 
         protected:

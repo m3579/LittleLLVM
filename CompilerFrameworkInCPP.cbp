@@ -60,8 +60,8 @@
 		<Unit filename="src/Node.cpp" />
 		<Unit filename="src/Parser.cpp" />
 		<Unit filename="src/Scanner.cpp" />
+		<Unit filename="src/Symbol.cpp" />
 		<Unit filename="src/SyntaxTree.cpp" />
-		<Unit filename="src/Terminal.cpp" />
 		<Unit filename="src/Token.cpp" />
 		<Unit filename="src/TokenManager.cpp" />
 		<Extensions>
