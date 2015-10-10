@@ -73,6 +73,11 @@ namespace lexer
                 if (token) {
                     tokens.push_back(token);
                     sc.moveToNextChar();
+                    break;
+                }
+
+                else if (token.getType() == TTYPE_ERRORQUIT) {
+                    return std::vector<token::Token> { token };
                 }
 
             }

@@ -35,6 +35,7 @@ extern int ttypeNumber;
 createTokenType(TTYPE_NOTOKEN);
 createTokenType(TTYPE_INVTOKEN);
 createTokenType(TTYPE_OUTOFRANGE);
+createTokenType(TTYPE_ERRORQUIT);
 
 #pragma GCC diagnostic pop
 
