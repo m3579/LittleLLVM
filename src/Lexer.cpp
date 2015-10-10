@@ -76,10 +76,6 @@ namespace lexer
                     break;
                 }
 
-                else if (token.getType() == TTYPE_ERRORQUIT) {
-                    return std::vector<token::Token> { token };
-                }
-
             }
 
         }

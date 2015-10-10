@@ -49,6 +49,10 @@ namespace parser
 
         std::vector<token::Token> tokens(lexr.tokenizeSource());
 
+        if (tokens.size() == 0) {
+            return ast::SyntaxTree { };
+        }
+
         parser::TokenManager tm(tokens);
 
         while (true) {
