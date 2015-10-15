@@ -23,8 +23,8 @@
 
 namespace token
 {
-	Token::Token(int ln, int cn, std::string text, int type) :
-		lineNumber(ln), columnNumber(cn), text(text), type(type)
+	Token::Token(int ln, int cn, std::string text, int type, bool poisoned) :
+		lineNumber(ln), columnNumber(cn), text(text), type(type), poisoned(poisoned)
 	{
 
 	}

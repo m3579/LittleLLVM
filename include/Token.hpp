@@ -25,7 +25,7 @@ namespace token
     class Token
 	{
         public:
-            Token(int lineNumber = -1, int columnNumber = -1, std::string text = "", int type = -1);
+            Token(int lineNumber = -1, int columnNumber = -1, std::string text = "", int type = -1, bool poisoned = false);
             virtual ~Token();
 
             // Two methods for readability
