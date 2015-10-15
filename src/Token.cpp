@@ -23,8 +23,8 @@
 
 namespace token
 {
-	Token::Token(int ln, int cn, std::string text, int type) :
-		 lineNumber(ln), columnNumber(cn), text(text), type(type)
+	Token::Token(int ln, int cn, std::string text, int type, std::string errorMessage, bool errorIsFatal) :
+		 lineNumber(ln), columnNumber(cn), text(text), type(type), errorMessage(errorMessage), errorIsFatal(errorIsFatal)
 	{
 
 	}
@@ -88,6 +88,16 @@ namespace token
     int Token::getType()
 	{
 		return type;
+	}
+
+	std::string Token::getErrorMessage()
+	{
+	    return errorMessage;
+	}
+
+	bool Token::isErrorFatal()
+	{
+	    return errorIsFatal;
 	}
 
 	void Token::print(std::string tabs)
