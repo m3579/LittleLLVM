@@ -47,6 +47,8 @@ namespace token
 
             virtual void print(std::string tabs);
 
+            bool poisoned;
+
         protected:
             int lineNumber;
             int columnNumber;

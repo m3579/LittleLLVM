@@ -166,7 +166,7 @@
 
 1442462272 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\scanner.hpp
 
-1442798470 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\token.hpp
+1444883715 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\token.hpp
 	<string>
 	<map>
 
@@ -178,7 +178,7 @@
 	"TokenManager.hpp"
 	"../NodeType.h"
 
-1444449460 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\syntaxtree.hpp
+1444449674 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\syntaxtree.hpp
 	"Node.hpp"
 
 1442462263 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\node.hpp
