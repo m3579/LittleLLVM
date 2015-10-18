@@ -61,16 +61,20 @@ namespace lexer
 
 		while (lexing) {
 
+            bool found = false;
+
             for (auto test = testFunctions.begin(); test != testFunctions.end(); ++test) {
 
                 token::Token token( ((*test)(sc)) );
 
                 if (sc.finished) {
                     lexing = false;
+                    found = true;
                     break;
                 }
 
                 if (token) {
+                    found = true;
                     tokens.push_back(token);
                     sc.moveToNextChar();
                     break;
@@ -78,6 +82,9 @@ namespace lexer
 
             }
 
+            if (!found) {
+                throw std::runtime_error(std::string("No test in lexer for |") + sc.getCurrentChar() + std::string("|"));
+            }
         }
 
 		return tokens;
