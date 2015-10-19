@@ -133,7 +133,7 @@
 
 1441413154 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\nodetype.h
 
-1444450073 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\lexer.cpp
+1445298419 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\lexer.cpp
 	<iostream>
 	"Lexer.hpp"
 	"Scanner.hpp"
@@ -142,10 +142,11 @@
 	<iostream>
 	"Node.hpp"
 
-1441413356 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\tokentype.cpp
+1445295395 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\tokentype.cpp
 	"TokenType.h"
 
-1444448866 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\tokentype.h
+1445298559 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\tokentype.h
+	<string>
 
 1441504396 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\mycompiler.cpp
 	<string>
@@ -166,9 +167,10 @@
 
 1442462272 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\scanner.hpp
 
-1444886742 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\token.hpp
+1445297717 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\token.hpp
 	<string>
 	<map>
+	"../TokenType.h"
 
 1442462267 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\parser.hpp
 	<string>
@@ -190,7 +192,7 @@
 	"Token.hpp"
 	"Node.hpp"
 
-1442462291 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\tokenmanager.hpp
+1445295799 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\tokenmanager.hpp
 	<vector>
 	"Token.hpp"
 	"Node.hpp"
@@ -201,7 +203,7 @@
 1442022372 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\cleancode.h
 	"Lexer.hpp"
 
-1444449909 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\parser.cpp
+1445295788 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\parser.cpp
 	<iostream>
 	"Parser.hpp"
 	"Lexer.hpp"
@@ -221,24 +223,24 @@
 	<iostream>
 	"Terminal.hpp"
 
-1444886729 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\token.cpp
+1445298402 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\token.cpp
 	<sstream>
 	<iostream>
 	"Token.hpp"
 
-1441562364 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\tokenmanager.cpp
+1445295823 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\tokenmanager.cpp
 	<iostream>
 	"Token.hpp"
 	"TokenManager.hpp"
 	"Node.hpp"
 	"../TokenType.h"
 
-1441847434 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\symbol.hpp
+1445296477 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\symbol.hpp
 	<vector>
 	"Token.hpp"
 	"Node.hpp"
 
-1441847265 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\symbol.cpp
+1445295758 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\symbol.cpp
 	<iostream>
 	"Symbol.hpp"
 

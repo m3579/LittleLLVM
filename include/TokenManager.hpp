@@ -50,9 +50,9 @@ namespace parser
             // move back to token that was current token when startCounting was called
             virtual void reset();
 
-            virtual bool found(int);
+            virtual bool found(TokenType);
 
-            virtual void consume(int);
+            virtual void consume(TokenType);
 
             virtual bool hasMoreTokens();
 

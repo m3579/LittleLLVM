@@ -23,7 +23,7 @@
 
 namespace ast
 {
-    Symbol::Symbol(int tokenType, std::string id, astAction actionAfterFind) :
+    Symbol::Symbol(TokenType tokenType, std::string id, astAction actionAfterFind) :
         actionAfterFind(actionAfterFind), id(id), tokenType(tokenType)
     {
 
@@ -40,7 +40,7 @@ namespace ast
         return nextSymbol;
     }
 
-    int Symbol::getTokenType()
+    TokenType Symbol::getTokenType()
     {
         return tokenType;
     }

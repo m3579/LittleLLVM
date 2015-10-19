@@ -23,7 +23,7 @@
 
 namespace token
 {
-	Token::Token(int ln, int cn, std::string text, int type, std::string errorMessage, bool errorIsFatal) :
+	Token::Token(int ln, int cn, std::string text, TokenType type, std::string errorMessage, bool errorIsFatal) :
 		 lineNumber(ln), columnNumber(cn), text(text), type(type), errorMessage(errorMessage), errorIsFatal(errorIsFatal)
 	{
 
@@ -34,12 +34,12 @@ namespace token
 
 	}
 
-	bool Token::isOfType(int type)
+	bool Token::isOfType(TokenType type)
 	{
 	    return this->type == type;
 	}
 
-	bool Token::isNotOfType(int type)
+	bool Token::isNotOfType(TokenType type)
 	{
 	    return this->type != type;
 	}
@@ -57,7 +57,7 @@ namespace token
 
 	Token::operator bool() const
 	{
-		return type != -1;
+		return type != TTYPE_NOTOKEN;
 	}
 
     Token& Token::operator=(Token token)
@@ -85,7 +85,7 @@ namespace token
 		return text;
 	}
 
-    int Token::getType()
+    TokenType Token::getType()
 	{
 		return type;
 	}

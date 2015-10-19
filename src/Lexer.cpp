@@ -48,7 +48,7 @@ namespace lexer
 
         }
 
-        return token::Token(0, 0, "", -1);
+        return token::Token();
 	}
 
 	std::vector<token::Token> Lexer::tokenizeSource()
@@ -83,7 +83,7 @@ namespace lexer
             }
 
             if (!found) {
-                throw std::runtime_error(std::string("No test in lexer for |") + sc.getCurrentChar() + std::string("|"));
+                throw std::runtime_error(std::string("No test in lexer for |") + sc.fetchNextChar() + std::string("|"));
             }
         }
 

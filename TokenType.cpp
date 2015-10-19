@@ -15,6 +15,3 @@
  */
 
 #include "TokenType.h"
-
-int ttypeNumber = -2;
-

@@ -89,7 +89,7 @@ namespace parser
 
     bool Parser::assembleSymbol(ast::Symbol symbol, ast::SyntaxTree& syntaxTree, parser::TokenManager& tm)
     {
-        int type = symbol.getTokenType();
+        TokenType type = symbol.getTokenType();
 
         if (tm.found(type)) {
 

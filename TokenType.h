@@ -2,9 +2,9 @@
 #define TOKENTYPE_H_INCLUDED
 
 /*
- * Filename.hpp
+ * TokenType.hpp
  *
- * /Project/Headers/include/Filename.hpp
+ * /TheCompilerFramework/Headers/include/TokenType.hpp
  *
  *       Author: Mihir Kasmalkar
  * Date created: Aug 30, 2015
@@ -15,19 +15,13 @@
  *
  *        Notes:
  *
- *          The Different Types Of Tokens and their Integer Values
- *
- *          You should only use the default Token constructor when a Token is simply not there. Any other time,
- *          try to use the arg constructor and set the type to another Token type (like Invalid token).
- *
- *          -1      No Token
- *          0       Invalid token
- *
  */
 
-extern int ttypeNumber;
+#include <string>
 
-#define createTokenType(name) const int name = ++ttypeNumber
+typedef std::string TokenType;
+
+#define createTokenType(name) const TokenType name = #name
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-variable"

@@ -5,6 +5,7 @@
 		<Option title="CompilerFrameworkInCPP" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
+		<Option virtualFolders="include\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/CompilerFrameworkInCPP" prefix_auto="1" extension_auto="1" />
@@ -46,13 +47,15 @@
 		<Unit filename="Ref.hpp" />
 		<Unit filename="TokenType.cpp" />
 		<Unit filename="TokenType.h" />
-		<Unit filename="cleancode.h" />
+		<Unit filename="cleancode.h">
+			<Option virtualFolder="include/" />
+		</Unit>
 		<Unit filename="include/Lexer.hpp" />
 		<Unit filename="include/Node.hpp" />
 		<Unit filename="include/Parser.hpp" />
 		<Unit filename="include/Scanner.hpp" />
+		<Unit filename="include/Symbol.hpp" />
 		<Unit filename="include/SyntaxTree.hpp" />
-		<Unit filename="include/Terminal.hpp" />
 		<Unit filename="include/Token.hpp" />
 		<Unit filename="include/TokenManager.hpp" />
 		<Unit filename="mycompiler.cpp" />

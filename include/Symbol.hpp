@@ -14,8 +14,8 @@
  *
  */
 
-#ifndef TERMINAL_H
-#define TERMINAL_H
+#ifndef SYMBOL_H
+#define SYMBOL_H
 
 #include <vector>
 
@@ -34,14 +34,14 @@ namespace ast
     class Symbol
     {
         public:
-            Symbol(int tokenType, std::string id, astAction actionAfterFind);
-            ~Symbol();
+            Symbol(TokenType tokenType, std::string id, astAction actionAfterFind);
+            virtual ~Symbol();
 
-            Symbol addNextSymbol(Symbol& nextSymbol);
+            virtual Symbol addNextSymbol(Symbol& nextSymbol);
 
-            int getTokenType();
+            virtual TokenType getTokenType();
 
-            std::vector<Symbol*> getNextSymbols();
+            virtual std::vector<Symbol*> getNextSymbols();
 
             astAction actionAfterFind;
 
@@ -49,8 +49,8 @@ namespace ast
 
             std::string id;
 
-        private:
-            int tokenType;
+        protected:
+            TokenType tokenType;
 
             std::vector<Symbol*> nextSymbols;
     };

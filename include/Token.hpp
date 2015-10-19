@@ -20,17 +20,19 @@
 #include <string>
 #include <map>
 
+#include "../TokenType.h"
+
 namespace token
 {
     class Token
 	{
         public:
-            Token(int lineNumber = -1, int columnNumber = -1, std::string text = "", int type = -1, std::string errorMessage = "", bool errorIsFatal = false);
+            Token(int lineNumber = -1, int columnNumber = -1, std::string text = "", TokenType type = TTYPE_NOTOKEN, std::string errorMessage = "", bool errorIsFatal = false);
             virtual ~Token();
 
             // Two methods for readability
-            virtual bool isOfType(int);
-            virtual bool isNotOfType(int);
+            virtual bool isOfType(TokenType);
+            virtual bool isNotOfType(TokenType);
 
             virtual std::string toString();
 
@@ -43,7 +45,7 @@ namespace token
 
             virtual std::string getText();
 
-            virtual int getType();
+            virtual TokenType getType();
 
             virtual std::string getErrorMessage();
 
@@ -57,7 +59,7 @@ namespace token
 
             std::string text;
 
-            int type;
+            TokenType type;
 
             std::string errorMessage;
             bool errorIsFatal;

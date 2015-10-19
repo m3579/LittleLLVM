@@ -121,7 +121,7 @@ namespace parser
         stopCounting();
     }
 
-    bool TokenManager::found(int type)
+    bool TokenManager::found(TokenType type)
     {
         if (getCurrentToken().getType() == type) {
             return true;
@@ -129,7 +129,7 @@ namespace parser
         return false;
     }
 
-    void TokenManager::consume(int type)
+    void TokenManager::consume(TokenType type)
     {
         //
         // When you call consume, you move TO that token, not PAST that token.
