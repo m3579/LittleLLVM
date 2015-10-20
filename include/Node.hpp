@@ -20,6 +20,7 @@
 #include <vector>
 
 #include "Token.hpp"
+#include "../NodeType.h"
 
 namespace node
 {
@@ -27,7 +28,7 @@ namespace node
     class Node
     {
         public:
-            Node(token::Token token = token::Token(), int type = -1);
+            Node(token::Token token = token::Token(), NodeType type = NTYPE_NONODE);
             virtual ~Node();
 
             virtual void addNode(Node node);
@@ -39,7 +40,7 @@ namespace node
         protected:
             token::Token token;
 
-            int type;
+            NodeType type;
 
             std::vector<Node> nodes;
     };

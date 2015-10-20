@@ -15,20 +15,13 @@
  *
  *        Notes:
  *
- *          The Different Types of Nodes and their Integer Values
- *
- *          You should only use the default Node constructor when a Node is simply not there. Any other time,
- *          try to use the arg constructor and set the type to another Node type (like Invalid node).
- *
- *          -1       No node
- *           0       Invalid node
- *           1       Statement
- *
  */
 
-extern int ntypeNumber;
+#include <string>
 
-#define createNodeType(NAME) const int NAME = ++ntypeNumber
+typedef std::string NodeType;
+
+#define createNodeType(name) const NodeType name = #name
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-variable"

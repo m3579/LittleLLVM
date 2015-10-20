@@ -131,7 +131,8 @@
 1441413334 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\nodetype.cpp
 	"NodeType.h"
 
-1441413154 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\nodetype.h
+1445314376 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\nodetype.h
+	<string>
 
 1445298575 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\src\lexer.cpp
 	<iostream>
@@ -183,9 +184,10 @@
 1444449674 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\syntaxtree.hpp
 	"Node.hpp"
 
-1442462263 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\node.hpp
+1445314369 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\node.hpp
 	<vector>
 	"Token.hpp"
+	"../NodeType.h"
 
 1441561460 c:\users\mihir kasmalkar\documents\_programs\codeblocks\thecompilerframework\include\terminal.hpp
 	<vector>

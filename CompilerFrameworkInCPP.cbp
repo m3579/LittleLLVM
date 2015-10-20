@@ -45,7 +45,6 @@
 			<Option target="Debug" />
 		</Unit>
 		<Unit filename="Ref.hpp" />
-		<Unit filename="TokenType.cpp" />
 		<Unit filename="TokenType.h" />
 		<Unit filename="cleancode.h">
 			<Option virtualFolder="include/" />

@@ -21,7 +21,7 @@
 
 namespace node
 {
-    Node::Node(token::Token token, int type) :
+    Node::Node(token::Token token, NodeType type) :
         token(token), type(type)
     {
 
