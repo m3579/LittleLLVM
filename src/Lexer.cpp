@@ -17,6 +17,7 @@
  */
 
 #include <iostream>
+#include <sstream>
 
 #include "Lexer.hpp"
 #include "Scanner.hpp"
@@ -83,7 +84,15 @@ namespace lexer
             }
 
             if (!found) {
-                throw std::runtime_error(std::string("No test in lexer for |") + sc.fetchNextChar() + std::string("|"));
+                std::stringstream error;
+                error << "No test in lexer for |"
+                      << sc.getCurrentChar()
+                      << "| at line "
+                      << sc.getLineNumber()
+                      << " column "
+                      << sc.getColumnNumber();
+
+                throw std::runtime_error(error.str());
             }
         }
 
