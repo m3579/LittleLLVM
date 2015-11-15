@@ -27,7 +27,9 @@ namespace token
     class Token
 	{
         public:
-            Token(int lineNumber = -1, int columnNumber = -1, std::string text = "", TokenType type = TTYPE_NOTOKEN, std::string errorMessage = "", bool errorIsFatal = false);
+            Token(int lineNumber = -1, int columnNumber = -1, std::string text = "",
+                  TokenType type = TTYPE_NOTOKEN, std::string errorMessage = "");
+
             virtual ~Token();
 
             // Two methods for readability
@@ -49,8 +51,6 @@ namespace token
 
             virtual std::string getErrorMessage();
 
-            virtual bool isErrorFatal();
-
             virtual void print(std::string tabs);
 
         protected:
@@ -62,7 +62,6 @@ namespace token
             TokenType type;
 
             std::string errorMessage;
-            bool errorIsFatal;
 
 	};
 }
