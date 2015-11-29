@@ -56,7 +56,7 @@ namespace parser
         parser::TokenManager tm(tokens);
 
         while (true) {
-            bool found;
+            bool found = false;
             for (auto symbol = symbols.begin(); symbol != symbols.end(); ++symbol) {
                 found = assembleSymbol(**symbol, syntaxTree, tm);
                 if (found) {
@@ -97,7 +97,7 @@ namespace parser
 
             std::vector<ast::Symbol*> nextSymbols(symbol.getNextSymbols());
 
-            bool found;
+            bool found = false;
             for (auto next = nextSymbols.begin(); next != nextSymbols.end(); ++next) {
                 found = assembleSymbol(**next, syntaxTree, tm);
                 if (found) {
@@ -106,6 +106,7 @@ namespace parser
             }
 
             if (!found) {
+                // If there was SUPPOSED to be a next token
                 if (symbol.noFind != nullptr) {
                     symbol.noFind(tm);
                 }

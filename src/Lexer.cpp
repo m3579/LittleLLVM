@@ -65,7 +65,6 @@ namespace lexer
             bool found = false;
 
             for (auto test = testFunctions.begin(); test != testFunctions.end(); ++test) {
-
                 token::Token token( ((*test)(sc)) );
 
                 if (sc.finished) {
