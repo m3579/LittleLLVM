@@ -39,6 +39,7 @@ namespace parser
 
             virtual void addSymbol(ast::Symbol& symbol);
 
+            // Add the symbol to the syntax tree
             // Return whether or not the symbol was found
             virtual bool assembleSymbol(ast::Symbol symbol, ast::SyntaxTree& syntaxTree, parser::TokenManager& tm);
 
