@@ -39,7 +39,6 @@
 		<Unit filename="Lexer_test.hpp">
 			<Option target="Debug" />
 		</Unit>
-		<Unit filename="NodeType.cpp" />
 		<Unit filename="NodeType.h" />
 		<Unit filename="Parser_test.hpp">
 			<Option target="Debug" />
