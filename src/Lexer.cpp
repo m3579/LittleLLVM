@@ -67,16 +67,16 @@ namespace lexer
             for (auto test = testFunctions.begin(); test != testFunctions.end(); ++test) {
                 token::Token token( ((*test)(sc)) );
 
-                if (sc.finished) {
-                    lexing = false;
-                    found = true;
-                    break;
-                }
-
                 if (token) {
                     found = true;
                     tokens.push_back(token);
                     sc.moveToNextChar();
+
+                    if (sc.finished) {
+                        lexing = false;
+                        found = true;
+                    }
+
                     break;
                 }
 
