@@ -53,6 +53,10 @@ namespace parser
             return ast::SyntaxTree { };
         }
 
+        if (symbols.size() == 0) {
+            return ast::SyntaxTree { };
+        }
+
         parser::TokenManager tm(tokens);
 
         while (true) {

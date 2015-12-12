@@ -60,7 +60,7 @@ namespace parser
 
     token::Token TokenManager::lookBehind(int spaces)
     {
-        if (currentTokenIndex - spaces > 0) {
+        if (currentTokenIndex - spaces >= 0) {
             return tokens.at(currentTokenIndex - spaces);
         }
 
