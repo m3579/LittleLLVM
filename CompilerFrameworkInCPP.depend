@@ -251,12 +251,11 @@
 	<string>
 	"Parser_test.hpp"
 
-1442018772 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\parser_test.hpp
+1450230640 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\parser_test.hpp
 	<iostream>
 	"../TokenType.h"
 	"Lexer.hpp"
 	"Parser.hpp"
-	"cleancode.h"
 
 1445652248 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\tokentype.h
 	<string>
@@ -274,26 +273,29 @@
 	<map>
 	"../TokenType.h"
 
-1448824615 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\parser.hpp
+1450230115 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\parser.hpp
 	<string>
+	"Branchable.hpp"
 	"SyntaxTree.hpp"
 	"Lexer.hpp"
 	"Symbol.hpp"
 	"TokenManager.hpp"
 	"../NodeType.h"
 
-1444446074 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\syntaxtree.hpp
+1450229434 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\syntaxtree.hpp
+	"Branchable.hpp"
 	"Node.hpp"
 
-1445310769 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\node.hpp
+1450231244 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\node.hpp
 	<vector>
 	"Token.hpp"
 	"../NodeType.h"
+	"Branchable.hpp"
 
 1445310829 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\nodetype.h
 	<string>
 
-1445292877 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\symbol.hpp
+1450230860 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\symbol.hpp
 	<vector>
 	"Token.hpp"
 	"Node.hpp"
@@ -345,9 +347,15 @@
 	"Node.hpp"
 	"../TokenType.h"
 
-1449893905 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\lexer.cpp
+1450231162 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\lexer.cpp
 	<iostream>
 	<sstream>
 	"Lexer.hpp"
 	"Scanner.hpp"
+	"../utilities.hpp"
+
+1450231221 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\branchable.hpp
+
+1450231148 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\utilities.hpp
+	<string>
 

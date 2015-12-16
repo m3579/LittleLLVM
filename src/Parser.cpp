@@ -62,7 +62,7 @@ namespace parser
         while (true) {
             bool found = false;
             for (auto symbol = symbols.begin(); symbol != symbols.end(); ++symbol) {
-                found = assembleSymbol(**symbol, syntaxTree, tm);
+                found = tryToFindSymbol(**symbol, &syntaxTree, tm);
                 if (found) {
                     break;
                 }
@@ -91,19 +91,42 @@ namespace parser
         symbols.push_back(&symbol);
     }
 
-    bool Parser::assembleSymbol(ast::Symbol symbol, ast::SyntaxTree& syntaxTree, parser::TokenManager& tm)
+    bool Parser::tryToFindSymbol(ast::Symbol symbol, Branchable* root, parser::TokenManager& tm)
     {
         TokenType type = symbol.getTokenType();
 
         if (tm.found(type)) {
 
-            syntaxTree.addStatement(symbol.actionAfterFind(tm));
+            Node newRoot(tm.getCurrentToken(), symbol.nodeType);
+
+            if (symbol.actionAfterFind != nullptr) {
+                symbol.actionAfterFind(tm);
+            }
+
+            if (symbol.precedence > 0) {
+                Branchable* nodeToAddTo = root;
+
+                // Move up the hierarchy
+                for (int i = 0; i < symbol.precedence; i++) {
+                    nodeToAddTo = root.rootNode;
+
+                    if (nodeToAddTo == nullptr) {
+                        utilities::logError("The precedence level is too high for symbol " + symbol.name);
+                    }
+                }
+
+                nodeToAddTo.add(newRoot));
+            }
+            else {
+                root.add(newRoot);
+            }
 
             std::vector<ast::Symbol*> nextSymbols(symbol.getNextSymbols());
 
+            tm.moveToNextToken();
             bool found = false;
             for (auto next = nextSymbols.begin(); next != nextSymbols.end(); ++next) {
-                found = assembleSymbol(**next, syntaxTree, tm);
+                found = tryToFindSymbol(**next, &newRoot, tm);
                 if (found) {
                     break;
                 }

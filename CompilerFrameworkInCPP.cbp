@@ -48,6 +48,7 @@
 		<Unit filename="cleancode.h">
 			<Option virtualFolder="include/" />
 		</Unit>
+		<Unit filename="include/Branchable.hpp" />
 		<Unit filename="include/Lexer.hpp" />
 		<Unit filename="include/Node.hpp" />
 		<Unit filename="include/Parser.hpp" />
@@ -65,6 +66,7 @@
 		<Unit filename="src/SyntaxTree.cpp" />
 		<Unit filename="src/Token.cpp" />
 		<Unit filename="src/TokenManager.cpp" />
+		<Unit filename="utilities.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -22,7 +22,8 @@
 namespace ast
 {
 
-    SyntaxTree:: SyntaxTree()
+    SyntaxTree:: SyntaxTree() :
+        root(nullptr)
     {
 
     }
@@ -32,7 +33,7 @@ namespace ast
 
     }
 
-    node::Node SyntaxTree::addStatement(node::Node statement)
+    node::Node SyntaxTree::add(node::Node& statement)
     {
         statements.push_back(statement);
         return statement;

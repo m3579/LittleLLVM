@@ -23,8 +23,8 @@
 
 namespace ast
 {
-    Symbol::Symbol(TokenType tokenType, std::string id, astAction actionAfterFind) :
-        actionAfterFind(actionAfterFind), id(id), tokenType(tokenType)
+    Symbol::Symbol(TokenType tokenType, std::string name, astAction actionAfterFind, NodeType nodeType) :
+        actionAfterFind(actionAfterFind), name(name), tokenType(tokenType), nodeType(nodeType)
     {
 
     }
@@ -34,7 +34,7 @@ namespace ast
 
     }
 
-    Symbol Symbol::addNextSymbol(Symbol& nextSymbol)
+    Symbol Symbol::addNextSymbol(Symbol& nextSymbol, int precedence)
     {
         nextSymbols.push_back(&nextSymbol);
         return nextSymbol;

@@ -19,6 +19,7 @@
 
 #include <string>
 
+#include "Branchable.hpp"
 #include "SyntaxTree.hpp"
 #include "Lexer.hpp"
 #include "Symbol.hpp"
@@ -41,7 +42,7 @@ namespace parser
 
             // Add the symbol to the syntax tree
             // Return whether or not the symbol was found
-            virtual bool assembleSymbol(ast::Symbol symbol, ast::SyntaxTree& syntaxTree, parser::TokenManager& tm);
+            virtual bool tryToFindSymbol(ast::Symbol symbol, ast::Branchable* root, NodeType nodeType, parser::TokenManager& tm);
 
             ast::astAction noFind;
 

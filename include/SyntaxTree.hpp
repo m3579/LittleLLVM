@@ -17,23 +17,24 @@
 #ifndef SYNTAXTREE_H
 #define SYNTAXTREE_H
 
+#include "Branchable.hpp"
 #include "Node.hpp"
 
 namespace ast
 {
 
-    class SyntaxTree
+    class SyntaxTree : Branchable
     {
         public:
             SyntaxTree();
             virtual ~SyntaxTree();
 
-            virtual node::Node addStatement(node::Node statement);
+            virtual void add(node::Node& statement);
 
             virtual void print(std::string tabs);
 
         protected:
-            std::vector<node::Node> statements;
+            std::vector<node::Node*> statements;
 
     };
 } /* namespace ast */

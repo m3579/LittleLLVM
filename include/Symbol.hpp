@@ -29,29 +29,31 @@ namespace parser
 
 namespace ast
 {
-    typedef node::Node (*astAction)(parser::TokenManager&);
+    typedef void (*astAction)(parser::TokenManager&);
 
     class Symbol
     {
         public:
-            Symbol(TokenType tokenType, std::string id, astAction actionAfterFind);
+            Symbol(TokenType tokenType, std::string name, astAction actionAfterFind, NodeType nodeType);
             virtual ~Symbol();
 
-            virtual Symbol addNextSymbol(Symbol& nextSymbol);
-
-            virtual TokenType getTokenType();
+            virtual Symbol addNextSymbol(Symbol& nextSymbol, int precedence);
 
             virtual std::vector<Symbol*> getNextSymbols();
+
+            TokenType tokenType;
+
+            NodeType nodeType;
 
             astAction actionAfterFind;
 
             astAction noFind;
 
-            std::string id;
+            std::string name;
+
+            int precedence;
 
         protected:
-            TokenType tokenType;
-
             std::vector<Symbol*> nextSymbols;
     };
 

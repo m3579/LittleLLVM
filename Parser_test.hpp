@@ -22,7 +22,6 @@
 #include "../TokenType.h"
 #include "Lexer.hpp"
 #include "Parser.hpp"
-#include "cleancode.h"
 
 using namespace lexer;
 using namespace token;
@@ -41,127 +40,86 @@ createNodeType(NTYPE_END);
 using namespace lexer;
 using namespace parser;
 
+Token numberTest(scanner::Scanner& sc);
+Token plusTest(scanner::Scanner& sc);
+Token spaceTest(scanner::Scanner& sc);
+Token endTest(scanner::Scanner& sc);
+
+void noFind(TokenManager& tm);
+
 void parserGo()
 {
     Lexer lexer("1 + 1");
 
-    setLexer(lexer);
-
-    // 1 1 1 1 1
-    makeTest(sc)
-    {
-        if (sc.getCurrentChar() == '1') {
-            return Token(sc.getLineNumber(), sc.getColumnNumber(), "1", TTYPE_NUMONE);
-        }
-        return Token();
-    }
-    endTest
-
-    // + + + + +
-    makeTest(sc)
-    {
-        if (sc.getCurrentChar() == '+') {
-            return Token(sc.getLineNumber(), sc.getColumnNumber(), "+", TTYPE_PLUS);
-        }
-        return Token();
-    }
-    endTest
-
-    // SPACE SPACE SPACE SPACE SPACE
-    makeTest(sc)
-    {
-        if (sc.getCurrentChar() == ' ') {
-                sc.moveToNextChar();
-        }
-
-        return Token();
-    }
-    endTest
-
-    // END END END END END
-    makeTest(sc)
-    {
-        if (sc.getCurrentChar() == '\0') {
-            sc.finished = true;
-            return Token(sc.getLineNumber(), sc.getColumnNumber(), "\0", TTYPE_END);
-        }
-        return Token();
-    }
-    endTest
+    lexer.addTest(numberTest);
+    lexer.addTest(plusTest);
+    lexer.addTest(spaceTest);
+    lexer.addTest(endTest);
 
     Parser parser(lexer);
 
-    createSymbol(startingSymbol)
-    forTokenType(TTYPE_NUMONE)
-    withId("Starting symbol")
-
-        astAction(tm)
-        {
-            tm.moveToNextToken();
-
-            return Node(tm.fetchPreviousToken(), NTYPE_NUMONE);
-        }
-
-    endSymbol
-
+    Symbol startingSymbol(TTYPE_NUMONE, "Starting symbol", nullptr, NTYPE_NUMONE);
     parser.addSymbol(startingSymbol);
 
-    createSymbol(plusSymbol)
-    forTokenType(TTYPE_PLUS)
-    withId("Plus Symbol")
+    Symbol plusSymbol(TTYPE_PLUS, "Plus Symbol", nullptr, NTYPE_PLUS);
+    startingSymbol.addNextSymbol(plusSymbol, 1);
 
-        astAction(tm)
-        {
-            tm.moveToNextToken();
+    Symbol finalSymbol(TTYPE_NUMONE, "Final Symbol", nullptr, NTYPE_NUMONE);
+    plusSymbol.addNextSymbol(finalSymbol, -1);
 
-            return Node(tm.fetchPreviousToken(), NTYPE_PLUS);
-        }
+    Symbol eolSymbol(TTYPE_END, "End", nullptr, NTYPE_END);
+    finalSymbol.addNextSymbol(eolSymbol, 0);
 
-    endSymbol
-
-    startingSymbol.addNextSymbol(plusSymbol);
-
-    createSymbol(finalSymbol)
-    forTokenType(TTYPE_NUMONE)
-    withId("Final Symbol")
-
-        astAction(tm)
-        {
-            tm.moveToNextToken();
-
-            return Node(tm.fetchPreviousToken(), NTYPE_NUMONE);
-        }
-
-    endSymbol
-
-    plusSymbol.addNextSymbol(finalSymbol);
-
-    createSymbol(eolSymbol)
-    forTokenType(TTYPE_END)
-    withId("End")
-
-        astAction(tm)
-        {
-            return Node(tm.getCurrentToken(), NTYPE_END);
-        }
-
-    endSymbol
-
-    finalSymbol.addNextSymbol(eolSymbol);
-
-    parser.noFind =
-        astAction(tm)
-        {
-            std::cout << "Error!";
-            exit = true;
-
-            return Node();
-        };
+    parser.noFind = noFind;
 
     SyntaxTree tree(parser.createSyntaxTree());
 
     tree.print("");
 
+}
+
+// 1 1 1 1 1
+Token numberTest(scanner::Scanner& sc)
+{
+    if (sc.getCurrentChar() == '1') {
+        return Token(sc.getLineNumber(), sc.getColumnNumber(), "1", TTYPE_NUMONE);
+    }
+    return Token();
+}
+
+// + + + + +
+Token plusTest(scanner::Scanner& sc)
+ {
+    if (sc.getCurrentChar() == '+') {
+        return Token(sc.getLineNumber(), sc.getColumnNumber(), "+", TTYPE_PLUS);
+    }
+    return Token();
+}
+
+// SPACE SPACE SPACE SPACE SPACE
+Token spaceTest(scanner::Scanner& sc)
+{
+    if (sc.getCurrentChar() == ' ') {
+        sc.moveToNextChar();
+    }
+
+    return Token();
+}
+
+// END END END END END
+Token endTest(scanner::Scanner& sc)
+{
+    if (sc.getCurrentChar() == '\0') {
+        sc.finished = true;
+        return Token(sc.getLineNumber(), sc.getColumnNumber(), "\0", TTYPE_END);
+    }
+    return Token();
+}
+
+void noFind(TokenManager& tm)
+{
+    std::cout << "Error!";
+    exit = true;
 }
 
 #endif // PARSER_TEST_H_INCLUDED

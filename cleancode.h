@@ -17,8 +17,17 @@
  *
  */
 
+
+
 #include "Lexer.hpp"
 
+#ifdef __GNUC__
+    #warning("Use of cleancode.h was deprecated after version 1 and is not recommended")
+#elif defined(_MSC_VER)
+    #pragma warning("Use of cleancode.h was deprecated after version 1 and is not recommended")
+#else
+    #pragma message("Use of cleancode.h was deprecated after version 1 and is not recommended")
+#endif
 
 #define test(sc) [] (scanner::Scanner& sc)
 

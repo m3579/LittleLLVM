@@ -21,8 +21,8 @@
 
 namespace node
 {
-    Node::Node(token::Token token, NodeType type) :
-        token(token), type(type)
+    Node::Node(token::Token token, NodeType type, Branchable* root) :
+        token(token), type(type), root(root)
     {
 
     }
@@ -32,7 +32,7 @@ namespace node
 
     }
 
-    void Node::addNode(Node node)
+    void Node::addNode(Node& node)
     {
         nodes.push_back(node);
     }

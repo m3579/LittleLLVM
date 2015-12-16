@@ -21,17 +21,17 @@
 
 #include "Token.hpp"
 #include "../NodeType.h"
+#include "Branchable.hpp"
 
 namespace node
 {
-
-    class Node
+    class Node : public Branchable
     {
         public:
             Node(token::Token token = token::Token(), NodeType type = NTYPE_NONODE);
             virtual ~Node();
 
-            virtual void addNode(Node node);
+            virtual void add(Node node);
 
             virtual Node getNode(unsigned int index);
 
@@ -42,7 +42,7 @@ namespace node
 
             NodeType type;
 
-            std::vector<Node> nodes;
+            std::vector<Node*> nodes;
     };
 
 } /* namespace node */

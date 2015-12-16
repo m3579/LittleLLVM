@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200mm"
+   height="200mm"
+   viewBox="0 0 708.6614 708.6614"
+   id="svg4713"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="VectorLogoCircle.svg">
+  <defs
+     id="defs4715">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="-62.009229 : 9.8549718 : 1"
+       inkscape:vp_y="0 : 358.21617 : 0"
+       inkscape:vp_z="2028.9236 : 9.8549718 : 1"
+       inkscape:persp3d-origin="983.45724 : -11.299528 : 1"
+       id="perspective5377" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="-46.428571"
+     inkscape:cy="438.79206"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="623"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4718">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-343.70079)">
+    <path
+       style="fill:none;fill-opacity:0.16568047;stroke:#26cfc1;stroke-width:6.14451981;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path5411"
+       sodipodi:type="arc"
+       sodipodi:cx="354.28571"
+       sodipodi:cy="699.50507"
+       sodipodi:rx="339.42773"
+       sodipodi:ry="337.99918"
+       sodipodi:start="0"
+       sodipodi:end="6.2689958"
+       sodipodi:open="true"
+       d="M 693.71344,699.50507 A 339.42773,337.99918 0 0 1 355.48978,1037.5021 339.42773,337.99918 0 0 1 14.866514,701.90307 339.42773,337.99918 0 0 1 350.67354,361.52503 339.42773,337.99918 0 0 1 693.67927,694.70919" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;fill-rule:evenodd;stroke:#26cfc1;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       id="path5439"
+       sodipodi:cx="328.57144"
+       sodipodi:cy="686.64795"
+       sodipodi:expansion="1"
+       sodipodi:revolution="3"
+       sodipodi:radius="365.89282"
+       sodipodi:argument="-17.953501"
+       sodipodi:t0="0.089613996"
+       d="m 300.72737,703.96366 c -26.75005,-13.92383 -22.67498,-51.42807 -5.57376,-71.05239 29.92184,-34.33646 83.80324,-26.52233 113.04711,4.21673 42.51149,44.68502 30.57907,116.61677 -14.0072,155.04183 -59.11121,50.94286 -149.59493,34.7332 -197.03657,-23.79768 -59.49714,-73.4043 -38.9394,-182.65398 33.58817,-239.03129 87.63228,-68.11854 215.75925,-43.1762 281.02602,43.37864 76.78031,101.82377 47.43233,248.89354 -53.16913,323.02075 C 342.6092,981.20841 176.55472,947.44167 93.586542,832.78064 -0.58728012,702.63355 37.606949,517.56591 166.33663,425.77045 310.62778,322.87829 514.72881,365.50609 615.34155,508.31101 717.34633,653.09172 688.0433,855.74812 557.14294,972.36219" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="85.714294"
+       y="732.36218"
+       id="text5415"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5417"
+         x="85.714294"
+         y="732.36218"
+         style="font-size:108.74998474px;fill:#26cfc1;fill-opacity:1;stroke:none;stroke-opacity:1">LittleLLVM</tspan></text>
+  </g>
+</svg>

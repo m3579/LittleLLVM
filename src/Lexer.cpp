@@ -21,6 +21,7 @@
 
 #include "Lexer.hpp"
 #include "Scanner.hpp"
+#include "../utilities.hpp"
 
 namespace lexer
 {
@@ -91,7 +92,7 @@ namespace lexer
                       << " column "
                       << sc.getColumnNumber();
 
-                throw std::runtime_error(error.str());
+                utilities::logError(error.str());
             }
         }
 
