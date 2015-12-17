@@ -39,7 +39,7 @@ namespace ast
 
             virtual Symbol addNextSymbol(Symbol& nextSymbol, int precedence);
 
-            virtual std::vector<Symbol*> getNextSymbols();
+            virtual std::map<Symbol*, int> getNextSymbols();
 
             TokenType tokenType;
 
@@ -54,7 +54,7 @@ namespace ast
             int precedence;
 
         protected:
-            std::vector<Symbol*> nextSymbols;
+            std::map<Symbol*, int> nextSymbolPrecedences;
     };
 
 } /* namespace ast */

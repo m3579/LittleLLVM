@@ -23,7 +23,7 @@
 namespace ast
 {
 
-    class SyntaxTree : Branchable
+    class SyntaxTree : public Branchable
     {
         public:
             SyntaxTree();

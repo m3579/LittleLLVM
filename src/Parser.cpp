@@ -27,6 +27,7 @@
 #include "TokenManager.hpp"
 #include "../TokenType.h"
 #include "../NodeType.h"
+#include "../utilities.hpp"
 
 namespace parser
 {
@@ -62,7 +63,7 @@ namespace parser
         while (true) {
             bool found = false;
             for (auto symbol = symbols.begin(); symbol != symbols.end(); ++symbol) {
-                found = tryToFindSymbol(**symbol, &syntaxTree, tm);
+                found = tryToFindSymbol(*symbol, &syntaxTree, tm, std::map<ast::Symbol*, int> { });
                 if (found) {
                     break;
                 }
@@ -91,34 +92,35 @@ namespace parser
         symbols.push_back(&symbol);
     }
 
-    bool Parser::tryToFindSymbol(ast::Symbol symbol, Branchable* root, parser::TokenManager& tm)
+    bool Parser::tryToFindSymbol(ast::Symbol* symbol, ast::Branchable* root, parser::TokenManager& tm, std::map<ast::Symbol*, int> precedences)
     {
-        TokenType type = symbol.getTokenType();
+        TokenType type = symbol->tokenType;
 
         if (tm.found(type)) {
 
-            Node newRoot(tm.getCurrentToken(), symbol.nodeType);
+            node::Node newRoot(tm.getCurrentToken(), symbol.nodeType);
 
             if (symbol.actionAfterFind != nullptr) {
                 symbol.actionAfterFind(tm);
             }
 
-            if (symbol.precedence > 0) {
-                Branchable* nodeToAddTo = root;
+            int precedence = precedences[symbol];
+            if (precedence > 0) {
+                ast::Branchable* nodeToAddTo = root;
 
                 // Move up the hierarchy
                 for (int i = 0; i < symbol.precedence; i++) {
-                    nodeToAddTo = root.rootNode;
+                    nodeToAddTo = root->root;
 
                     if (nodeToAddTo == nullptr) {
                         utilities::logError("The precedence level is too high for symbol " + symbol.name);
                     }
                 }
 
-                nodeToAddTo.add(newRoot));
+                nodeToAddTo->add(newRoot);
             }
             else {
-                root.add(newRoot);
+                root->add(newRoot);
             }
 
             std::vector<ast::Symbol*> nextSymbols(symbol.getNextSymbols());
@@ -126,7 +128,7 @@ namespace parser
             tm.moveToNextToken();
             bool found = false;
             for (auto next = nextSymbols.begin(); next != nextSymbols.end(); ++next) {
-                found = tryToFindSymbol(**next, &newRoot, tm);
+                found = tryToFindSymbol(**next, &newRoot, tm, symbol->precedences);
                 if (found) {
                     break;
                 }

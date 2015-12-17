@@ -27,6 +27,9 @@ namespace ast
     class Branchable
     {
         public:
+            Branchable(Branchable* root) :
+                root(root) { }
+
             virtual void add(node::Node& node) = 0;
 
             Branchable* root;

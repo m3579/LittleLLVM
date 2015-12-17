@@ -36,7 +36,7 @@ namespace ast
 
     Symbol Symbol::addNextSymbol(Symbol& nextSymbol, int precedence)
     {
-        nextSymbols.push_back(&nextSymbol);
+        nextSymbolPrecedences[nextSymbol] = precedence;
         return nextSymbol;
     }
 
@@ -45,9 +45,9 @@ namespace ast
         return tokenType;
     }
 
-    std::vector<Symbol*> Symbol::getNextSymbols()
+    std::map<Symbol*, int> Symbol::getNextSymbols()
     {
-        return nextSymbols;
+        return nextSymbolPrecedences;
     }
 
 } /* namespace ast */

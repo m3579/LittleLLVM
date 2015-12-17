@@ -19,19 +19,20 @@
 
 #include <vector>
 
+#include "Node.hpp"
 #include "Token.hpp"
 #include "../NodeType.h"
 #include "Branchable.hpp"
 
 namespace node
 {
-    class Node : public Branchable
+    class Node : public ast::Branchable
     {
         public:
-            Node(token::Token token = token::Token(), NodeType type = NTYPE_NONODE);
+            Node(token::Token token = token::Token(), NodeType type = NTYPE_NONODE, ast::Branchable* root = nullptr);
             virtual ~Node();
 
-            virtual void add(Node node);
+            virtual void add(Node& node);
 
             virtual Node getNode(unsigned int index);
 

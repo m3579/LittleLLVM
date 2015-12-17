@@ -22,7 +22,7 @@
 namespace node
 {
     Node::Node(token::Token token, NodeType type, Branchable* root) :
-        token(token), type(type), root(root)
+        Branchable(root), token(token), type(type)
     {
 
     }
@@ -32,15 +32,15 @@ namespace node
 
     }
 
-    void Node::addNode(Node& node)
+    void Node::add(Node& node)
     {
-        nodes.push_back(node);
+        nodes.push_back(&node);
     }
 
     Node Node::getNode(unsigned int index)
     {
         if (index >= 0 && index < nodes.size()) {
-            return nodes.at(index);
+            return *(nodes.at(index));
         }
 
         return Node();
