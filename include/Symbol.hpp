@@ -37,24 +37,22 @@ namespace ast
             Symbol(TokenType tokenType, std::string name, astAction actionAfterFind, NodeType nodeType);
             virtual ~Symbol();
 
-            virtual Symbol addNextSymbol(Symbol& nextSymbol, int precedence);
+            virtual void addNextSymbol(std::shared_ptr<Symbol> nextSymbol, int precedence);
 
-            virtual std::map<Symbol*, int> getNextSymbols();
+            virtual std::map<std::shared_ptr<ast::Symbol>, int> getNextSymbols();
 
             TokenType tokenType;
 
-            NodeType nodeType;
+            std::string name;
 
             astAction actionAfterFind;
 
+            NodeType nodeType;
+
             astAction noFind;
 
-            std::string name;
+            std::map<std::shared_ptr<ast::Symbol>, int> precedences;
 
-            int precedence;
-
-        protected:
-            std::map<Symbol*, int> nextSymbolPrecedences;
     };
 
 } /* namespace ast */

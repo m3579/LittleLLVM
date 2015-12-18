@@ -24,7 +24,7 @@
 namespace ast
 {
     Symbol::Symbol(TokenType tokenType, std::string name, astAction actionAfterFind, NodeType nodeType) :
-        actionAfterFind(actionAfterFind), name(name), tokenType(tokenType), nodeType(nodeType)
+        tokenType(tokenType), name(name), actionAfterFind(actionAfterFind), nodeType(nodeType)
     {
 
     }
@@ -34,20 +34,14 @@ namespace ast
 
     }
 
-    Symbol Symbol::addNextSymbol(Symbol& nextSymbol, int precedence)
+    void Symbol::addNextSymbol(std::shared_ptr<ast::Symbol> nextSymbol, int precedence)
     {
-        nextSymbolPrecedences[nextSymbol] = precedence;
-        return nextSymbol;
+        precedences[nextSymbol] = precedence;
     }
 
-    TokenType Symbol::getTokenType()
+    std::map<std::shared_ptr<Symbol>, int> Symbol::getNextSymbols()
     {
-        return tokenType;
-    }
-
-    std::map<Symbol*, int> Symbol::getNextSymbols()
-    {
-        return nextSymbolPrecedences;
+        return precedences;
     }
 
 } /* namespace ast */

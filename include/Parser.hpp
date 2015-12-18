@@ -36,20 +36,22 @@ namespace parser
             Parser(lexer::Lexer lexr);
             virtual ~Parser();
 
-            virtual ast::SyntaxTree createSyntaxTree();
+            virtual std::shared_ptr<ast::SyntaxTree> createSyntaxTree();
 
-            virtual void addSymbol(ast::Symbol& symbol);
+            virtual void addSymbol(std::shared_ptr<ast::Symbol> symbol);
 
             // Add the symbol to the syntax tree
             // Return whether or not the symbol was found
-            virtual bool tryToFindSymbol(ast::Symbol* symbol, ast::Branchable* root, parser::TokenManager& tm, std::map<ast::Symbol*, int> precedences);
+            virtual bool tryToFindSymbol(std::shared_ptr<ast::Symbol> symbol, std::shared_ptr<ast::Branchable> root, parser::TokenManager& tm, std::map<std::shared_ptr<ast::Symbol>, int> precedences);
 
             ast::astAction noFind;
+
+            std::map<std::shared_ptr<ast::Symbol>, int> precedences;
 
         protected:
             lexer::Lexer lexr;
 
-            std::vector<ast::Symbol*> symbols;
+            std::vector<std::shared_ptr<ast::Symbol>> symbols;
     };
 
 } /* namespace parser */

@@ -21,7 +21,7 @@
 
 #include "Lexer.hpp"
 #include "Scanner.hpp"
-#include "../utilities.hpp"
+#include "../utilities.h"
 
 namespace lexer
 {

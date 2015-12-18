@@ -23,7 +23,7 @@ namespace ast
 {
 
     SyntaxTree:: SyntaxTree() :
-        root(nullptr)
+        Branchable(nullptr)
     {
 
     }
@@ -33,18 +33,19 @@ namespace ast
 
     }
 
-    node::Node SyntaxTree::add(node::Node& statement)
+    void SyntaxTree::add(std::shared_ptr<node::Node> statement)
     {
         statements.push_back(statement);
-        return statement;
     }
 
     void SyntaxTree::print(std::string tabs)
     {
         std::cout << "Syntax Tree:\n\n";
+
         for (auto it = statements.begin(); it != statements.end(); ++it) {
-            it->print("\t");
+            (*it)->print("\t");
         }
+
         std::cout << "\n\n";
     }
 

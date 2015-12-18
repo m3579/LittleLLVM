@@ -17,6 +17,7 @@
 #ifndef NODE_H
 #define NODE_H
 
+#include <memory>
 #include <vector>
 
 #include "Node.hpp"
@@ -29,12 +30,12 @@ namespace node
     class Node : public ast::Branchable
     {
         public:
-            Node(token::Token token = token::Token(), NodeType type = NTYPE_NONODE, ast::Branchable* root = nullptr);
+            Node(token::Token token = token::Token(), NodeType type = NTYPE_NONODE, std::shared_ptr<ast::Branchable> root = nullptr);
             virtual ~Node();
 
-            virtual void add(Node& node);
+            virtual void add(std::shared_ptr<Node> n);
 
-            virtual Node getNode(unsigned int index);
+            virtual std::shared_ptr<node::Node> getNode(unsigned int index);
 
             virtual void print(std::string tabs);
 
@@ -43,7 +44,7 @@ namespace node
 
             NodeType type;
 
-            std::vector<Node*> nodes;
+            std::vector<std::shared_ptr<Node>> nodes;
     };
 
 } /* namespace node */

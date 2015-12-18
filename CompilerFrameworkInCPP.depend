@@ -251,7 +251,7 @@
 	<string>
 	"Parser_test.hpp"
 
-1450230640 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\parser_test.hpp
+1450403838 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\parser_test.hpp
 	<iostream>
 	"../TokenType.h"
 	"Lexer.hpp"
@@ -273,7 +273,7 @@
 	<map>
 	"../TokenType.h"
 
-1450333937 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\parser.hpp
+1450403824 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\parser.hpp
 	<string>
 	"Branchable.hpp"
 	"SyntaxTree.hpp"
@@ -282,11 +282,12 @@
 	"TokenManager.hpp"
 	"../NodeType.h"
 
-1450333565 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\syntaxtree.hpp
+1450404207 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\syntaxtree.hpp
 	"Branchable.hpp"
 	"Node.hpp"
 
-1450333418 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\node.hpp
+1450405240 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\node.hpp
+	<memory>
 	<vector>
 	"Node.hpp"
 	"Token.hpp"
@@ -296,7 +297,7 @@
 1445310829 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\nodetype.h
 	<string>
 
-1450333641 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\symbol.hpp
+1450405286 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\symbol.hpp
 	<vector>
 	"Token.hpp"
 	"Node.hpp"
@@ -312,28 +313,28 @@
 1442018772 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\cleancode.h
 	"Lexer.hpp"
 
-1450333496 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\node.cpp
+1450405222 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\node.cpp
 	<iostream>
 	"Node.hpp"
 
-1450333510 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\parser.cpp
+1450405367 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\parser.cpp
 	<iostream>
 	"Parser.hpp"
 	"Lexer.hpp"
 	"TokenManager.hpp"
 	"../TokenType.h"
 	"../NodeType.h"
-	"../utilities.hpp"
+	"../utilities.h"
 
 1441557474 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\scanner.cpp
 	<cstring>
 	"Scanner.hpp"
 
-1445292158 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\symbol.cpp
+1450405386 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\symbol.cpp
 	<iostream>
 	"Symbol.hpp"
 
-1444446069 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\syntaxtree.cpp
+1450404253 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\syntaxtree.cpp
 	<iostream>
 	"SyntaxTree.hpp"
 
@@ -349,15 +350,23 @@
 	"Node.hpp"
 	"../TokenType.h"
 
-1450231162 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\lexer.cpp
+1450404409 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\lexer.cpp
 	<iostream>
 	<sstream>
 	"Lexer.hpp"
 	"Scanner.hpp"
-	"../utilities.hpp"
+	"../utilities.h"
 
-1450333486 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\branchable.hpp
+1450405628 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\branchable.hpp
+	<memory>
 
 1450231148 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\utilities.hpp
+	<string>
+
+1450404623 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\utilities.cpp
+	<stdexcept>
+	"utilities.h"
+
+1450404557 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\utilities.h
 	<string>
 

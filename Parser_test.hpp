@@ -58,23 +58,23 @@ void parserGo()
 
     Parser parser(lexer);
 
-    Symbol startingSymbol(TTYPE_NUMONE, "Starting symbol", nullptr, NTYPE_NUMONE);
+    std::shared_ptr<Symbol> startingSymbol(new Symbol(TTYPE_NUMONE, "Starting symbol", nullptr, NTYPE_NUMONE));
     parser.addSymbol(startingSymbol);
 
-    Symbol plusSymbol(TTYPE_PLUS, "Plus Symbol", nullptr, NTYPE_PLUS);
-    startingSymbol.addNextSymbol(plusSymbol, 1);
+    std::shared_ptr<Symbol> plusSymbol(new Symbol(TTYPE_PLUS, "Plus Symbol", nullptr, NTYPE_PLUS));
+    startingSymbol->addNextSymbol(plusSymbol, 1);
 
-    Symbol finalSymbol(TTYPE_NUMONE, "Final Symbol", nullptr, NTYPE_NUMONE);
-    plusSymbol.addNextSymbol(finalSymbol, -1);
+    std::shared_ptr<Symbol> finalSymbol(new Symbol(TTYPE_NUMONE, "Final Symbol", nullptr, NTYPE_NUMONE));
+    plusSymbol->addNextSymbol(finalSymbol, -1);
 
-    Symbol eolSymbol(TTYPE_END, "End", nullptr, NTYPE_END);
-    finalSymbol.addNextSymbol(eolSymbol, 0);
+    std::shared_ptr<Symbol> eolSymbol(new Symbol(TTYPE_END, "End", nullptr, NTYPE_END));
+    finalSymbol->addNextSymbol(eolSymbol, 0);
 
     parser.noFind = noFind;
 
-    SyntaxTree tree(parser.createSyntaxTree());
+    std::shared_ptr<SyntaxTree> tree(parser.createSyntaxTree());
 
-    tree.print("");
+    tree->print("");
 
 }
 

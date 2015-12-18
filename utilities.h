@@ -19,15 +19,9 @@
 
 #include <string>
 
-
 namespace utilities
 {
-
-    void logError(std::string message)
-    {
-        throw std::runtime_error("Little LLVM - Bug in compiler:\n\t" + message + "\n\n");
-    }
-
+    void logError(std::string message);
 }
 
 

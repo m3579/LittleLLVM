@@ -29,12 +29,11 @@ namespace ast
             SyntaxTree();
             virtual ~SyntaxTree();
 
-            virtual void add(node::Node& statement);
+            virtual void add(std::shared_ptr<node::Node> statement);
 
             virtual void print(std::string tabs);
 
-        protected:
-            std::vector<node::Node*> statements;
+            std::vector<std::shared_ptr<node::Node>> statements;
 
     };
 } /* namespace ast */

@@ -17,6 +17,8 @@
  *
  */
 
+#include <memory>
+
 namespace node
 {
     class Node;
@@ -24,15 +26,22 @@ namespace node
 
 namespace ast
 {
+    class Symbol;
+}
+
+namespace ast
+{
     class Branchable
     {
         public:
-            Branchable(Branchable* root) :
+            Branchable(std::shared_ptr<Branchable> root) :
                 root(root) { }
 
-            virtual void add(node::Node& node) = 0;
+            virtual void add(std::shared_ptr<node::Node> n) = 0;
 
-            Branchable* root;
+            virtual void print(std::string tabs) = 0;
+
+            std::shared_ptr<Branchable> root;
     };
 }
 
