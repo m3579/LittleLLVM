@@ -49,6 +49,8 @@ namespace ast
 
             std::function<void(parser::TokenManager&)> noFind;
 
+            std::vector<std::shared_ptr<ast::Symbol>> possibleNextSymbols;
+
             std::map<std::shared_ptr<ast::Symbol>, int> precedences;
 
     };

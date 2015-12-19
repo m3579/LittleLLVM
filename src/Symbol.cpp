@@ -36,6 +36,7 @@ namespace ast
 
     void Symbol::addNextSymbol(std::shared_ptr<ast::Symbol> nextSymbol, int precedence)
     {
+        possibleNextSymbols.push_back(nextSymbol);
         precedences[nextSymbol] = precedence;
     }
 

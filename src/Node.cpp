@@ -48,12 +48,12 @@ namespace node
 
     void Node::print(std::string tabs)
     {
-        std::cout << tabs << "Node: " << token.getText() << "\n"
-                  << tabs << "\tType: " << type
-                  << "\n";
+        std::cout << tabs << "Node: |" << token.getText() << "|\n"
+                  << tabs << "\tType: " << type << "\n"
+                  << tabs << "\tSubnodes:\n\n";
 
         for (auto node = nodes.begin(); node != nodes.end(); ++node) {
-            (*node)->print(tabs + "\t");
+            (*node)->print(tabs + "\t\t");
         }
     }
 

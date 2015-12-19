@@ -45,9 +45,9 @@ namespace parser
             std::map<std::shared_ptr<ast::Symbol>, int> precedences;
 
         protected:
-            // Add the symbol to the syntax tree
-            // Return whether or not the symbol was found
-            virtual bool tryToFindSymbol(std::shared_ptr<ast::Symbol> symbol, std::shared_ptr<ast::Branchable> root, parser::TokenManager& tm, std::map<std::shared_ptr<ast::Symbol>, int> precedences);
+            std::shared_ptr<node::Node> lookFor(std::shared_ptr<ast::Symbol> lookingFor, TokenManager& tm);
+
+            bool tryToFindSymbol(std::shared_ptr<ast::Symbol> symbol, std::shared_ptr<ast::Branchable> root, parser::TokenManager& tm, std::map<std::shared_ptr<ast::Symbol>, int> precedences);
 
             lexer::Lexer lexr;
 

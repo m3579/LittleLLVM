@@ -46,48 +46,73 @@ namespace parser
 
     std::shared_ptr<ast::SyntaxTree> Parser::createSyntaxTree()
     {
-        std::shared_ptr<ast::SyntaxTree> syntaxTree(new ast::SyntaxTree());
-
         std::vector<token::Token> tokens(lexr.tokenizeSource());
 
-        if (tokens.size() == 0) {
-            std::shared_ptr<ast::SyntaxTree> emptyTree(new ast::SyntaxTree());
-            return emptyTree;
-        }
+        TokenManager tm(tokens);
 
-        if (symbols.size() == 0) {
-            std::shared_ptr<ast::SyntaxTree> emptyTree(new ast::SyntaxTree());
-            return emptyTree;
-        }
+        std::shared_ptr<ast::SyntaxTree> tree(new ast::SyntaxTree());
 
-        parser::TokenManager tm(tokens);
-
-        while (true) {
+        while (!exit) {
             bool found = false;
             for (auto symbol = symbols.begin(); symbol != symbols.end(); ++symbol) {
-                found = tryToFindSymbol(*symbol, syntaxTree, tm, precedences);
-                if (found) {
-                    //syntaxTree->print("\t");
+                std::shared_ptr<node::Node> statement(lookFor((*symbol), tm));
+                if (statement) {
+                    tree->add(statement);
+                    found = true;
                     break;
+                }
+                else {
+                    continue;
                 }
             }
 
-            if (exit) {
-                break;
-            }
-
-            if (found) {
-                continue;
-            }
-            else {
-                if (noFind != nullptr) {
+            if (!found) {
+                if (noFind) {
                     noFind(tm);
                 }
             }
-
         }
 
-        return syntaxTree;
+        return tree;
+    }
+
+    std::shared_ptr<node::Node> Parser::lookFor(std::shared_ptr<ast::Symbol> lookingFor, TokenManager& tm)
+    {
+        if (tm.found(lookingFor->tokenType)) {
+
+            std::shared_ptr<node::Node> first(new node::Node(tm.getCurrentToken(), lookingFor->nodeType));
+
+            tm.moveToNextToken();
+
+            if (lookingFor->actionAfterFind) {
+                lookingFor->actionAfterFind(tm);
+            }
+
+            std::vector<std::shared_ptr<ast::Symbol>> nextSymbols(lookingFor->possibleNextSymbols);
+
+            for (auto symbol = nextSymbols.begin(); symbol != nextSymbols.end(); ++symbol) {
+                std::shared_ptr<node::Node> next = lookFor(*symbol, tm);
+
+                if (next) {
+                    if (lookingFor->precedences[*symbol] > 0) {
+                        next->add(first);
+                        return next;
+                    }
+                    else {
+                        first->add(next);
+                        return first;
+                    }
+                }
+            }
+
+            if (lookingFor->noFind) {
+                lookingFor->noFind(tm);
+            }
+
+            return first;
+        }
+
+        return std::shared_ptr<node::Node> { };
     }
 
     void Parser::addSymbol(std::shared_ptr<ast::Symbol> symbol)
