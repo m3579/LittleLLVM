@@ -51,6 +51,10 @@ namespace node
         std::cout << tabs << "Node: " << token.getText() << "\n"
                   << tabs << "\tType: " << type
                   << "\n";
+
+        for (auto node = nodes.begin(); node != nodes.end(); ++node) {
+            (*node)->print(tabs + "\t");
+        }
     }
 
 } /* namespace node */

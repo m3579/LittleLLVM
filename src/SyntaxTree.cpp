@@ -40,10 +40,10 @@ namespace ast
 
     void SyntaxTree::print(std::string tabs)
     {
-        std::cout << "Syntax Tree:\n\n";
+        std::cout << tabs << "Syntax Tree:\n\n";
 
         for (auto it = statements.begin(); it != statements.end(); ++it) {
-            (*it)->print("\t");
+            (*it)->print(tabs + "\t");
         }
 
         std::cout << "\n\n";

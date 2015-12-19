@@ -42,7 +42,7 @@ namespace parser
 
             // Add the symbol to the syntax tree
             // Return whether or not the symbol was found
-            virtual bool tryToFindSymbol(std::shared_ptr<ast::Symbol> symbol, std::shared_ptr<ast::Branchable> root, parser::TokenManager& tm, std::map<std::shared_ptr<ast::Symbol>, int> precedences);
+            virtual bool tryToFindSymbol(std::shared_ptr<ast::SyntaxTree> tree, std::shared_ptr<ast::Symbol> symbol, std::shared_ptr<ast::Branchable> root, parser::TokenManager& tm, std::map<std::shared_ptr<ast::Symbol>, int> precedences);
 
             ast::astAction noFind;
 

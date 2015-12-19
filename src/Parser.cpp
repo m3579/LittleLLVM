@@ -65,8 +65,7 @@ namespace parser
         while (true) {
             bool found = false;
             for (auto symbol = symbols.begin(); symbol != symbols.end(); ++symbol) {
-                std::cout << "Trying to find\n";
-                found = tryToFindSymbol(*symbol, syntaxTree, tm, precedences);
+                found = tryToFindSymbol(syntaxTree, *symbol, syntaxTree, tm, precedences);
                 if (found) {
                     syntaxTree->print("\t");
                     break;
@@ -98,12 +97,11 @@ namespace parser
         precedences[symbol] = 0;
     }
 
-    bool Parser::tryToFindSymbol(std::shared_ptr<ast::Symbol> symbol, std::shared_ptr<ast::Branchable> root, parser::TokenManager& tm, std::map<std::shared_ptr<ast::Symbol>, int> precedences)
+    bool Parser::tryToFindSymbol(std::shared_ptr<ast::SyntaxTree> tree, std::shared_ptr<ast::Symbol> symbol, std::shared_ptr<ast::Branchable> root, parser::TokenManager& tm, std::map<std::shared_ptr<ast::Symbol>, int> precedences)
     {
         TokenType type = symbol->tokenType;
 
         if (tm.found(type)) {
-            std::cout << "Found\n";
             std::shared_ptr<node::Node> newNode(new node::Node(tm.getCurrentToken(), symbol->nodeType));
 
             if (symbol->actionAfterFind != nullptr) {
@@ -127,11 +125,9 @@ namespace parser
             }
             else {
                 root->add(newNode);
-                std::cout << "Added directly to root\n";
-                root->print("\t");
             }
 
-            std::cout << "Added to root: " << symbol->name << "\n";
+            tree->print("");
 
             std::vector<std::shared_ptr<ast::Symbol>> nextSymbols;
 
@@ -141,23 +137,29 @@ namespace parser
                 nextSymbols.push_back(it->first);
             }
 
+            if (nextSymbols.size() == 0) {
+                return true;
+            }
+
             tm.moveToNextToken();
             bool found = false;
             for (auto next = nextSymbols.begin(); next != nextSymbols.end(); ++next) {
-                std::cout << "Trying to find again\n";
-                found = tryToFindSymbol(*next, newNode, tm, symbol->precedences);
+                found = tryToFindSymbol(tree, *next, newNode, tm, symbol->precedences);
                 if (found) {
                     break;
                 }
             }
 
             if (!found) {
+                std::cout << "Did not find\n";
                 // If there was SUPPOSED to be a next token
                 if (symbol->noFind != nullptr) {
-                    symbol->noFind(tm);
+                    std::cout << "About to run noFind\n";
+                    //symbol->noFind(tm);
+                    std::cout << "Ran noFind\n";
                 }
 
-                std::cout << "Not found\n";
+                std::cout << "Reached here\n";
             }
 
             return true;
