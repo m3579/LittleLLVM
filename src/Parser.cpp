@@ -147,9 +147,6 @@ namespace parser
                     }
                 }
 
-                std::cout << "Node to add to:\n";
-                nodeToAddTo->print("");
-
                 nodeToAddTo->add(newNode);
             }
             else {

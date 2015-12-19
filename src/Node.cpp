@@ -34,7 +34,7 @@ namespace node
 
     void Node::add(std::shared_ptr<Node> n)
     {
-        nodes.push_back(n);
+        nodes.insert(nodes.begin(), n);
     }
 
     std::shared_ptr<node::Node> Node::getNode(unsigned int index)
