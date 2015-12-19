@@ -1,0 +1,9 @@
+to createTree(symbol):
+    for symbol in symbols:
+        if found symbol.tokenType:
+            nextSymbol = createTree(symbol.nextSymbols)
+
+            if symbol.nextSymbolsPrecedences[nextSymbol] > 0:
+                nextSymbol.add(symbol)
+            else:
+                symbol.add(nextSymbol)
