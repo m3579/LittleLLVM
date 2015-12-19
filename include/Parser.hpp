@@ -40,15 +40,15 @@ namespace parser
 
             virtual void addSymbol(std::shared_ptr<ast::Symbol> symbol);
 
-            // Add the symbol to the syntax tree
-            // Return whether or not the symbol was found
-            virtual bool tryToFindSymbol(std::shared_ptr<ast::SyntaxTree> tree, std::shared_ptr<ast::Symbol> symbol, std::shared_ptr<ast::Branchable> root, parser::TokenManager& tm, std::map<std::shared_ptr<ast::Symbol>, int> precedences);
-
-            ast::astAction noFind;
+            std::function<void(parser::TokenManager&)> noFind;
 
             std::map<std::shared_ptr<ast::Symbol>, int> precedences;
 
         protected:
+            // Add the symbol to the syntax tree
+            // Return whether or not the symbol was found
+            virtual bool tryToFindSymbol(std::shared_ptr<ast::Symbol> symbol, std::shared_ptr<ast::Branchable> root, parser::TokenManager& tm, std::map<std::shared_ptr<ast::Symbol>, int> precedences);
+
             lexer::Lexer lexr;
 
             std::vector<std::shared_ptr<ast::Symbol>> symbols;

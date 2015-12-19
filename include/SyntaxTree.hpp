@@ -17,11 +17,13 @@
 #ifndef SYNTAXTREE_H
 #define SYNTAXTREE_H
 
+#include "TokenManager.hpp"
 #include "Branchable.hpp"
 #include "Node.hpp"
 
 namespace ast
 {
+    extern std::function<void(parser::TokenManager&)> emptyAstAction;
 
     class SyntaxTree : public Branchable
     {

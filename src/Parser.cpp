@@ -65,9 +65,9 @@ namespace parser
         while (true) {
             bool found = false;
             for (auto symbol = symbols.begin(); symbol != symbols.end(); ++symbol) {
-                found = tryToFindSymbol(syntaxTree, *symbol, syntaxTree, tm, precedences);
+                found = tryToFindSymbol(*symbol, syntaxTree, tm, precedences);
                 if (found) {
-                    syntaxTree->print("\t");
+                    //syntaxTree->print("\t");
                     break;
                 }
             }
@@ -97,7 +97,7 @@ namespace parser
         precedences[symbol] = 0;
     }
 
-    bool Parser::tryToFindSymbol(std::shared_ptr<ast::SyntaxTree> tree, std::shared_ptr<ast::Symbol> symbol, std::shared_ptr<ast::Branchable> root, parser::TokenManager& tm, std::map<std::shared_ptr<ast::Symbol>, int> precedences)
+    bool Parser::tryToFindSymbol(std::shared_ptr<ast::Symbol> symbol, std::shared_ptr<ast::Branchable> root, parser::TokenManager& tm, std::map<std::shared_ptr<ast::Symbol>, int> precedences)
     {
         TokenType type = symbol->tokenType;
 
@@ -113,7 +113,8 @@ namespace parser
                 std::shared_ptr<ast::Branchable> nodeToAddTo(root);
 
                 // Move up the hierarchy
-                for (int i = 0; i < precedence; i++) {
+                // (start at 1 because I already moved up one when I initialized nodeToAddTo to root)
+                for (int i = 1; i < precedence; i++) {
                     nodeToAddTo = root->root;
 
                     if (nodeToAddTo == nullptr) {
@@ -121,13 +122,14 @@ namespace parser
                     }
                 }
 
+                std::cout << "Node to add to:\n";
+                nodeToAddTo->print("");
+
                 nodeToAddTo->add(newNode);
             }
             else {
                 root->add(newNode);
             }
-
-            tree->print("");
 
             std::vector<std::shared_ptr<ast::Symbol>> nextSymbols;
 
@@ -144,22 +146,17 @@ namespace parser
             tm.moveToNextToken();
             bool found = false;
             for (auto next = nextSymbols.begin(); next != nextSymbols.end(); ++next) {
-                found = tryToFindSymbol(tree, *next, newNode, tm, symbol->precedences);
+                found = tryToFindSymbol(*next, newNode, tm, symbol->precedences);
                 if (found) {
                     break;
                 }
             }
 
             if (!found) {
-                std::cout << "Did not find\n";
                 // If there was SUPPOSED to be a next token
-                if (symbol->noFind != nullptr) {
-                    std::cout << "About to run noFind\n";
-                    //symbol->noFind(tm);
-                    std::cout << "Ran noFind\n";
+                if (symbol->noFind) {
+                    symbol->noFind(tm);
                 }
-
-                std::cout << "Reached here\n";
             }
 
             return true;

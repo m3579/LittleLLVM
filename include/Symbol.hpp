@@ -29,12 +29,10 @@ namespace parser
 
 namespace ast
 {
-    typedef void (*astAction)(parser::TokenManager&);
-
     class Symbol
     {
         public:
-            Symbol(TokenType tokenType, std::string name, astAction actionAfterFind, NodeType nodeType);
+            Symbol(TokenType tokenType, std::string name, std::function<void(parser::TokenManager&)> actionAfterFind, NodeType nodeType);
             virtual ~Symbol();
 
             virtual void addNextSymbol(std::shared_ptr<Symbol> nextSymbol, int precedence);
@@ -45,11 +43,11 @@ namespace ast
 
             std::string name;
 
-            astAction actionAfterFind;
+            std::function<void(parser::TokenManager&)> actionAfterFind;
 
             NodeType nodeType;
 
-            astAction noFind;
+            std::function<void(parser::TokenManager&)> noFind;
 
             std::map<std::shared_ptr<ast::Symbol>, int> precedences;
 

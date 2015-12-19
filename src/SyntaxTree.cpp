@@ -21,6 +21,7 @@
 
 namespace ast
 {
+    std::function<void(parser::TokenManager&)> emptyAstAction;
 
     SyntaxTree:: SyntaxTree() :
         Branchable(nullptr)

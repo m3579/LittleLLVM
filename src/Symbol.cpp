@@ -23,7 +23,7 @@
 
 namespace ast
 {
-    Symbol::Symbol(TokenType tokenType, std::string name, astAction actionAfterFind, NodeType nodeType) :
+    Symbol::Symbol(TokenType tokenType, std::string name, std::function<void(parser::TokenManager&)> actionAfterFind, NodeType nodeType) :
         tokenType(tokenType), name(name), actionAfterFind(actionAfterFind), nodeType(nodeType)
     {
 
