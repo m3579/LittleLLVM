@@ -17,7 +17,9 @@
  *
  */
 
-#include <memory>
+#include "SmartPointer.hpp"
+
+using namespace pointer;
 
 namespace node
 {
@@ -34,14 +36,14 @@ namespace ast
     class Branchable
     {
         public:
-            Branchable(std::shared_ptr<Branchable> root) :
+            Branchable(SP<Branchable> root) :
                 root(root) { }
 
-            virtual void add(std::shared_ptr<node::Node> n) = 0;
+            virtual void add(SP<ast::Branchable> n) = 0;
 
             virtual void print(std::string tabs) = 0;
 
-            std::shared_ptr<Branchable> root;
+            SP<Branchable> root;
     };
 }
 

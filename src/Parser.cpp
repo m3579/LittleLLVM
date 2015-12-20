@@ -44,18 +44,18 @@ namespace parser
 
     }
 
-    std::shared_ptr<ast::SyntaxTree> Parser::createSyntaxTree()
+    SP<ast::SyntaxTree> Parser::createSyntaxTree()
     {
         std::vector<token::Token> tokens(lexr.tokenizeSource());
 
         TokenManager tm(tokens);
 
-        std::shared_ptr<ast::SyntaxTree> tree(new ast::SyntaxTree());
+        SP<ast::SyntaxTree> tree(new ast::SyntaxTree());
 
         while (!exit) {
             bool found = false;
             for (auto symbol = symbols.begin(); symbol != symbols.end(); ++symbol) {
-                std::shared_ptr<node::Node> statement(lookFor((*symbol), tm));
+                SP<ast::Branchable> statement(lookFor((*symbol), tm));
                 if (statement) {
                     tree->add(statement);
                     found = true;
@@ -76,11 +76,11 @@ namespace parser
         return tree;
     }
 
-    std::shared_ptr<node::Node> Parser::lookFor(std::shared_ptr<ast::Symbol> lookingFor, TokenManager& tm)
+    SP<ast::Branchable> Parser::lookFor(SP<ast::Symbol> lookingFor, TokenManager& tm)
     {
         if (tm.found(lookingFor->tokenType)) {
 
-            std::shared_ptr<node::Node> first(new node::Node(tm.getCurrentToken(), lookingFor->nodeType));
+            SP<ast::Branchable> first(new node::Node(tm.getCurrentToken(), lookingFor->nodeType));
 
             tm.moveToNextToken();
 
@@ -88,13 +88,15 @@ namespace parser
                 lookingFor->actionAfterFind(tm);
             }
 
-            std::vector<std::shared_ptr<ast::Symbol>> nextSymbols(lookingFor->possibleNextSymbols);
+            std::vector<SP<ast::Symbol>> nextSymbols(lookingFor->possibleNextSymbols);
 
             for (auto symbol = nextSymbols.begin(); symbol != nextSymbols.end(); ++symbol) {
-                std::shared_ptr<node::Node> next = lookFor(*symbol, tm);
+                SP<ast::Branchable> next(lookFor(*symbol, tm));
 
                 if (next) {
-                    if (lookingFor->precedences[*symbol] > 0) {
+                    SP<ast::Symbol> s(*symbol);
+                    int precedence = lookingFor->precedences[s];
+                    if (precedence > 0) {
                         next->add(first);
                         return next;
                     }
@@ -112,22 +114,22 @@ namespace parser
             return first;
         }
 
-        return std::shared_ptr<node::Node> { };
+        return SP<ast::Branchable>();
     }
 
-    void Parser::addSymbol(std::shared_ptr<ast::Symbol> symbol)
+    void Parser::addSymbol(SP<ast::Symbol> symbol)
     {
         symbols.push_back(symbol);
 
         precedences[symbol] = 0;
     }
 
-    bool Parser::tryToFindSymbol(std::shared_ptr<ast::Symbol> symbol, std::shared_ptr<ast::Branchable> root, parser::TokenManager& tm, std::map<std::shared_ptr<ast::Symbol>, int> precedences)
+    bool Parser::tryToFindSymbol(SP<ast::Symbol> symbol, SP<ast::Branchable> root, parser::TokenManager& tm, std::map<SP<ast::Symbol>, int> precedences)
     {
         TokenType type = symbol->tokenType;
 
         if (tm.found(type)) {
-            std::shared_ptr<node::Node> newNode(new node::Node(tm.getCurrentToken(), symbol->nodeType));
+            SP<ast::Branchable> newNode(new node::Node(tm.getCurrentToken(), symbol->nodeType));
 
             if (symbol->actionAfterFind != nullptr) {
                 symbol->actionAfterFind(tm);
@@ -135,14 +137,14 @@ namespace parser
 
             int precedence = precedences[symbol];
             if (precedence > 0) {
-                std::shared_ptr<ast::Branchable> nodeToAddTo(root);
+                SP<ast::Branchable> nodeToAddTo(root);
 
                 // Move up the hierarchy
                 // (start at 1 because I already moved up one when I initialized nodeToAddTo to root)
                 for (int i = 1; i < precedence; i++) {
                     nodeToAddTo = root->root;
 
-                    if (nodeToAddTo == nullptr) {
+                    if (!nodeToAddTo) {
                         utilities::logError("The precedence level is too high for symbol " + symbol->name);
                     }
                 }
@@ -153,9 +155,9 @@ namespace parser
                 root->add(newNode);
             }
 
-            std::vector<std::shared_ptr<ast::Symbol>> nextSymbols;
+            std::vector<SP<ast::Symbol>> nextSymbols;
 
-            std::map<std::shared_ptr<ast::Symbol>, int> nextSymbolMap(symbol->getNextSymbols());
+            std::map<SP<ast::Symbol>, int> nextSymbolMap(symbol->getNextSymbols());
 
             for (auto it = nextSymbolMap.begin(); it != nextSymbolMap.end(); ++it) {
                 nextSymbols.push_back(it->first);

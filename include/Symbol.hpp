@@ -21,6 +21,10 @@
 
 #include "Token.hpp"
 #include "Node.hpp"
+#include "ast.hpp"
+#include "SmartPointer.hpp"
+
+using namespace pointer;
 
 namespace parser
 {
@@ -32,26 +36,26 @@ namespace ast
     class Symbol
     {
         public:
-            Symbol(TokenType tokenType, std::string name, std::function<void(parser::TokenManager&)> actionAfterFind, NodeType nodeType);
+            Symbol(TokenType tokenType, std::string name, AstManipulationAction actionAfterFind, NodeType nodeType);
             virtual ~Symbol();
 
-            virtual void addNextSymbol(std::shared_ptr<Symbol> nextSymbol, int precedence);
+            virtual void addNextSymbol(SP<Symbol> nextSymbol, int precedence);
 
-            virtual std::map<std::shared_ptr<ast::Symbol>, int> getNextSymbols();
+            virtual std::map<SP<ast::Symbol>, int> getNextSymbols();
 
             TokenType tokenType;
 
             std::string name;
 
-            std::function<void(parser::TokenManager&)> actionAfterFind;
+            AstManipulationAction actionAfterFind;
 
             NodeType nodeType;
 
-            std::function<void(parser::TokenManager&)> noFind;
+            AstManipulationAction noFind;
 
-            std::vector<std::shared_ptr<ast::Symbol>> possibleNextSymbols;
+            std::vector<SP<ast::Symbol>> possibleNextSymbols;
 
-            std::map<std::shared_ptr<ast::Symbol>, int> precedences;
+            std::map<SP<ast::Symbol>, int> precedences;
 
     };
 

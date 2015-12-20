@@ -23,19 +23,17 @@
 
 namespace ast
 {
-    extern std::function<void(parser::TokenManager&)> emptyAstAction;
-
     class SyntaxTree : public Branchable
     {
         public:
             SyntaxTree();
             virtual ~SyntaxTree();
 
-            virtual void add(std::shared_ptr<node::Node> statement);
+            virtual void add(SP<ast::Branchable> statement);
 
             virtual void print(std::string tabs);
 
-            std::vector<std::shared_ptr<node::Node>> statements;
+            std::vector<SP<node::Node>> statements;
 
     };
 } /* namespace ast */

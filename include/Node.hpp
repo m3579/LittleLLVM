@@ -17,25 +17,27 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include <memory>
 #include <vector>
 
 #include "Node.hpp"
 #include "Token.hpp"
 #include "../NodeType.h"
 #include "Branchable.hpp"
+#include "SmartPointer.hpp"
+
+using namespace pointer;
 
 namespace node
 {
     class Node : public ast::Branchable
     {
         public:
-            Node(token::Token token = token::Token(), NodeType type = NTYPE_NONODE, std::shared_ptr<ast::Branchable> root = nullptr);
+            Node(token::Token token = token::Token(), NodeType type = NTYPE_NONODE, SP<ast::Branchable> root = nullptr);
             virtual ~Node();
 
-            virtual void add(std::shared_ptr<Node> n);
+            virtual void add(SP<ast::Branchable> n);
 
-            virtual std::shared_ptr<node::Node> getNode(unsigned int index);
+            virtual SP<ast::Branchable> getNode(unsigned int index);
 
             virtual void print(std::string tabs);
 
@@ -44,7 +46,7 @@ namespace node
 
             NodeType type;
 
-            std::vector<std::shared_ptr<Node>> nodes;
+            std::vector<SP<ast::Branchable>> nodes;
     };
 
 } /* namespace node */

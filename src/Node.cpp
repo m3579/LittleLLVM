@@ -21,7 +21,7 @@
 
 namespace node
 {
-    Node::Node(token::Token token, NodeType type, std::shared_ptr<Branchable> root) :
+    Node::Node(token::Token token, NodeType type, SP<Branchable> root) :
         Branchable(root), token(token), type(type)
     {
 
@@ -32,18 +32,18 @@ namespace node
 
     }
 
-    void Node::add(std::shared_ptr<Node> n)
+    void Node::add(SP<ast::Branchable> n)
     {
         nodes.insert(nodes.begin(), n);
     }
 
-    std::shared_ptr<node::Node> Node::getNode(unsigned int index)
+    SP<ast::Branchable> Node::getNode(unsigned int index)
     {
         if (index >= 0 && index < nodes.size()) {
             return nodes.at(index);
         }
 
-        return std::shared_ptr<node::Node> { };
+        return SP<ast::Branchable>();
     }
 
     void Node::print(std::string tabs)

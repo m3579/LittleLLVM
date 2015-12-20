@@ -25,6 +25,9 @@
 #include "Symbol.hpp"
 #include "TokenManager.hpp"
 #include "../NodeType.h"
+#include "SmartPointer.hpp"
+
+using namespace pointer;
 
 namespace parser
 {
@@ -36,22 +39,22 @@ namespace parser
             Parser(lexer::Lexer lexr);
             virtual ~Parser();
 
-            virtual std::shared_ptr<ast::SyntaxTree> createSyntaxTree();
+            virtual SP<ast::SyntaxTree> createSyntaxTree();
 
-            virtual void addSymbol(std::shared_ptr<ast::Symbol> symbol);
+            virtual void addSymbol(SP<ast::Symbol> symbol);
 
-            std::function<void(parser::TokenManager&)> noFind;
+            ast::AstManipulationAction noFind;
 
-            std::map<std::shared_ptr<ast::Symbol>, int> precedences;
+            std::map<SP<ast::Symbol>, int> precedences;
 
         protected:
-            std::shared_ptr<node::Node> lookFor(std::shared_ptr<ast::Symbol> lookingFor, TokenManager& tm);
+            SP<ast::Branchable> lookFor(SP<ast::Symbol> lookingFor, TokenManager& tm);
 
-            bool tryToFindSymbol(std::shared_ptr<ast::Symbol> symbol, std::shared_ptr<ast::Branchable> root, parser::TokenManager& tm, std::map<std::shared_ptr<ast::Symbol>, int> precedences);
+            bool tryToFindSymbol(SP<ast::Symbol> symbol, SP<ast::Branchable> root, parser::TokenManager& tm, std::map<SP<ast::Symbol>, int> precedences);
 
             lexer::Lexer lexr;
 
-            std::vector<std::shared_ptr<ast::Symbol>> symbols;
+            std::vector<SP<ast::Symbol>> symbols;
     };
 
 } /* namespace parser */
