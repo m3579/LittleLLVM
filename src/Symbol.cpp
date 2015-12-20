@@ -34,13 +34,13 @@ namespace ast
 
     }
 
-    void Symbol::addNextSymbol(std::shared_ptr<ast::Symbol> nextSymbol, int precedence)
+    void Symbol::addNextSymbol(SP<ast::Symbol> nextSymbol, int precedence)
     {
         possibleNextSymbols.push_back(nextSymbol);
         precedences[nextSymbol] = precedence;
     }
 
-    std::map<std::shared_ptr<Symbol>, int> Symbol::getNextSymbols()
+    std::map<SP<Symbol>, int> Symbol::getNextSymbols()
     {
         return precedences;
     }

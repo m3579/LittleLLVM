@@ -16,6 +16,7 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="include" />
+					<Add directory="../LittleLLVM" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -45,6 +46,7 @@
 		</Unit>
 		<Unit filename="Ref.hpp" />
 		<Unit filename="TokenType.h" />
+		<Unit filename="ast.hpp" />
 		<Unit filename="cleancode.h">
 			<Option virtualFolder="include/" />
 		</Unit>
@@ -53,6 +55,7 @@
 		<Unit filename="include/Node.hpp" />
 		<Unit filename="include/Parser.hpp" />
 		<Unit filename="include/Scanner.hpp" />
+		<Unit filename="include/SmartPointer.hpp" />
 		<Unit filename="include/Symbol.hpp" />
 		<Unit filename="include/SyntaxTree.hpp" />
 		<Unit filename="include/Token.hpp" />
@@ -64,6 +67,7 @@
 		<Unit filename="src/Node.cpp" />
 		<Unit filename="src/Parser.cpp" />
 		<Unit filename="src/Scanner.cpp" />
+		<Unit filename="src/SmartPointer.cpp" />
 		<Unit filename="src/Symbol.cpp" />
 		<Unit filename="src/SyntaxTree.cpp" />
 		<Unit filename="src/Token.cpp" />

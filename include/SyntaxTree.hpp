@@ -33,7 +33,7 @@ namespace ast
 
             virtual void print(std::string tabs);
 
-            std::vector<SP<node::Node>> statements;
+            std::vector<SP<ast::Branchable>> statements;
 
     };
 } /* namespace ast */

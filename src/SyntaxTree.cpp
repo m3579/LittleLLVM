@@ -16,6 +16,7 @@
  */
 
 #include <iostream>
+#include <functional>
 
 #include "SyntaxTree.hpp"
 
@@ -34,7 +35,7 @@ namespace ast
 
     }
 
-    void SyntaxTree::add(std::shared_ptr<node::Node> statement)
+    void SyntaxTree::add(SP<ast::Branchable> statement)
     {
         statements.push_back(statement);
     }

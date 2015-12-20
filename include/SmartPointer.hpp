@@ -17,51 +17,12 @@
 #ifndef SMARTPOINTER_HPP
 #define SMARTPOINTER_HPP
 
+#include <memory>
+
 namespace pointer
 {
-
-    class ReferenceCounter
-    {
-        public:
-            ReferenceCounter();
-
-            int getCount();
-
-            int increment();
-            int decrement();
-
-        private:
-            int refCount;
-    };
-
-
     template <typename T>
-    class SP
-    {
-        public:
-            SP();
-            SP(T* t);
-            ~SP();
-
-            SP(const SP& other);
-            SP& operator=(const SP& rhs);
-
-            // Implemented for maps (they need this operator to order the keys)
-            bool operator<(const T& t) const;
-
-            T& operator*();
-            T* operator->();
-
-            explicit operator bool();
-
-            int getRefCount();
-
-        private:
-            T* object;
-
-            ReferenceCounter* counter;
-    };
-
+    using SP = std::shared_ptr<T>;
 }
 
 #endif // SMARTPOINTER_HPP

@@ -14,67 +14,72 @@
  *
  */
 
-#include "SP.h"
+#include "SmartPointer.hpp"
 
 namespace pointer
 {
-    ReferenceCounter()
+    ReferenceCounter::ReferenceCounter()
     {
         refCount = 0;
     }
 
-    int getCount()
+    int ReferenceCounter::getCount()
     {
         return refCount;
     }
 
-    int increment()
+    int ReferenceCounter::increment()
     {
         return ++refCount;
     }
 
-    int decrement()
+    int ReferenceCounter::decrement()
     {
         return --refCount;
     }
 
 
-    SP::SP() :
+    template <typename T>
+    SP<T>::SP() :
         object(nullptr)
     {
         counter = new ReferenceCounter();
-        counter.increment();
+        counter->increment();
     }
 
-    SP::SP(T* t) :
+    template <typename T>
+    SP<T>::SP(T* t) :
         object(t)
     {
         counter = new ReferenceCounter();
-        counter.increment();
+        counter->increment();
     }
 
-    SP::~SP()
+    template <typename T>
+    SP<T>::~SP()
     {
-        counter.decrement();
-        if (counter.getCount() == 0) {
+        counter->decrement();
+        if (counter->getCount() == 0) {
             delete object;
             delete counter;
         }
     }
 
-    SP::SP(const SP& other)
+    template <typename T>
+    SP<T>::SP(SP<T> const& other)
     {
         object = other.object;
         counter = other.counter;
-        counter.increment();
+        counter->increment();
     }
 
-    SP& SP::operator=(const SP& rhs)
+    template <typename T>
+    SP<T>& SP<T>::operator=(const SP<T>& rhs)
     {
         if (this == &rhs) return *this; // handle self assignment
 
-        counter.decrement();
-        if (counter.getCount() == 0) {
+        counter->decrement();
+        if (counter->getCount() == 0) {
             delete object;
             delete counter;
         }
@@ -82,28 +87,32 @@ namespace pointer
         object = rhs.object;
         counter = rhs.counter;
 
-        coutner.increment();
+        counter->increment();
 
         return *this;
     }
 
-    bool operator<(const T& t) const
+    template <typename T>
+    bool SP<T>::operator<(const SP<T>& other) const
     {
         // Order doesn't matter
         return true;
     }
 
-    T& SP::operator*()
+    template <typename T>
+    T& SP<T>::operator*()
     {
         return *object;
     }
 
-    T* SP::operator->()
+    template <typename T>
+    T* SP<T>::operator->()
     {
         return object;
     }
 
-    explicit SP::operator bool()
+    template <typename T>
+    SP<T>::operator bool() const
     {
         return object;
     }

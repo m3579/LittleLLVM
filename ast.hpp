@@ -26,7 +26,6 @@ namespace ast
     typedef std::function<void(parser::TokenManager&)> AstManipulationAction;
 
     extern AstManipulationAction symbolFoundDoNothing;
-
 }
 
 
