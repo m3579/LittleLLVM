@@ -22,22 +22,22 @@
 #include "Node.hpp"
 #include "Token.hpp"
 #include "../NodeType.h"
-#include "Branchable.hpp"
+#include "SyntaxTreeComponent.hpp"
 #include "SmartPointer.hpp"
 
 using namespace pointer;
 
 namespace node
 {
-    class Node : public ast::Branchable
+    class Node : public ast::SyntaxTreeComponent
     {
         public:
-            Node(token::Token token = token::Token(), NodeType type = NTYPE_NONODE, WP<ast::Branchable> root = WP<ast::Branchable>());
+            Node(token::Token token = token::Token(), NodeType type = NTYPE_NONODE, WP<ast::SyntaxTreeComponent> root = WP<ast::SyntaxTreeComponent>());
             virtual ~Node();
 
-            virtual void add(SP<ast::Branchable> n);
+            virtual void add(SP<ast::SyntaxTreeComponent> n);
 
-            virtual SP<ast::Branchable> getNode(unsigned int index);
+            virtual SP<ast::SyntaxTreeComponent> getNode(unsigned int index);
 
             virtual void print(std::string tabs);
 
@@ -46,7 +46,7 @@ namespace node
 
             NodeType type;
 
-            std::vector<SP<ast::Branchable>> nodes;
+            std::vector<SP<ast::SyntaxTreeComponent>> nodes;
     };
 
 } /* namespace node */

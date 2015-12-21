@@ -18,22 +18,22 @@
 #define SYNTAXTREE_H
 
 #include "TokenManager.hpp"
-#include "Branchable.hpp"
+#include "SyntaxTreeComponent.hpp"
 #include "Node.hpp"
 
 namespace ast
 {
-    class SyntaxTree : public Branchable
+    class SyntaxTree : public SyntaxTreeComponent
     {
         public:
             SyntaxTree();
             virtual ~SyntaxTree();
 
-            virtual void add(SP<ast::Branchable> statement);
+            virtual void add(SP<ast::SyntaxTreeComponent> statement);
 
             virtual void print(std::string tabs);
 
-            std::vector<SP<ast::Branchable>> statements;
+            std::vector<SP<ast::SyntaxTreeComponent>> statements;
 
     };
 } /* namespace ast */

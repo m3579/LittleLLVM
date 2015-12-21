@@ -25,7 +25,7 @@ namespace ast
     std::function<void(parser::TokenManager&)> emptyAstAction;
 
     SyntaxTree:: SyntaxTree() :
-        Branchable(WP<ast::Branchable>())
+        SyntaxTreeComponent(WP<ast::SyntaxTreeComponent>())
     {
 
     }
@@ -35,7 +35,7 @@ namespace ast
 
     }
 
-    void SyntaxTree::add(SP<ast::Branchable> statement)
+    void SyntaxTree::add(SP<ast::SyntaxTreeComponent> statement)
     {
         statements.push_back(statement);
     }

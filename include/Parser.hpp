@@ -19,7 +19,7 @@
 
 #include <string>
 
-#include "Branchable.hpp"
+#include "SyntaxTreeComponent.hpp"
 #include "SyntaxTree.hpp"
 #include "Lexer.hpp"
 #include "Symbol.hpp"
@@ -41,20 +41,16 @@ namespace parser
 
             virtual SP<ast::SyntaxTree> createSyntaxTree();
 
-            virtual void addSymbol(SP<ast::Symbol> symbol);
+            virtual void addConstruct(SP<ast::Construct> construct);
 
             ast::AstManipulationAction noFind;
 
-            std::map<SP<ast::Symbol>, int> precedences;
-
         protected:
-            SP<ast::Branchable> lookFor(SP<ast::Symbol> lookingFor, TokenManager& tm);
-
-            bool tryToFindSymbol(SP<ast::Symbol> symbol, SP<ast::Branchable> root, parser::TokenManager& tm, std::map<SP<ast::Symbol>, int> precedences);
+            SP<ast::SyntaxTreeComponent> lookFor(SP<ast::Symbol> lookingFor, TokenManager& tm);
 
             lexer::Lexer lexr;
 
-            std::vector<SP<ast::Symbol>> symbols;
+            std::vector<SP<Construct> symbols;
     };
 
 } /* namespace parser */

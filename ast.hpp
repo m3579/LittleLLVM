@@ -28,5 +28,4 @@ namespace ast
     extern AstManipulationAction symbolFoundDoNothing;
 }
 
-
 #endif // AST_HPP_INCLUDED

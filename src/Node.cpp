@@ -21,8 +21,8 @@
 
 namespace node
 {
-    Node::Node(token::Token token, NodeType type, WP<ast::Branchable> root) :
-        Branchable(root), token(token), type(type)
+    Node::Node(token::Token token, NodeType type, WP<ast::SyntaxTreeComponent> root) :
+        SyntaxTreeComponent(root), token(token), type(type)
     {
 
     }
@@ -32,18 +32,18 @@ namespace node
 
     }
 
-    void Node::add(SP<ast::Branchable> n)
+    void Node::add(SP<ast::SyntaxTreeComponent> n)
     {
         nodes.insert(nodes.begin(), n);
     }
 
-    SP<ast::Branchable> Node::getNode(unsigned int index)
+    SP<ast::SyntaxTreeComponent> Node::getNode(unsigned int index)
     {
         if (index >= 0 && index < nodes.size()) {
             return nodes.at(index);
         }
 
-        return SP<ast::Branchable>();
+        return SP<ast::SyntaxTreeComponent>();
     }
 
     void Node::print(std::string tabs)

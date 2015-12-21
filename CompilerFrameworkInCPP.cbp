@@ -51,7 +51,8 @@
 		<Unit filename="cleancode.h">
 			<Option virtualFolder="include/" />
 		</Unit>
-		<Unit filename="include/Branchable.hpp" />
+		<Unit filename="include/Branch.h" />
+		<Unit filename="include/Construct.h" />
 		<Unit filename="include/Lexer.hpp" />
 		<Unit filename="include/Node.hpp" />
 		<Unit filename="include/Parser.hpp" />
@@ -59,11 +60,14 @@
 		<Unit filename="include/SmartPointer.hpp" />
 		<Unit filename="include/Symbol.hpp" />
 		<Unit filename="include/SyntaxTree.hpp" />
+		<Unit filename="include/SyntaxTreeComponent.hpp" />
 		<Unit filename="include/Token.hpp" />
 		<Unit filename="include/TokenManager.hpp" />
 		<Unit filename="mycompiler.cpp">
 			<Option virtualFolder="src/" />
 		</Unit>
+		<Unit filename="src/Branch.cpp" />
+		<Unit filename="src/Construct.cpp" />
 		<Unit filename="src/Lexer.cpp" />
 		<Unit filename="src/Node.cpp" />
 		<Unit filename="src/Parser.cpp" />

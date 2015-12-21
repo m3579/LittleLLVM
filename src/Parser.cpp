@@ -55,7 +55,7 @@ namespace parser
         while (!exit) {
             bool found = false;
             for (auto symbol = symbols.begin(); symbol != symbols.end(); ++symbol) {
-                SP<ast::Branchable> statement(lookFor((*symbol), tm));
+                SP<ast::SyntaxTreeComponent> statement(lookFor((*symbol), tm));
                 if (statement) {
                     tree->add(statement);
                     found = true;
@@ -76,11 +76,11 @@ namespace parser
         return tree;
     }
 
-    SP<ast::Branchable> Parser::lookFor(SP<ast::Symbol> lookingFor, TokenManager& tm)
+    SP<ast::SyntaxTreeComponent> Parser::lookFor(SP<ast::Symbol> lookingFor, TokenManager& tm)
     {
         if (tm.found(lookingFor->tokenType)) {
 
-            SP<ast::Branchable> first(new node::Node(tm.getCurrentToken(), lookingFor->nodeType));
+            SP<ast::SyntaxTreeComponent> first(new node::Node(tm.getCurrentToken(), lookingFor->nodeType));
 
             tm.moveToNextToken();
 
@@ -91,7 +91,7 @@ namespace parser
             std::vector<SP<ast::Symbol>> nextSymbols(lookingFor->possibleNextSymbols);
 
             for (auto symbol = nextSymbols.begin(); symbol != nextSymbols.end(); ++symbol) {
-                SP<ast::Branchable> next(lookFor(*symbol, tm));
+                SP<ast::SyntaxTreeComponent> next(lookFor(*symbol, tm));
 
                 if (next) {
                     SP<ast::Symbol> s(*symbol);
@@ -116,7 +116,7 @@ namespace parser
             return first;
         }
 
-        return SP<ast::Branchable>();
+        return SP<ast::SyntaxTreeComponent>();
     }
 
     void Parser::addSymbol(SP<ast::Symbol> symbol)
