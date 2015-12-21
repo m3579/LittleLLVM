@@ -25,12 +25,12 @@ namespace ast
     std::function<void(parser::TokenManager&)> emptyAstAction;
 
     SyntaxTree:: SyntaxTree() :
-        Branchable(nullptr)
+        Branchable(WP<ast::Branchable>())
     {
 
     }
 
-     SyntaxTree::~ SyntaxTree()
+    SyntaxTree::~ SyntaxTree()
     {
 
     }

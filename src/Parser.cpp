@@ -98,10 +98,12 @@ namespace parser
                     int precedence = lookingFor->precedences[s];
                     if (precedence > 0) {
                         next->add(first);
+                        first->root = next;
                         return next;
                     }
                     else {
                         first->add(next);
+                        next->root = first;
                         return first;
                     }
                 }
@@ -122,71 +124,6 @@ namespace parser
         symbols.push_back(symbol);
 
         precedences[symbol] = 0;
-    }
-
-    bool Parser::tryToFindSymbol(SP<ast::Symbol> symbol, SP<ast::Branchable> root, parser::TokenManager& tm, std::map<SP<ast::Symbol>, int> precedences)
-    {
-        TokenType type = symbol->tokenType;
-
-        if (tm.found(type)) {
-            SP<ast::Branchable> newNode(new node::Node(tm.getCurrentToken(), symbol->nodeType));
-
-            if (symbol->actionAfterFind != nullptr) {
-                symbol->actionAfterFind(tm);
-            }
-
-            int precedence = precedences[symbol];
-            if (precedence > 0) {
-                SP<ast::Branchable> nodeToAddTo(root);
-
-                // Move up the hierarchy
-                // (start at 1 because I already moved up one when I initialized nodeToAddTo to root)
-                for (int i = 1; i < precedence; i++) {
-                    nodeToAddTo = root->root;
-
-                    if (!nodeToAddTo) {
-                        utilities::logError("The precedence level is too high for symbol " + symbol->name);
-                    }
-                }
-
-                nodeToAddTo->add(newNode);
-            }
-            else {
-                root->add(newNode);
-            }
-
-            std::vector<SP<ast::Symbol>> nextSymbols;
-
-            std::map<SP<ast::Symbol>, int> nextSymbolMap(symbol->getNextSymbols());
-
-            for (auto it = nextSymbolMap.begin(); it != nextSymbolMap.end(); ++it) {
-                nextSymbols.push_back(it->first);
-            }
-
-            if (nextSymbols.size() == 0) {
-                return true;
-            }
-
-            tm.moveToNextToken();
-            bool found = false;
-            for (auto next = nextSymbols.begin(); next != nextSymbols.end(); ++next) {
-                found = tryToFindSymbol(*next, newNode, tm, symbol->precedences);
-                if (found) {
-                    break;
-                }
-            }
-
-            if (!found) {
-                // If there was SUPPOSED to be a next token
-                if (symbol->noFind) {
-                    symbol->noFind(tm);
-                }
-            }
-
-            return true;
-        }
-
-        return false;
     }
 
 } /* namespace parser */

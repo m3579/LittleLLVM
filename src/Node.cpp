@@ -21,7 +21,7 @@
 
 namespace node
 {
-    Node::Node(token::Token token, NodeType type, SP<Branchable> root) :
+    Node::Node(token::Token token, NodeType type, WP<ast::Branchable> root) :
         Branchable(root), token(token), type(type)
     {
 

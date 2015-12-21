@@ -288,7 +288,7 @@
 	"Branchable.hpp"
 	"Node.hpp"
 
-1450568992 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\node.hpp
+1450650912 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\node.hpp
 	<vector>
 	"Node.hpp"
 	"Token.hpp"
@@ -317,11 +317,11 @@
 1442018772 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\cleancode.h
 	"Lexer.hpp"
 
-1450569009 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\node.cpp
+1450650906 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\node.cpp
 	<iostream>
 	"Node.hpp"
 
-1450569460 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\parser.cpp
+1450650539 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\parser.cpp
 	<iostream>
 	"Parser.hpp"
 	"Lexer.hpp"
@@ -338,7 +338,7 @@
 	<iostream>
 	"Symbol.hpp"
 
-1450648455 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\syntaxtree.cpp
+1450650584 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\syntaxtree.cpp
 	<iostream>
 	<functional>
 	"SyntaxTree.hpp"
@@ -362,7 +362,7 @@
 	"Scanner.hpp"
 	"../utilities.h"
 
-1450568820 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\branchable.hpp
+1450650856 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\branchable.hpp
 	"SmartPointer.hpp"
 
 1450231148 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\utilities.hpp
@@ -379,9 +379,13 @@
 	<functional>
 	"TokenManager.hpp"
 
-1450649060 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\smartpointer.hpp
+1450650197 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\smartpointer.hpp
 	<memory>
 
 1450648733 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\smartpointer.cpp
 	"SmartPointer.hpp"
+
+1450649375 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\ast.cpp
+	"TokenManager.hpp"
+	"ast.hpp"
 

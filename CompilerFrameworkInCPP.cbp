@@ -46,6 +46,7 @@
 		</Unit>
 		<Unit filename="Ref.hpp" />
 		<Unit filename="TokenType.h" />
+		<Unit filename="ast.cpp" />
 		<Unit filename="ast.hpp" />
 		<Unit filename="cleancode.h">
 			<Option virtualFolder="include/" />
@@ -67,7 +68,6 @@
 		<Unit filename="src/Node.cpp" />
 		<Unit filename="src/Parser.cpp" />
 		<Unit filename="src/Scanner.cpp" />
-		<Unit filename="src/SmartPointer.cpp" />
 		<Unit filename="src/Symbol.cpp" />
 		<Unit filename="src/SyntaxTree.cpp" />
 		<Unit filename="src/Token.cpp" />

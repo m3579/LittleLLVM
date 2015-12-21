@@ -36,14 +36,17 @@ namespace ast
     class Branchable
     {
         public:
-            Branchable(SP<Branchable> root) :
-                root(root) { }
+            Branchable(WP<Branchable> root) :
+                root(root)
+            {
+
+            }
 
             virtual void add(SP<ast::Branchable> n) = 0;
 
             virtual void print(std::string tabs) = 0;
 
-            SP<Branchable> root;
+            WP<Branchable> root;
     };
 }
 

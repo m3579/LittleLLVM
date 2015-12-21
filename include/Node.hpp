@@ -32,7 +32,7 @@ namespace node
     class Node : public ast::Branchable
     {
         public:
-            Node(token::Token token = token::Token(), NodeType type = NTYPE_NONODE, SP<ast::Branchable> root = nullptr);
+            Node(token::Token token = token::Token(), NodeType type = NTYPE_NONODE, WP<ast::Branchable> root = WP<ast::Branchable>());
             virtual ~Node();
 
             virtual void add(SP<ast::Branchable> n);
