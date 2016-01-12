@@ -20,21 +20,22 @@
 #include <initializer_list>
 
 #include "Symbol.hpp"
+#include "Branch.h"
 
 namespace ast
 {
     class Construct
     {
         public:
-            Construct(std::initializer_list<Symbol> symbols);
+            Construct(std::vector<SP<Symbol>> symbols...);
             ~Construct();
 
-            Construct setTreeForm(Branch treeForm);
+            Construct setTreeForm(SP<TreeForm> treeForm);
 
         private:
-            std::vector<Symbol> symbols;
+            std::vector<SP<Symbol>> symbols;
 
-            Branch treeForm;
+            SP<TreeForm> treeForm;
     };
 }
 

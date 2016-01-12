@@ -14,14 +14,20 @@
  *
  */
 
+#include <cstdarg>
+
 #include "Construct.h"
 
-Construct::Construct()
+namespace ast
 {
-    //ctor
-}
+    Construct::Construct(std::vector<SP<Symbol>> symbols...) :
+        symbols(symbols)
+    {
 
-Construct::~Construct()
-{
-    //dtor
+    }
+
+    Construct::~Construct()
+    {
+
+    }
 }

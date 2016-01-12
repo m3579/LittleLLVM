@@ -4,7 +4,7 @@
  * /Project/Headers/include/Filename.hpp
  *
  *       Author: Mihir Kasmalkar
- * Date created: Dec 21, 2015
+ * Date created: Jan 11, 2015
  *
  *      Purpose:
  *
@@ -17,15 +17,15 @@
 #ifndef TREEFORM_H
 #define TREEFORM_H
 
-
-class TreeForm
+namespace ast
 {
-    public:
-        TreeForm();
-        ~TreeForm();
+    class TreeForm
+    {
+        public:
+            TreeForm(std::string root, );
+            ~TreeForm();
 
-    private:
-        std::map<std::string,
-};
+    };
+}
 
 #endif // TREEFORM_H

@@ -24,8 +24,9 @@
 #include "Lexer.hpp"
 #include "Symbol.hpp"
 #include "TokenManager.hpp"
-#include "../NodeType.h"
+#include "NodeType.h"
 #include "SmartPointer.hpp"
+#include "Construct.h"
 
 using namespace pointer;
 
@@ -50,7 +51,7 @@ namespace parser
 
             lexer::Lexer lexr;
 
-            std::vector<SP<Construct> symbols;
+            std::vector<SP<ast::Construct>> symbols;
     };
 
 } /* namespace parser */
