@@ -20,7 +20,7 @@
 #include <initializer_list>
 
 #include "Symbol.hpp"
-#include "Branch.h"
+#include "TreeForm.hpp"
 
 namespace ast
 {

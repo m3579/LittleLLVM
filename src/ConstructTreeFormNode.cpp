@@ -4,7 +4,7 @@
  * /Project/Sources/src/Filename.cpp
  *
  *       Author: Mihir Kasmalkar
- * Date created: Jan 11, 2016
+ * Date created: Jan 12, 2016
  *
  *      Purpose:
  *
@@ -14,14 +14,12 @@
  *
  */
 
-#include "TreeForm.h"
+#include "ConstructTreeFormNode.hpp"
 
-TreeForm::TreeForm()
+namespace ast
 {
-    //ctor
-}
+    ConstructTreeFormNode::ConstructTreeFormNode(std::string name)
+    {
 
-TreeForm::~TreeForm()
-{
-    //dtor
+    }
 }
