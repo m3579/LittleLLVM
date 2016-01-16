@@ -34,6 +34,10 @@ namespace parser
 {
     extern bool exit;
 
+    enum class RecursiveSearchResult {
+        NOTFOUND, NOTFOUNDALREADYHANDLED, FINISHED
+    };
+
     class Parser
     {
         public:
@@ -47,11 +51,11 @@ namespace parser
             ast::AstManipulationAction noFind;
 
         protected:
-            SP<ast::SyntaxTreeComponent> lookFor(SP<ast::Symbol> lookingFor, TokenManager& tm);
+//            SP<ast::SyntaxTreeComponent> lookFor(SP<ast::Symbol> lookingFor, TokenManager& tm);
 
             lexer::Lexer lexr;
 
-            std::vector<SP<ast::Construct>> symbols;
+            std::vector<SP<ast::Construct>> constructs;
     };
 
 } /* namespace parser */

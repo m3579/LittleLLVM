@@ -32,7 +32,7 @@ namespace node
     class Node : public ast::SyntaxTreeComponent
     {
         public:
-            Node(token::Token token = token::Token(), NodeType type = NTYPE_NONODE, WP<ast::SyntaxTreeComponent> root = WP<ast::SyntaxTreeComponent>());
+            Node(token::Token token = token::Token(), NodeType type = NTYPE_NONODE);
             virtual ~Node();
 
             virtual void add(SP<ast::SyntaxTreeComponent> n);

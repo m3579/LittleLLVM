@@ -44,84 +44,135 @@ namespace parser
 
     }
 
+//    SP<ast::SyntaxTree> Parser::createSyntaxTree()
+//    {
+//        std::vector<token::Token> tokens(lexr.tokenizeSource());
+//
+//        TokenManager tm(tokens);
+//
+//        SP<ast::SyntaxTree> tree(new ast::SyntaxTree());
+//
+//        while (!exit) {
+//            bool found = false;
+//            for (auto symbol = symbols.begin(); symbol != symbols.end(); ++symbol) {
+//                SP<ast::SyntaxTreeComponent> statement(lookFor((*symbol), tm));
+//                if (statement) {
+//                    tree->add(statement);
+//                    found= true;
+//                    break;
+//                }
+//                else {
+//                    continue;
+//                }
+//            }
+//
+//            if (!found) {
+//                if (noFind) {
+//                    noFind(tm);
+//                }
+//            }
+//        }
+//
+//        return tree;
+//    }
+//
+//    SP<ast::SyntaxTreeComponent> Parser::lookFor(SP<ast::Symbol> lookingFor, TokenManager& tm)
+//    {
+//        if (tm.found(lookingFor->tokenType)) {
+//
+//            SP<ast::SyntaxTreeComponent> first(new node::Node(tm.getCurrentToken(), lookingFor->nodeType));
+//
+//            tm.moveToNextToken();
+//
+//            if (lookingFor->actionAfterFind) {
+//                lookingFor->actionAfterFind(tm);
+//            }
+//
+//            std::vector<SP<ast::Symbol>> nextSymbols(lookingFor->possibleNextSymbols);
+//
+//            for (auto symbol = nextSymbols.begin(); symbol != nextSymbols.end(); ++symbol) {
+//                SP<ast::SyntaxTreeComponent> next(lookFor(*symbol, tm));
+//
+//                if (next) {
+//                    SP<ast::Symbol> s(*symbol);
+//                    int precedence = lookingFor->precedences[s];
+//                    if (precedence > 0) {
+//                        next->add(first);
+//                        first->root = next;
+//                        return next;
+//                    }
+//                    else {
+//                        first->add(next);
+//                        next->root = first;
+//                        return first;
+//                    }
+//                }
+//            }
+//
+//            if (lookingFor->noFind) {
+//                lookingFor->noFind(tm);
+//            }
+//
+//            return first;
+//        }
+//
+//        return SP<ast::SyntaxTreeComponent>();
+//    }
+
     SP<ast::SyntaxTree> Parser::createSyntaxTree()
     {
-        std::vector<token::Token> tokens(lexr.tokenizeSource());
+        TokenManager tm(lexr.tokenizeSource());
 
-        TokenManager tm(tokens);
-
-        SP<ast::SyntaxTree> tree(new ast::SyntaxTree());
+        SP<ast::SyntaxTree> syntaxTree;
 
         while (!exit) {
-            bool found = false;
-            for (auto symbol = symbols.begin(); symbol != symbols.end(); ++symbol) {
-                SP<ast::SyntaxTreeComponent> statement(lookFor((*symbol), tm));
-                if (statement) {
-                    tree->add(statement);
-                    found = true;
-                    break;
-                }
-                else {
-                    continue;
-                }
-            }
+            std::vector<node::Node> nodeList;
+            RecursiveSearchResult result = lookFor(constructs, nodeList);
 
-            if (!found) {
-                if (noFind) {
-                    noFind(tm);
-                }
+            if (result == RecursiveSearchResult.NOTFOUND) {
+                this->noFind();
+            }
+            else if (result == RecursiveSearchResult.NOTFOUNDALREADYHANDLED) {
+
+            }
+            else if (result == RecursiveSearchResult.FINISHED) {
+
             }
         }
-
-        return tree;
     }
 
-    SP<ast::SyntaxTreeComponent> Parser::lookFor(SP<ast::Symbol> lookingFor, TokenManager& tm)
+    RecursiveSearchResult Parser::lookFor(std::vector<ast::Symbols> possibleSymbols, std::vector<node::Node> nodeList, TokenManager& tm)
     {
-        if (tm.found(lookingFor->tokenType)) {
-
-            SP<ast::SyntaxTreeComponent> first(new node::Node(tm.getCurrentToken(), lookingFor->nodeType));
-
-            tm.moveToNextToken();
-
-            if (lookingFor->actionAfterFind) {
-                lookingFor->actionAfterFind(tm);
-            }
-
-            std::vector<SP<ast::Symbol>> nextSymbols(lookingFor->possibleNextSymbols);
-
-            for (auto symbol = nextSymbols.begin(); symbol != nextSymbols.end(); ++symbol) {
-                SP<ast::SyntaxTreeComponent> next(lookFor(*symbol, tm));
-
-                if (next) {
-                    SP<ast::Symbol> s(*symbol);
-                    int precedence = lookingFor->precedences[s];
-                    if (precedence > 0) {
-                        next->add(first);
-                        first->root = next;
-                        return next;
-                    }
-                    else {
-                        first->add(next);
-                        next->root = first;
-                        return first;
-                    }
-                }
-            }
-
-            if (lookingFor->noFind) {
-                lookingFor->noFind(tm);
-            }
-
-            return first;
+        if (possibleSymbols.size() == 0) {
+            return RecursiveSearchResult.FINISHED;
         }
 
-        return SP<ast::SyntaxTreeComponent>();
+        for (iterate_over(symbol, possibleSymbols)) {
+            if (tm.found(symbol.tokenType)) {
+                nodeList.push_back(Node(tm.getCurrentToken(), symbol.nodeType));
+                RecursiveSearchResult result = lookFor(symbol.possibleNextSymbols, nodeList, tm);
+
+                if (result == RecursiveSearchResult.FINISHED) {
+                    return RecursiveSearchResult.FINISHED;
+                }
+                else if (result == RecursiveSearchResult.NOTFOUND) {
+                    symbol.noFind(tm);
+                }
+                else if (result == RecursiveSearchResult.NOTFOUNDALREADYHANDLED) {
+                    return RecursiveSearchResult.NOTFOUNDALREADYHANDLED;
+                }
+                else if (result == RecursiveSearchResult.FINISHED) {
+                    return RecursiveSearchResult.FINISHED;
+                }
+            }
+        }
+
+        return RecursiveSearchResult.NOTFOUND;
     }
 
     void Parser::addSymbol(SP<ast::Symbol> symbol)
     {
-        symbols.push_back(symbol);
+        constructs.push_back(symbol);
 
         precedences[symbol] = 0;
     }

@@ -19,6 +19,8 @@
 
 #include <string>
 
+#define iterate_over(iter, list) auto iter = list.begin(); iter != list.end(); ++iter
+
 namespace utilities
 {
     void logError(std::string message);
