@@ -21,8 +21,8 @@
 
 namespace node
 {
-    Node::Node(token::Token token, NodeType type, WP<ast::SyntaxTreeComponent> root) :
-        SyntaxTreeComponent(root), token(token), type(type)
+    Node::Node(token::Token token, NodeType type) :
+        token(token), type(type)
     {
 
     }

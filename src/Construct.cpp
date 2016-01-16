@@ -20,8 +20,14 @@
 
 namespace ast
 {
-    Construct::Construct(std::vector<SP<Symbol>> symbols) :
-        symbols(symbols)
+    Construct::Construct(std::string name, TokenType tokenType, NodeType nodeType) :
+        tokenType(tokenType), nodeType(nodeType), name(name)
+    {
+        containsOtherConstructs = false;
+    }
+
+    Construct::Construct(std::string name, std::vector<SP<Construct>> constructs) :
+        constructs(constructs)
     {
 
     }
@@ -29,5 +35,26 @@ namespace ast
     Construct::~Construct()
     {
 
+    }
+
+    Construct Construct::setTreeForm(SP<TreeForm> treeForm)
+    {
+        this->treeForm = treeForm;
+        return *this;
+    }
+
+    bool Construct::isLeaf()
+    {
+        return !containsOtherConstructs;
+    }
+
+    bool Construct::isBranch()
+    {
+        return containsOtherConstructs;
+    }
+
+    std::string Construct::getName()
+    {
+        return name;
     }
 }

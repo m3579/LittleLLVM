@@ -32,6 +32,7 @@ using namespace pointer;
 
 namespace parser
 {
+    // TODO add else clause for loop in parser that handles return values of type RecursiveSearchResult
     extern bool exit;
 
     enum class RecursiveSearchResult {

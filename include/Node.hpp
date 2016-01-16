@@ -19,17 +19,19 @@
 
 #include <vector>
 
+// TODO organize includes in some order
 #include "Node.hpp"
 #include "Token.hpp"
-#include "../NodeType.h"
+#include "NodeType.h"
 #include "SyntaxTreeComponent.hpp"
+#include "NodeListItem.hpp"
 #include "SmartPointer.hpp"
 
 using namespace pointer;
 
 namespace node
 {
-    class Node : public ast::SyntaxTreeComponent
+    class Node : public ast::NodeListItem
     {
         public:
             Node(token::Token token = token::Token(), NodeType type = NTYPE_NONODE);

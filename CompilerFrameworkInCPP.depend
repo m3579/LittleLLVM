@@ -273,7 +273,7 @@
 	<map>
 	"../TokenType.h"
 
-1452579556 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\parser.hpp
+1452918612 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\parser.hpp
 	<string>
 	"SyntaxTreeComponent.hpp"
 	"SyntaxTree.hpp"
@@ -289,12 +289,13 @@
 	"SyntaxTreeComponent.hpp"
 	"Node.hpp"
 
-1450738025 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\node.hpp
+1452979876 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\node.hpp
 	<vector>
 	"Node.hpp"
 	"Token.hpp"
-	"../NodeType.h"
+	"NodeType.h"
 	"SyntaxTreeComponent.hpp"
+	"NodeListItem.hpp"
 	"SmartPointer.hpp"
 
 1445310829 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\nodetype.h
@@ -318,7 +319,7 @@
 1442018772 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\cleancode.h
 	"Lexer.hpp"
 
-1450650906 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\node.cpp
+1452976384 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\node.cpp
 	<iostream>
 	"Node.hpp"
 
@@ -373,7 +374,7 @@
 	<stdexcept>
 	"utilities.h"
 
-1450404557 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\utilities.h
+1452916740 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\utilities.h
 	<string>
 
 1450739331 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\ast.hpp
@@ -393,15 +394,33 @@
 1450738099 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\syntaxtreecomponent.hpp
 	"SmartPointer.hpp"
 
-1452646373 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\construct.h
+1452974156 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\construct.h
 	<initializer_list>
 	"Symbol.hpp"
 	"TreeForm.hpp"
 
 1450739357 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\branch.h
 
-1452646385 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\treeform.hpp
-	"TreeFormNode.hpp"
+1452974268 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\treeform.hpp
 
 1452646389 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\treeformnode.hpp
+
+1452974175 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\construct.cpp
+	<cstdarg>
+	"Construct.h"
+
+1452976362 source:c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\src\constructtreeformnode.cpp
+	"utilities.h"
+	"ConstructTreeFormNode.hpp"
+
+1452974329 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\constructtreeformnode.hpp
+	"SmartPointer.hpp"
+	<vector>
+
+1452979845 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\include\nodelist.hpp
+	"NodeListItem.hpp"
+	"Node.hpp"
+
+1452979830 c:\users\mihir kasmalkar\documents\_programs\codeblocks\littlellvm\nodelistitem.hpp
+	"SyntaxTree.hpp"
 

@@ -27,15 +27,30 @@ namespace ast
     class Construct
     {
         public:
-            Construct(std::vector<SP<Symbol>> symbols...);
+            // TODO rename arguments tokenType and nodeType
+            Construct(std::string name, TokenType tokenType, NodeType nodeType);
+            Construct(std::string name, std::vector<SP<Construct>> constructs);
             ~Construct();
 
             Construct setTreeForm(SP<TreeForm> treeForm);
 
+            bool isLeaf();
+            bool isBranch();
+
+            std::string getName();
+
         private:
-            std::vector<SP<Symbol>> symbols;
+            bool containsOtherConstructs;
+
+            std::vector<SP<Construct>> constructs;
 
             SP<TreeForm> treeForm;
+
+            TokenType tokenType;
+            NodeType nodeType;
+
+            std::string name;
+
     };
 }
 

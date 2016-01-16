@@ -18,8 +18,9 @@
  */
 
 #include "SmartPointer.hpp"
+#include <vector>
 
-using smartPointer;
+using namespace pointer;
 
 namespace ast
 {
