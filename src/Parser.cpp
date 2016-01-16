@@ -119,55 +119,84 @@ namespace parser
 //        return SP<ast::SyntaxTreeComponent>();
 //    }
 
+//    SP<ast::SyntaxTree> Parser::createSyntaxTree()
+//    {
+//        TokenManager tm(lexr.tokenizeSource());
+//
+//        SP<ast::SyntaxTree> syntaxTree;
+//
+//        while (!exit) {
+//            std::vector<node::Node> nodeList;
+//            RecursiveSearchResult result = lookFor(constructs, nodeList);
+//
+//            if (result == RecursiveSearchResult.NOTFOUND) {
+//                this->noFind();
+//            }
+//            else if (result == RecursiveSearchResult.NOTFOUNDALREADYHANDLED) {
+//
+//            }
+//            else if (result == RecursiveSearchResult.FINISHED) {
+//
+//            }
+//        }
+//    }
+//
+//    RecursiveSearchResult Parser::lookFor(std::vector<ast::Symbols> possibleSymbols, std::vector<node::Node> nodeList, TokenManager& tm)
+//    {
+//        if (possibleSymbols.size() == 0) {
+//            return RecursiveSearchResult.FINISHED;
+//        }
+//
+//        for (iterate_over(symbol, possibleSymbols)) {
+//            if (tm.found(symbol.tokenType)) {
+//                nodeList.push_back(Node(tm.getCurrentToken(), symbol.nodeType));
+//                RecursiveSearchResult result = lookFor(symbol.possibleNextSymbols, nodeList, tm);
+//
+//                if (result == RecursiveSearchResult.FINISHED) {
+//                    return RecursiveSearchResult.FINISHED;
+//                }
+//                else if (result == RecursiveSearchResult.NOTFOUND) {
+//                    symbol.noFind(tm);
+//                }
+//                else if (result == RecursiveSearchResult.NOTFOUNDALREADYHANDLED) {
+//                    return RecursiveSearchResult.NOTFOUNDALREADYHANDLED;
+//                }
+//                else if (result == RecursiveSearchResult.FINISHED) {
+//                    return RecursiveSearchResult.FINISHED;
+//                }
+//            }
+//        }
+//
+//        return RecursiveSearchResult.NOTFOUND;
+//    }
+
     SP<ast::SyntaxTree> Parser::createSyntaxTree()
     {
         TokenManager tm(lexr.tokenizeSource());
 
-        SP<ast::SyntaxTree> syntaxTree;
+        ast::NodeList nodeList;
 
-        while (!exit) {
-            std::vector<node::Node> nodeList;
-            RecursiveSearchResult result = lookFor(constructs, nodeList);
-
-            if (result == RecursiveSearchResult.NOTFOUND) {
-                this->noFind();
-            }
-            else if (result == RecursiveSearchResult.NOTFOUNDALREADYHANDLED) {
-
-            }
-            else if (result == RecursiveSearchResult.FINISHED) {
-
-            }
+        for (iterate_over(construct, constructs)) {
+            lookFor(construct);
+            // Finish this...
         }
     }
 
-    RecursiveSearchResult Parser::lookFor(std::vector<ast::Symbols> possibleSymbols, std::vector<node::Node> nodeList, TokenManager& tm)
+    SP<ast::NodeList> Parser::lookFor(SP<Construct> c, SP<ast::NodeList> nodeList, TokenManager& tm)
     {
-        if (possibleSymbols.size() == 0) {
-            return RecursiveSearchResult.FINISHED;
-        }
-
-        for (iterate_over(symbol, possibleSymbols)) {
-            if (tm.found(symbol.tokenType)) {
-                nodeList.push_back(Node(tm.getCurrentToken(), symbol.nodeType));
-                RecursiveSearchResult result = lookFor(symbol.possibleNextSymbols, nodeList, tm);
-
-                if (result == RecursiveSearchResult.FINISHED) {
-                    return RecursiveSearchResult.FINISHED;
+        for (iterate_over(consruct, c->symbols)) {
+            if (construct->isLeaf()) {
+                if (tm.found(construct->getTokenType())) {
+                    nodeList->addNode(Node(tm.getCurrentToken(), construct->getDesiredNodeType()));
+                    tm.moveToNextToken();
                 }
-                else if (result == RecursiveSearchResult.NOTFOUND) {
-                    symbol.noFind(tm);
-                }
-                else if (result == RecursiveSearchResult.NOTFOUNDALREADYHANDLED) {
-                    return RecursiveSearchResult.NOTFOUNDALREADYHANDLED;
-                }
-                else if (result == RecursiveSearchResult.FINISHED) {
-                    return RecursiveSearchResult.FINISHED;
-                }
+            }
+            else {
+                nodeList->addNodeList(lookFor(construct, nodeList, tm));
             }
         }
 
-        return RecursiveSearchResult.NOTFOUND;
+        return nodeList;
     }
 
     void Parser::addSymbol(SP<ast::Symbol> symbol)
