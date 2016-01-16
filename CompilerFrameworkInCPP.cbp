@@ -60,7 +60,6 @@
 		<Unit filename="include/SmartPointer.hpp" />
 		<Unit filename="include/Symbol.hpp" />
 		<Unit filename="include/SyntaxTree.hpp" />
-		<Unit filename="include/SyntaxTreeComponent.hpp" />
 		<Unit filename="include/Token.hpp" />
 		<Unit filename="include/TokenManager.hpp" />
 		<Unit filename="mycompiler.cpp">
