@@ -52,6 +52,7 @@
 			<Option virtualFolder="include/" />
 		</Unit>
 		<Unit filename="include/Construct.h" />
+		<Unit filename="include/ConstructTreeFormNode.hpp" />
 		<Unit filename="include/Lexer.hpp" />
 		<Unit filename="include/Node.hpp" />
 		<Unit filename="include/Parser.hpp" />
@@ -62,11 +63,11 @@
 		<Unit filename="include/SyntaxTreeComponent.hpp" />
 		<Unit filename="include/Token.hpp" />
 		<Unit filename="include/TokenManager.hpp" />
-		<Unit filename="include/TreeForm.h" />
 		<Unit filename="mycompiler.cpp">
 			<Option virtualFolder="src/" />
 		</Unit>
 		<Unit filename="src/Construct.cpp" />
+		<Unit filename="src/ConstructTreeFormNode.cpp" />
 		<Unit filename="src/Lexer.cpp" />
 		<Unit filename="src/Node.cpp" />
 		<Unit filename="src/Parser.cpp" />
@@ -75,7 +76,6 @@
 		<Unit filename="src/SyntaxTree.cpp" />
 		<Unit filename="src/Token.cpp" />
 		<Unit filename="src/TokenManager.cpp" />
-		<Unit filename="src/TreeForm.cpp" />
 		<Unit filename="utilities.cpp" />
 		<Unit filename="utilities.h" />
 		<Extensions>

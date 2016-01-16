@@ -20,7 +20,7 @@
 
 namespace ast
 {
-    Construct::Construct(std::vector<SP<Symbol>> symbols...) :
+    Construct::Construct(std::vector<SP<Symbol>> symbols) :
         symbols(symbols)
     {
 
