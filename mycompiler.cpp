@@ -14,9 +14,8 @@
  *
  */
 
+#include <iostream>
 #include <string>
-
-#include "Parser_test.hpp"
 
 #define VERSION 1.0
 
@@ -32,8 +31,8 @@ int main(int argc, const char* argv[])
 
         std::string topic;
 
-        std::cout << "The Compiler Framework\n"
-                  << "A framework for writing compiler front-ends in C++\n"
+        std::cout << "Little LLVM\n"
+                  << "A framework for writing compilers in C++\n"
                   << "Version " << VERSION << "\n\n"
                   << "Enter a topic to get help on it: ";
 
@@ -56,5 +55,6 @@ int main(int argc, const char* argv[])
 
 void help(const char* topic)
 {
+    // TODO implement this
     std::cout << topic << "\n";
 }

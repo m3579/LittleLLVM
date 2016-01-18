@@ -53,8 +53,29 @@ namespace ast
         return containsOtherConstructs;
     }
 
+    // TODO rename these to something better
+    TokenType Construct::getTokenType()
+    {
+        return tokenType;
+    }
+
+    NodeType Construct::getNodeType()
+    {
+        return nodeType;
+    }
+
     std::string Construct::getName()
     {
         return name;
+    }
+
+    std::vector<SP<Construct>> Construct::getComponents()
+    {
+        return constructs;
+    }
+
+    void Construct::setActionAfterConstructNotFound(parser::TokenManager& tm)
+    {
+        noFind(tm);
     }
 }

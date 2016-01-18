@@ -26,7 +26,8 @@
 #include "TokenManager.hpp"
 #include "NodeType.h"
 #include "SmartPointer.hpp"
-#include "Construct.h"
+#include "Construct.hpp"
+#include "NodeList.hpp"
 
 using namespace pointer;
 
@@ -45,6 +46,7 @@ namespace parser
             Parser(lexer::Lexer lexr);
             virtual ~Parser();
 
+            // TODO remove/rethink all of these `virtual`s
             virtual SP<ast::SyntaxTree> createSyntaxTree();
 
             virtual void addConstruct(SP<ast::Construct> construct);
@@ -52,7 +54,9 @@ namespace parser
             ast::AstManipulationAction noFind;
 
         protected:
-//            SP<ast::SyntaxTreeComponent> lookFor(SP<ast::Symbol> lookingFor, TokenManager& tm);
+            virtual RecursiveSearchResult lookFor(SP<ast::Construct> c, SP<parser::NodeList> nodeList, TokenManager& tm);
+
+            virtual SP<ast::SyntaxTree> assembleSyntaxTree(std::vector<SP<parser::NodeList>> statements);
 
             lexer::Lexer lexr;
 

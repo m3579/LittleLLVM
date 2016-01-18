@@ -18,9 +18,9 @@
 #define NODELIST_HPP
 
 #include "NodeListItem.hpp"
-#include "Node.hpp"
+#include "SingleNodeListItem.hpp"
 
-namespace ast
+namespace parser
 {
     class NodeList : public NodeListItem
     {
@@ -28,8 +28,10 @@ namespace ast
             NodeList();
             ~NodeList();
 
-            void addNode(SP<node::Node> node);
+            void addNode(SP<SingleNodeListItem> node);
             void addNodeList(SP<NodeList> nodeList);
+
+            SP<ast::SyntaxTree> format();
 
         private:
             std::vector<SP<NodeListItem>> nodes;

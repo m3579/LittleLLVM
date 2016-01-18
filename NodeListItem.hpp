@@ -17,18 +17,25 @@
  *
  */
 
-#include "SyntaxTree.hpp"
+#include "SmartPointer.hpp"
+
+using namespace pointer;
 
 namespace ast
 {
-    class NodeListItem
-    {
-        NodeListItem();
-        virtual ~NodeListItem();
-
-        virtual ast::SyntaxTree format() = 0;
-    };
+    class SyntaxTree;
 }
 
+namespace parser
+{
+    class NodeListItem
+    {
+        public:
+            NodeListItem();
+            virtual ~NodeListItem() = 0;
+
+            virtual SP<ast::SyntaxTree> format() = 0;
+    };
+}
 
 #endif // NODELISTITEM_HPP_INCLUDED

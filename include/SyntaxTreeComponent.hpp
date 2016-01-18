@@ -36,20 +36,12 @@ namespace ast
     class SyntaxTreeComponent
     {
         public:
-            SyntaxTreeComponent(WP<SyntaxTreeComponent> root) :
-                root(root) { }
+            SyntaxTreeComponent();
+            virtual ~SyntaxTreeComponent() = 0;
 
-            virtual void add(SP<ast::SyntaxTreeComponent> n) = 0;
+            virtual void add(SP<ast::SyntaxTreeComponent> c) = 0;
 
             virtual void print(std::string tabs) = 0;
-
-            WP<SyntaxTreeComponent> getRoot()
-            {
-                return root;
-            }
-
-        private:
-            WP<SyntaxTreeComponent> root;
     };
 }
 

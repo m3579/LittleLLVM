@@ -14,12 +14,11 @@
  *
  */
 
-#ifndef SYNTAXTREE_H
-#define SYNTAXTREE_H
+#ifndef SYNTAXTREE_HPP
+#define SYNTAXTREE_HPP
 
 #include "TokenManager.hpp"
 #include "SyntaxTreeComponent.hpp"
-#include "Node.hpp"
 
 namespace ast
 {
@@ -27,15 +26,16 @@ namespace ast
     {
         public:
             SyntaxTree();
-            virtual ~SyntaxTree();
+            virtual ~SyntaxTree() = 0;
 
-            virtual void add(SP<ast::SyntaxTreeComponent> statement);
+            virtual void add(SP<SyntaxTreeComponent> statement) = 0;
 
             virtual void print(std::string tabs);
 
-            std::vector<SP<ast::SyntaxTreeComponent>> statements;
+            std::vector<SP<SyntaxTreeComponent>> statements;
 
     };
+
 } /* namespace ast */
 
-#endif // SYNTAXTREE_H
+#endif // SYNTAXTREE_HPP

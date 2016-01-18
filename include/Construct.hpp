@@ -14,8 +14,8 @@
  *
  */
 
-#ifndef CONSTRUCT_H
-#define CONSTRUCT_H
+#ifndef CONSTRUCT_HPP
+#define CONSTRUCT_HPP
 
 #include <initializer_list>
 
@@ -37,7 +37,17 @@ namespace ast
             bool isLeaf();
             bool isBranch();
 
+            TokenType getTokenType();
+            NodeType getNodeType();
+
             std::string getName();
+
+            // TODO rename this
+            std::vector<SP<Construct>> getComponents();
+
+            // TODO shorten this method name
+            void setActionAfterConstructNotFound(parser::TokenManager& tm);
+            void noFind(parser::TokenManager& tm);
 
         private:
             bool containsOtherConstructs;
@@ -51,7 +61,8 @@ namespace ast
 
             std::string name;
 
+            AstManipulationAction noFindAction;
     };
 }
 
-#endif // CONSTRUCT_H
+#endif // CONSTRUCT_HPP

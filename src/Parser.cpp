@@ -25,9 +25,10 @@
 #include "Parser.hpp"
 #include "Lexer.hpp"
 #include "TokenManager.hpp"
-#include "../TokenType.h"
-#include "../NodeType.h"
-#include "../utilities.h"
+#include "TokenType.h"
+#include "NodeType.h"
+#include "utilities.h"
+#include "NodeList.hpp"
 
 namespace parser
 {
@@ -174,15 +175,15 @@ namespace parser
     {
         TokenManager tm(lexr.tokenizeSource());
 
-        std::vector<ast::NodeList> statements;
+        std::vector<SP<parser::NodeList>> statements;
 
         while (!exit) {
             bool found = false;
 
             for (iterate_over(construct, constructs)) {
-                SP<ast::NodeList> nodeList(new ast::NodeList());
-                RecursiveSearchResult result = lookFor(construct, nodeList);
-                if (result == RecursiveSearchResult.FINISHED) {
+                SP<parser::NodeList> nodeList(new parser::NodeList());
+                RecursiveSearchResult result = lookFor(*construct, nodeList, tm);
+                if (result == RecursiveSearchResult::FINISHED) {
                     statements.push_back(nodeList);
                     found = true;
                     break;
@@ -190,47 +191,48 @@ namespace parser
             }
 
             if (!found) {
-                noFind();
+                noFind(tm);
             }
         }
+
+        SP<ast::SyntaxTree> syntaxTree = assembleSyntaxTree(statements);
+        return syntaxTree;
     }
 
-    RecursiveSearchResult Parser::lookFor(SP<Construct> c, SP<ast::NodeList> nodeList, TokenManager& tm)
+    RecursiveSearchResult Parser::lookFor(SP<ast::Construct> c, SP<parser::NodeList> nodeList, TokenManager& tm)
     {
-        for (iterate_over(consruct, c->symbols)) {
-            if (construct->isLeaf()) {
-                if (tm.found(construct->getTokenType())) {
-                    nodeList->addNode(Node(tm.getCurrentToken(), construct->getDesiredNodeType()));
+        for (iterate_over(construct, c->getComponents())) {
+            if ((*construct)->isLeaf()) {
+                if (tm.found((*construct)->getTokenType())) {
+                    nodeList->addNode(SP<SingleNodeListItem> (new SingleNodeListItem(tm.getCurrentToken(), (*construct)->getNodeType())));
                     tm.moveToNextToken();
                 }
                 else {
-                    return RecursiveSearchResult.NOTFOUND;
+                    return RecursiveSearchResult::NOTFOUND;
                 }
             }
             else {
-                SP<ast::NodeList> constructNodeList(new ast::NodeList());
-                RecursiveSearchResult result = lookFor(construct, constructNodeList, tm);
-                if (result == RecursiveSearchResult.NOTFOUND) {
-                    construct.noFind();
-                    return RecursiveSearchResult.NOTFOUNDALREADYHANDLED;
+                SP<parser::NodeList> constructNodeList(new parser::NodeList());
+                RecursiveSearchResult result = lookFor(*construct, constructNodeList, tm);
+                if (result == RecursiveSearchResult::NOTFOUND) {
+                    (*construct)->noFind(tm);
+                    return RecursiveSearchResult::NOTFOUNDALREADYHANDLED;
                 }
-                else if (result == RecursiveSearchResult.NOTFOUNDALREADYHANDLED) {
-                    return RecursiveSearchResult.NOTFOUNDALREADYHANDLED;
+                else if (result == RecursiveSearchResult::NOTFOUNDALREADYHANDLED) {
+                    return RecursiveSearchResult::NOTFOUNDALREADYHANDLED;
                 }
                 else {
-                    nodeList.addNodeList(constructNodeList);
+                    nodeList->addNodeList(constructNodeList);
                 }
             }
         }
 
-        return RecursiveSearchResult.FINISHED;
+        return RecursiveSearchResult::FINISHED;
     }
 
-    void Parser::addSymbol(SP<ast::Symbol> symbol)
+    void Parser::addConstruct(SP<ast::Construct> construct)
     {
-        constructs.push_back(symbol);
-
-        precedences[symbol] = 0;
+        constructs.push_back(construct);
     }
 
 } /* namespace parser */

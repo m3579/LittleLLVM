@@ -15,8 +15,9 @@
  */
 
 #include "NodeList.hpp"
+#include "SingleNodeListItem.hpp"
 
-namespace ast
+namespace parser
 {
 
     NodeList::NodeList()
@@ -29,7 +30,7 @@ namespace ast
 
     }
 
-    void NodeList::addNode(SP<Node> node)
+    void NodeList::addNode(SP<SingleNodeListItem> node)
     {
         nodes.push_back(node);
     }

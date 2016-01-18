@@ -24,8 +24,7 @@ namespace ast
 {
     std::function<void(parser::TokenManager&)> emptyAstAction;
 
-    SyntaxTree:: SyntaxTree() :
-        SyntaxTreeComponent(WP<ast::SyntaxTreeComponent>())
+    SyntaxTree:: SyntaxTree()
     {
 
     }

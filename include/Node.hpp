@@ -20,8 +20,8 @@
 #include <vector>
 
 // TODO organize includes in some order
-#include "Node.hpp"
 #include "Token.hpp"
+#include "Node.hpp"
 #include "NodeType.h"
 #include "SyntaxTreeComponent.hpp"
 #include "NodeListItem.hpp"
@@ -31,7 +31,7 @@ using namespace pointer;
 
 namespace node
 {
-    class Node : public ast::NodeListItem
+    class Node
     {
         public:
             Node(token::Token token = token::Token(), NodeType type = NTYPE_NONODE);
