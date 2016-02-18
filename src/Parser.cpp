@@ -225,6 +225,8 @@ namespace parser
 
             SP<ast::ConstructTreeFormNode> rootConstructTreeFormNode(statementTreeForm);
 
+            std::cout << "Testing with root " << rootConstructTreeFormNode->getConstructName() << "\n";
+
             SP<FlatNode> matchingFlatNode(findMatchingFlatNode(rootConstructTreeFormNode, flatNodePool));
             if (!matchingFlatNode) {
                 // TODO: make better error message for this

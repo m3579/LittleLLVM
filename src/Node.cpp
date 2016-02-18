@@ -34,7 +34,7 @@ namespace node
 
     void Node::add(SP<ast::SyntaxTreeComponent> n)
     {
-        nodes.insert(nodes.begin(), n);
+        nodes.push_back(n);
     }
 
     SP<ast::SyntaxTreeComponent> Node::getNode(unsigned int index)
