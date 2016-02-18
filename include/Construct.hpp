@@ -21,6 +21,7 @@
 
 #include "Symbol.hpp"
 #include "TreeForm.hpp"
+#include "ConstructTreeFormNode.hpp"
 
 namespace ast
 {
@@ -32,7 +33,7 @@ namespace ast
             Construct(std::string name, std::vector<SP<Construct>> constructs);
             ~Construct();
 
-            Construct setTreeForm(SP<TreeForm> treeForm);
+            Construct setTreeForm(SP<ConstructTreeFormNode> treeForm);
 
             bool isLeaf();
             bool isBranch();
@@ -46,15 +47,15 @@ namespace ast
             std::vector<SP<Construct>> getComponents();
 
             // TODO shorten this method name
-            void setActionAfterConstructNotFound(parser::TokenManager& tm);
+            void setActionAfterConstructNotFound(AstManipulationAction action);
             void noFind(parser::TokenManager& tm);
+
+            SP<ConstructTreeFormNode> treeForm;
 
         private:
             bool containsOtherConstructs;
 
             std::vector<SP<Construct>> constructs;
-
-            SP<TreeForm> treeForm;
 
             TokenType tokenType;
             NodeType nodeType;

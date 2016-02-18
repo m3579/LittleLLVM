@@ -28,7 +28,7 @@ namespace parser
             SingleNodeListItem(token::Token token, NodeType nodeType);
             virtual ~SingleNodeListItem();
 
-            virtual SP<ast::SyntaxTree> format();
+            void print(std::string tabs);
 
         private:
             token::Token token;

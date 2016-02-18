@@ -14,13 +14,16 @@
  *
  */
 
+#include <iostream>
+
 #include "NodeList.hpp"
 #include "SingleNodeListItem.hpp"
+#include "utilities.h"
 
 namespace parser
 {
-
-    NodeList::NodeList()
+    NodeList::NodeList() :
+        NodeListItem()
     {
 
     }
@@ -38,6 +41,15 @@ namespace parser
     void NodeList::addNodeList(SP<NodeList> nodeList)
     {
         nodes.push_back(nodeList);
+    }
+
+    void NodeList::print(std::string tabs)
+    {
+        std::cout << tabs << "NodeList:\n";
+        for (iterate_over(node, nodes))
+        {
+            (*node)->print(tabs + "\t");
+        }
     }
 
 }

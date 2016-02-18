@@ -36,8 +36,8 @@ namespace ast
     class SyntaxTreeComponent
     {
         public:
-            SyntaxTreeComponent();
-            virtual ~SyntaxTreeComponent() = 0;
+            SyntaxTreeComponent() { };
+            virtual ~SyntaxTreeComponent() { };
 
             virtual void add(SP<ast::SyntaxTreeComponent> c) = 0;
 

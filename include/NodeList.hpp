@@ -31,7 +31,7 @@ namespace parser
             void addNode(SP<SingleNodeListItem> node);
             void addNodeList(SP<NodeList> nodeList);
 
-            SP<ast::SyntaxTree> format();
+            void print(std::string tabs);
 
         private:
             std::vector<SP<NodeListItem>> nodes;

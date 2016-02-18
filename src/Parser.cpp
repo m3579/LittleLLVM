@@ -177,13 +177,15 @@ namespace parser
 
         std::vector<SP<parser::NodeList>> statements;
 
-        while (!exit) {
+//        while (!exit) {
             bool found = false;
 
             for (iterate_over(construct, constructs)) {
+                std::cout << "Currently on " << (*construct)->getName() << "\n";
                 SP<parser::NodeList> nodeList(new parser::NodeList());
                 RecursiveSearchResult result = lookFor(*construct, nodeList, tm);
                 if (result == RecursiveSearchResult::FINISHED) {
+                    std::cout << "Finished\n";
                     statements.push_back(nodeList);
                     found = true;
                     break;
@@ -193,21 +195,41 @@ namespace parser
             if (!found) {
                 noFind(tm);
             }
+//        }
+
+        for (iterate_over(statement, statements)) {
+            std::cout << "Statement:\n";
+            (*statement)->print("");
         }
 
         SP<ast::SyntaxTree> syntaxTree = assembleSyntaxTree(statements);
         return syntaxTree;
     }
 
+    SP<ast::SyntaxTree> Parser::assembleSyntaxTree(std::vector<SP<parser::NodeList>> statements)
+    {
+        SP<ast::SyntaxTree> tree(new ast::SyntaxTree());
+        return tree;
+    }
+
     RecursiveSearchResult Parser::lookFor(SP<ast::Construct> c, SP<parser::NodeList> nodeList, TokenManager& tm)
     {
-        for (iterate_over(construct, c->getComponents())) {
+        std::cout << "Looking for " << c->getName() << "\n";
+        std::cout << c->getComponents().size() << "\n";
+
+        std::vector<SP<ast::Construct>> components(c->getComponents());
+
+        int i = 0;
+        for (iterate_over(construct, components)) {
+            std::cout << "Iteration " << ++i << "\n";
             if ((*construct)->isLeaf()) {
                 if (tm.found((*construct)->getTokenType())) {
+                    std::cout << "Found " << tm.getCurrentToken().getText() << " of type " << tm.getCurrentToken().getType() << "\n";
                     nodeList->addNode(SP<SingleNodeListItem> (new SingleNodeListItem(tm.getCurrentToken(), (*construct)->getNodeType())));
                     tm.moveToNextToken();
                 }
                 else {
+                    std::cout << "Not found " << (*construct)->getTokenType() << "\n";
                     return RecursiveSearchResult::NOTFOUND;
                 }
             }

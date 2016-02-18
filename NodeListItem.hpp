@@ -31,10 +31,10 @@ namespace parser
     class NodeListItem
     {
         public:
-            NodeListItem();
-            virtual ~NodeListItem() = 0;
+            NodeListItem() { }
+            ~NodeListItem() { }
 
-            virtual SP<ast::SyntaxTree> format() = 0;
+            virtual void print(std::string tabs) = 0;
     };
 }
 

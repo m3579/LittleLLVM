@@ -15,8 +15,9 @@
  */
 
 #include <cstdarg>
+#include <iostream>
 
-#include "Construct.h"
+#include "Construct.hpp"
 
 namespace ast
 {
@@ -27,7 +28,7 @@ namespace ast
     }
 
     Construct::Construct(std::string name, std::vector<SP<Construct>> constructs) :
-        constructs(constructs)
+        constructs(constructs), name(name)
     {
 
     }
@@ -37,7 +38,7 @@ namespace ast
 
     }
 
-    Construct Construct::setTreeForm(SP<TreeForm> treeForm)
+    Construct Construct::setTreeForm(SP<ConstructTreeFormNode> treeForm)
     {
         this->treeForm = treeForm;
         return *this;
@@ -74,8 +75,13 @@ namespace ast
         return constructs;
     }
 
-    void Construct::setActionAfterConstructNotFound(parser::TokenManager& tm)
+    void Construct::setActionAfterConstructNotFound(AstManipulationAction action)
     {
-        noFind(tm);
+        noFindAction = action;
+    }
+
+    void Construct::noFind(parser::TokenManager& tm)
+    {
+        noFindAction(tm);
     }
 }

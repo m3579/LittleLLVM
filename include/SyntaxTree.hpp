@@ -26,9 +26,9 @@ namespace ast
     {
         public:
             SyntaxTree();
-            virtual ~SyntaxTree() = 0;
+            virtual ~SyntaxTree();
 
-            virtual void add(SP<SyntaxTreeComponent> statement) = 0;
+            virtual void add(SP<SyntaxTreeComponent> statement);
 
             virtual void print(std::string tabs);
 

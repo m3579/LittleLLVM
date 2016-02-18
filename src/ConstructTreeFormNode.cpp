@@ -25,6 +25,11 @@ namespace ast
 
     }
 
+    ConstructTreeFormNode::~ConstructTreeFormNode()
+    {
+
+    }
+
     SP<ConstructTreeFormNode> ConstructTreeFormNode::subnode(std::string node)
     {
         SP<ConstructTreeFormNode> subnode(new ConstructTreeFormNode(node));

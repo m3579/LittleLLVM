@@ -14,6 +14,8 @@
  *
  */
 
+#include <iostream>
+
 #include "SingleNodeListItem.hpp"
 
 namespace parser
@@ -29,4 +31,10 @@ namespace parser
 
     }
 
+    void SingleNodeListItem::print(std::string tabs)
+    {
+        std::cout << tabs << "Node:"
+                  << tabs << "\t" << token.getText()
+                  << "\n";
+    }
 }
