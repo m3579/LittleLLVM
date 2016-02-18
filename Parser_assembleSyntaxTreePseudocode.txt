@@ -1,0 +1,20 @@
+assembleSyntaxTree(list of statements):
+    for statement in list of statements:
+
+        Get statement's tree form
+
+        Get pool of all flat nodes in NodeList in one vector
+
+        Get root ConstructTreeFormNode of tree form
+        Find root ConstructTreeFormNode's corresponding flat node in list of flat nodes and lists
+        Add node obtained from flat node to syntax tree
+
+        assembleSyntaxTreeBranch(root ConstructTreeFormNode, node obtained from flat node)
+
+
+assembleSyntaxTreeBranch(ConstructTreeFormNode, node):
+    For each subnode of ConstructTreeFormNode (name subnode):
+        Find subnode in the list of flat nodes and node lists and store in nodeMatch
+        Add to node the node obtained from nodeMatch
+
+        assemblySyntaxTreeBranch(subnode, the node obtained from nodeMatch)

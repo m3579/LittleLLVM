@@ -38,8 +38,9 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="NodeListItem.hpp" />
+		<Unit filename="FlatNodeListItem.hpp" />
 		<Unit filename="NodeType.h" />
+		<Unit filename="Parser_assembleSyntaxTreePseudocode.txt" />
 		<Unit filename="Ref.hpp" />
 		<Unit filename="TokenType.h" />
 		<Unit filename="ast.cpp" />
@@ -49,12 +50,12 @@
 		</Unit>
 		<Unit filename="include/Construct.hpp" />
 		<Unit filename="include/ConstructTreeFormNode.hpp" />
+		<Unit filename="include/FlatNode.hpp" />
+		<Unit filename="include/FlatNodeList.hpp" />
 		<Unit filename="include/Lexer.hpp" />
 		<Unit filename="include/Node.hpp" />
-		<Unit filename="include/NodeList.hpp" />
 		<Unit filename="include/Parser.hpp" />
 		<Unit filename="include/Scanner.hpp" />
-		<Unit filename="include/SingleNodeListItem.hpp" />
 		<Unit filename="include/SmartPointer.hpp" />
 		<Unit filename="include/Symbol.hpp" />
 		<Unit filename="include/SyntaxTree.hpp" />
@@ -67,12 +68,12 @@
 		</Unit>
 		<Unit filename="src/Construct.cpp" />
 		<Unit filename="src/ConstructTreeFormNode.cpp" />
+		<Unit filename="src/FlatNode.cpp" />
+		<Unit filename="src/FlatNodeList.cpp" />
 		<Unit filename="src/Lexer.cpp" />
 		<Unit filename="src/Node.cpp" />
-		<Unit filename="src/NodeList.cpp" />
 		<Unit filename="src/Parser.cpp" />
 		<Unit filename="src/Scanner.cpp" />
-		<Unit filename="src/SingleNodeListItem.cpp" />
 		<Unit filename="src/Symbol.cpp" />
 		<Unit filename="src/SyntaxTree.cpp" />
 		<Unit filename="src/Token.cpp" />

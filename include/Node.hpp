@@ -24,14 +24,15 @@
 #include "Node.hpp"
 #include "NodeType.h"
 #include "SyntaxTreeComponent.hpp"
-#include "NodeListItem.hpp"
+#include "FlatNodeListItem.hpp"
 #include "SmartPointer.hpp"
 
 using namespace pointer;
 
+// TODO: change the namespace of Node to ast
 namespace node
 {
-    class Node
+    class Node : public ast::SyntaxTreeComponent
     {
         public:
             Node(token::Token token = token::Token(), NodeType type = NTYPE_NONODE);

@@ -27,7 +27,7 @@
 #include "NodeType.h"
 #include "SmartPointer.hpp"
 #include "Construct.hpp"
-#include "NodeList.hpp"
+#include "FlatNodeList.hpp"
 
 using namespace pointer;
 
@@ -54,9 +54,13 @@ namespace parser
             ast::AstManipulationAction noFind;
 
         protected:
-            virtual RecursiveSearchResult lookFor(SP<ast::Construct> c, SP<parser::NodeList> nodeList, TokenManager& tm);
+            virtual RecursiveSearchResult lookFor(SP<ast::Construct> c, SP<parser::FlatNodeList> nodeList, TokenManager& tm);
 
-            virtual SP<ast::SyntaxTree> assembleSyntaxTree(std::vector<SP<parser::NodeList>> statements);
+            virtual SP<ast::SyntaxTree> assembleSyntaxTree(std::vector<SP<parser::FlatNodeList>> statements);
+
+            void assembleSyntaxTreeBranch(SP<ast::ConstructTreeFormNode> treeFormNode, SP<node::Node> rootNode, std::vector<SP<FlatNode>> flatNodePool);
+
+            SP<FlatNode> findMatchingFlatNode(SP<ast::ConstructTreeFormNode> constructTreeFormNode, std::vector<SP<FlatNode>> flatNodePool);
 
             lexer::Lexer lexr;
 

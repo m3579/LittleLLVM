@@ -28,11 +28,13 @@ namespace ast
 
 namespace parser
 {
-    class NodeListItem
+    class FlatNodeListItem
     {
         public:
-            NodeListItem() { }
-            ~NodeListItem() { }
+            FlatNodeListItem() { }
+            ~FlatNodeListItem() { }
+
+            virtual bool isLeaf() = 0;
 
             virtual void print(std::string tabs) = 0;
     };

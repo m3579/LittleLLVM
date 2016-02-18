@@ -28,9 +28,15 @@ namespace parser
             FlatNode(std::string name, token::Token token, NodeType nodeType);
             virtual ~FlatNode();
 
+            void print(std::string tabs);
+
             bool isLeaf();
 
-            void print(std::string tabs);
+            std::string getName();
+
+            token::Token getToken();
+
+            NodeType getNodeType();
 
         private:
             token::Token token;

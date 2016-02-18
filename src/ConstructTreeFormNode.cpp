@@ -19,8 +19,8 @@
 
 namespace ast
 {
-    ConstructTreeFormNode::ConstructTreeFormNode(std::string name) :
-        name(name)
+    ConstructTreeFormNode::ConstructTreeFormNode(std::string constructName) :
+        constructName(constructName)
     {
 
     }
@@ -56,7 +56,7 @@ namespace ast
     SP<ConstructTreeFormNode> ConstructTreeFormNode::get(std::string name)
     {
         for (iterate_over(node, subnodes)) {
-            if ((*node)->name == name) {
+            if ((*node)->getConstructName() == name) {
                 return *node;
             }
         }
@@ -68,7 +68,7 @@ namespace ast
     {
         if (nodes.size() > 1) {
             for (iterate_over(node, subnodes)) {
-                if ((*node)->name == nodes.at(0)) {
+                if ((*node)->getConstructName() == nodes.at(0)) {
                     nodes.erase(nodes.begin());
                     return (*node)->get(nodes);
                 }
@@ -76,12 +76,22 @@ namespace ast
         }
         else if (nodes.size() == 1) {
             for (iterate_over(node, subnodes)) {
-                if ((*node)->name == nodes.at(0)) {
+                if ((*node)->getConstructName() == nodes.at(0)) {
                     return *node;
                 }
             }
         }
 
         return SP<ConstructTreeFormNode> (0);
+    }
+
+    std::vector<SP<ConstructTreeFormNode>> ConstructTreeFormNode::getSubnodes()
+    {
+        return subnodes;
+    }
+
+    std::string ConstructTreeFormNode::getConstructName()
+    {
+        return constructName;
     }
 }

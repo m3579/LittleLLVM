@@ -27,7 +27,7 @@ namespace ast
     class ConstructTreeFormNode
     {
         public:
-            ConstructTreeFormNode(std::string name);
+            ConstructTreeFormNode(std::string constructName);
             ~ConstructTreeFormNode();
 
             SP<ConstructTreeFormNode> subnode(std::string node);
@@ -36,8 +36,12 @@ namespace ast
             SP<ConstructTreeFormNode> get(std::string name);
             SP<ConstructTreeFormNode> get(std::vector<std::string> location);
 
+            std::vector<SP<ConstructTreeFormNode>> getSubnodes();
+
+            std::string getConstructName();
+
         private:
-            std::string name;
+            std::string constructName;
 
             std::vector<SP<ConstructTreeFormNode>> subnodes;
     };
