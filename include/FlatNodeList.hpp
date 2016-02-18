@@ -32,7 +32,7 @@ namespace parser
 
             void addFlatNodeListItem(SP<FlatNodeListItem> flatNodeListItem);
 
-            void populateFlatNodePool(std::vector<SP<FlatNode>> flatNodePool);
+            void populateFlatNodePool(std::vector<SP<FlatNode>>& flatNodePool);
 
             std::vector<SP<FlatNodeListItem>> getNodes();
 

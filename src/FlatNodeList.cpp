@@ -62,7 +62,7 @@ namespace parser
         return name;
     }
 
-    void FlatNodeList::populateFlatNodePool(std::vector<SP<FlatNode>> flatNodePool)
+    void FlatNodeList::populateFlatNodePool(std::vector<SP<FlatNode>>& flatNodePool)
     {
         for (iterate_over(it, nodes))
         {
