@@ -17,15 +17,16 @@
  *
  */
 
+// TODO: organize includes (alphabetical order, remove unnecessary ones, etc.) in all files
+#include <iostream>
 #include <string>
+#include <fstream>
 
 #define iterate_over(iter, list) auto iter = list.begin(); iter != list.end(); ++iter
 
 namespace utilities
 {
-    extern bool showDebugStatements;
-
-    std::streambuf* outputDebugsToFile(std::string filename);
+    // TODO: have some form of outputs
 
     void logError(std::string message);
 }
