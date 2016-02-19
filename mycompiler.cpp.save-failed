@@ -16,7 +16,6 @@
 
 #include <iostream>
 #include <string>
-#include <sstream>
 
 #include <utilities.h>
 
@@ -34,10 +33,10 @@ int main(int argc, const char* argv[])
 
         std::string topic;
 
-        std::cout << "Little LLVM\n";
-        std::cout << "A framework for writing compilers in C++\n";
-        std::cout << "Version " << VERSION << "\n\n";
-        std::cout << "Enter a topic to get help on it: ";
+        utilities::debug("Little LLVM\n"
+                  + "A framework for writing compilers in C++\n"
+                  + "Version " + VERSION + "\n\n"
+                  + "Enter a topic to get help on it: ");
 
         getline(std::cin, topic);
 
@@ -50,7 +49,7 @@ int main(int argc, const char* argv[])
     }
 
     else {
-        std::cout << "Unrecognized command\n\n"
+        utilities::debug("Unrecognized command\n\n"
                   << "Use the following:\n"
                   << "\tmycompiler [topic]\n\n";
     }
@@ -59,5 +58,5 @@ int main(int argc, const char* argv[])
 void help(const char* topic)
 {
     // TODO implement this
-    std::cout << topic << "\n";
+    utilities::debug(topic << "\n";
 }

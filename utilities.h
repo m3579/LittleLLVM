@@ -23,6 +23,10 @@
 
 namespace utilities
 {
+    extern bool showDebugStatements;
+
+    std::streambuf* outputDebugsToFile(std::string filename);
+
     void logError(std::string message);
 }
 

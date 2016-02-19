@@ -35,7 +35,7 @@ namespace parser
     bool exit = false;
 
     Parser::Parser(lexer::Lexer lexr) :
-        lexr(lexr)
+        notFound(0), lexr(lexr)
     {
 
     }
@@ -51,8 +51,10 @@ namespace parser
 
         std::vector<SP<parser::FlatNodeList>> statements;
 
+        int statementCounter = 0;
         while (!tm.exit) {
             bool found = false;
+            statementCounter++;
 
             for (iterate_over(construct, constructs)) {
                 std::cout << "Currently on " << (*construct)->getName() << "\n";
@@ -61,6 +63,10 @@ namespace parser
                 flatNodeList->treeForm = (*construct)->treeForm;
 
                 RecursiveSearchResult result = lookFor(*construct, flatNodeList, tm);
+
+                if (tm.exit) {
+                    break;
+                }
 
                 if (result == RecursiveSearchResult::FINISHED) {
                     std::cout << "Finished\n";
@@ -74,7 +80,9 @@ namespace parser
             }
 
             if (!found) {
-                notFound(tm);
+                if (notFound != 0) {
+                    notFound(tm);
+                }
             }
         }
 
