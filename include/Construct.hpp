@@ -29,8 +29,8 @@ namespace ast
     {
         public:
             // TODO rename arguments tokenType and nodeType
-            Construct(std::string name, TokenType tokenType, NodeType nodeType);
-            Construct(std::string name, std::vector<SP<Construct>> constructs);
+            Construct(std::string name, TokenType tokenType, NodeType nodeType, ActionAfterParserEvent found, ActionAfterParserEvent notFound);
+            Construct(std::string name, std::vector<SP<Construct>> constructs, ActionAfterParserEvent found, ActionAfterParserEvent notFound);
             ~Construct();
 
             Construct setTreeForm(SP<ConstructTreeFormNode> treeForm);
@@ -43,12 +43,11 @@ namespace ast
 
             std::string getName();
 
-            // TODO rename this
+            // TODO: rename this
             std::vector<SP<Construct>> getComponents();
 
-            // TODO shorten this method name
-            void setActionAfterConstructNotFound(AstManipulationAction action);
-            void noFind(parser::TokenManager& tm);
+            ActionAfterParserEvent found;
+            ActionAfterParserEvent notFound;
 
             SP<ConstructTreeFormNode> treeForm;
 
@@ -61,8 +60,6 @@ namespace ast
             NodeType nodeType;
 
             std::string name;
-
-            AstManipulationAction noFindAction;
     };
 }
 

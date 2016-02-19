@@ -51,7 +51,7 @@ namespace parser
 
             virtual void addConstruct(SP<ast::Construct> construct);
 
-            ast::AstManipulationAction noFind;
+            ast::ActionAfterParserEvent notFound;
 
         protected:
             virtual RecursiveSearchResult lookFor(SP<ast::Construct> c, SP<parser::FlatNodeList> nodeList, TokenManager& tm);

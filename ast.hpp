@@ -23,9 +23,9 @@
 
 namespace ast
 {
-    typedef std::function<void(parser::TokenManager&)> AstManipulationAction;
+    typedef std::function<void(parser::TokenManager&)> ActionAfterParserEvent;
 
-    extern AstManipulationAction symbolFoundDoNothing;
+    extern ActionAfterParserEvent symbolFoundDoNothing;
 }
 
 #endif // AST_HPP_INCLUDED

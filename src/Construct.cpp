@@ -21,14 +21,14 @@
 
 namespace ast
 {
-    Construct::Construct(std::string name, TokenType tokenType, NodeType nodeType) :
-        tokenType(tokenType), nodeType(nodeType), name(name)
+    Construct::Construct(std::string name, TokenType tokenType, NodeType nodeType, ActionAfterParserEvent found, ActionAfterParserEvent notFound) :
+        found(found), notFound(notFound), tokenType(tokenType), nodeType(nodeType), name(name)
     {
         containsOtherConstructs = false;
     }
 
-    Construct::Construct(std::string name, std::vector<SP<Construct>> constructs) :
-        constructs(constructs), name(name)
+    Construct::Construct(std::string name, std::vector<SP<Construct>> constructs, ActionAfterParserEvent found, ActionAfterParserEvent notFound) :
+        found(found), notFound(notFound), constructs(constructs), name(name)
     {
 
     }
@@ -75,13 +75,4 @@ namespace ast
         return constructs;
     }
 
-    void Construct::setActionAfterConstructNotFound(AstManipulationAction action)
-    {
-        noFindAction = action;
-    }
-
-    void Construct::noFind(parser::TokenManager& tm)
-    {
-        noFindAction(tm);
-    }
 }

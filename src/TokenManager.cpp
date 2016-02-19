@@ -24,7 +24,7 @@
 namespace parser
 {
     TokenManager::TokenManager(std::vector<token::Token> tokens) :
-        tokens(tokens), currentTokenIndex(0), currentToken(tokens.at(currentTokenIndex))
+        exit(false), tokens(tokens), currentTokenIndex(0), currentToken(tokens.at(currentTokenIndex))
     {
 
     }

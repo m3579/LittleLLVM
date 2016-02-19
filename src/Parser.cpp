@@ -45,139 +45,13 @@ namespace parser
 
     }
 
-//    SP<ast::SyntaxTree> Parser::createSyntaxTree()
-//    {
-//        std::vector<token::Token> tokens(lexr.tokenizeSource());
-//
-//        TokenManager tm(tokens);
-//
-//        SP<ast::SyntaxTree> tree(new ast::SyntaxTree());
-//
-//        while (!exit) {
-//            bool found = false;
-//            for (auto symbol = symbols.begin(); symbol != symbols.end(); ++symbol) {
-//                SP<ast::SyntaxTreeComponent> statement(lookFor((*symbol), tm));
-//                if (statement) {
-//                    tree->add(statement);
-//                    found= true;
-//                    break;
-//                }
-//                else {
-//                    continue;
-//                }
-//            }
-//
-//            if (!found) {
-//                if (noFind) {
-//                    noFind(tm);
-//                }
-//            }
-//        }
-//
-//        return tree;
-//    }
-//
-//    SP<ast::SyntaxTreeComponent> Parser::lookFor(SP<ast::Symbol> lookingFor, TokenManager& tm)
-//    {
-//        if (tm.found(lookingFor->tokenType)) {
-//
-//            SP<ast::SyntaxTreeComponent> first(new node::Node(tm.getCurrentToken(), lookingFor->nodeType));
-//
-//            tm.moveToNextToken();
-//
-//            if (lookingFor->actionAfterFind) {
-//                lookingFor->actionAfterFind(tm);
-//            }
-//
-//            std::vector<SP<ast::Symbol>> nextSymbols(lookingFor->possibleNextSymbols);
-//
-//            for (auto symbol = nextSymbols.begin(); symbol != nextSymbols.end(); ++symbol) {
-//                SP<ast::SyntaxTreeComponent> next(lookFor(*symbol, tm));
-//
-//                if (next) {
-//                    SP<ast::Symbol> s(*symbol);
-//                    int precedence = lookingFor->precedences[s];
-//                    if (precedence > 0) {
-//                        next->add(first);
-//                        first->root = next;
-//                        return next;
-//                    }
-//                    else {
-//                        first->add(next);
-//                        next->root = first;
-//                        return first;
-//                    }
-//                }
-//            }
-//
-//            if (lookingFor->noFind) {
-//                lookingFor->noFind(tm);
-//            }
-//
-//            return first;
-//        }
-//
-//        return SP<ast::SyntaxTreeComponent>();
-//    }
-
-//    SP<ast::SyntaxTree> Parser::createSyntaxTree()
-//    {
-//        TokenManager tm(lexr.tokenizeSource());
-//
-//        SP<ast::SyntaxTree> syntaxTree;
-//
-//        while (!exit) {
-//            std::vector<node::Node> nodeList;
-//            RecursiveSearchResult result = lookFor(constructs, nodeList);
-//
-//            if (result == RecursiveSearchResult.NOTFOUND) {
-//                this->noFind();
-//            }
-//            else if (result == RecursiveSearchResult.NOTFOUNDALREADYHANDLED) {
-//
-//            }
-//            else if (result == RecursiveSearchResult.FINISHED) {
-//
-//            }
-//        }
-//    }
-//
-//    RecursiveSearchResult Parser::lookFor(std::vector<ast::Symbols> possibleSymbols, std::vector<node::Node> nodeList, TokenManager& tm)
-//    {
-//        if (possibleSymbols.size() == 0) {
-//            return RecursiveSearchResult.FINISHED;
-//        }
-//
-//        for (iterate_over(symbol, possibleSymbols)) {
-//            if (tm.found(symbol.tokenType)) {
-//                nodeList.push_back(Node(tm.getCurrentToken(), symbol.nodeType));
-//                RecursiveSearchResult result = lookFor(symbol.possibleNextSymbols, nodeList, tm);
-//
-//                if (result == RecursiveSearchResult.FINISHED) {
-//                    return RecursiveSearchResult.FINISHED;
-//                }
-//                else if (result == RecursiveSearchResult.NOTFOUND) {
-//                    symbol.noFind(tm);
-//                }
-//                else if (result == RecursiveSearchResult.NOTFOUNDALREADYHANDLED) {
-//                    return RecursiveSearchResult.NOTFOUNDALREADYHANDLED;
-//                }
-//                else if (result == RecursiveSearchResult.FINISHED) {
-//                    return RecursiveSearchResult.FINISHED;
-//                }
-//            }
-//        }
-//
-//        return RecursiveSearchResult.NOTFOUND;
-//    }
-
     SP<ast::SyntaxTree> Parser::createSyntaxTree()
     {
         TokenManager tm(lexr.tokenizeSource());
 
         std::vector<SP<parser::FlatNodeList>> statements;
 
-//        while (!exit) {
+        while (!tm.exit) {
             bool found = false;
 
             for (iterate_over(construct, constructs)) {
@@ -191,15 +65,18 @@ namespace parser
                 if (result == RecursiveSearchResult::FINISHED) {
                     std::cout << "Finished\n";
                     statements.push_back(flatNodeList);
+                    if ((*construct)->found != 0) {
+                        (*construct)->found(tm);
+                    }
                     found = true;
                     break;
                 }
             }
 
             if (!found) {
-                noFind(tm);
+                notFound(tm);
             }
-//        }
+        }
 
         for (iterate_over(statement, statements)) {
             std::cout << "Statement:\n";
@@ -220,6 +97,8 @@ namespace parser
             SP<FlatNodeList> statementFlatNodeList(*it);
             SP<ast::ConstructTreeFormNode> statementTreeForm(statementFlatNodeList->treeForm);
 
+            std::cout << "Length of statement flat node list: " << statementFlatNodeList->getNodes().size() << "\n";
+
             std::vector<SP<FlatNode>> flatNodePool;
             statementFlatNodeList->populateFlatNodePool(flatNodePool);
 
@@ -229,10 +108,9 @@ namespace parser
 
             SP<FlatNode> matchingFlatNode(findMatchingFlatNode(rootConstructTreeFormNode, flatNodePool));
             if (!matchingFlatNode) {
-                // TODO: make better error message for this
-                utilities::logError("No matching flat node was found for construct tree form node '" + rootConstructTreeFormNode->getConstructName() + "'");
+                // TODO: make flag so that if none of the roots are found, then an error occurs
+                continue;
             }
-
             SP<node::Node> rootNode(new node::Node(matchingFlatNode->getToken(), matchingFlatNode->getNodeType()));
 
             assembleSyntaxTreeBranch(rootConstructTreeFormNode, rootNode, flatNodePool);
@@ -262,8 +140,8 @@ namespace parser
             std::cout << "Searching for " << treeFormSubnode->getConstructName() << "\n";
             SP<FlatNode> matchingFlatNode(findMatchingFlatNode(treeFormSubnode, flatNodePool));
             if (!matchingFlatNode) {
-                // TODO: error message should be a constant string defined somewhere
-                utilities::logError("No matching flat node was found for construct tree form node '" + rootTreeFormNode->getConstructName() + "'");
+                // TODO: make flag so that if none of the roots are found, then an error occurs
+                continue;
             }
 
             SP<node::Node> subnode(new node::Node(matchingFlatNode->getToken(), matchingFlatNode->getNodeType()));
@@ -304,9 +182,16 @@ namespace parser
                     std::cout << "Found " << tm.getCurrentToken().getText() << " of type " << tm.getCurrentToken().getType() << "\n";
                     nodeList->addFlatNodeListItem(SP<FlatNode> (new FlatNode((*construct)->getName(), tm.getCurrentToken(), (*construct)->getNodeType())));
                     tm.moveToNextToken();
+
+                    if ((*construct)->found != 0) {
+                        (*construct)->found(tm);
+                    }
                 }
                 else {
                     std::cout << "Not found " << (*construct)->getTokenType() << "\n";
+                    if ((*construct)->notFound != 0) {
+                        (*construct)->notFound(tm);
+                    }
                     return RecursiveSearchResult::NOTFOUND;
                 }
             }
@@ -315,7 +200,7 @@ namespace parser
                 constructNodeList->treeForm = (*construct)->treeForm;
                 RecursiveSearchResult result = lookFor(*construct, constructNodeList, tm);
                 if (result == RecursiveSearchResult::NOTFOUND) {
-                    (*construct)->noFind(tm);
+                    (*construct)->notFound(tm);
                     return RecursiveSearchResult::NOTFOUNDALREADYHANDLED;
                 }
                 else if (result == RecursiveSearchResult::NOTFOUNDALREADYHANDLED) {
@@ -323,6 +208,7 @@ namespace parser
                 }
                 else {
                     nodeList->addFlatNodeListItem(constructNodeList);
+                    (*construct)->found(tm);
                 }
             }
         }

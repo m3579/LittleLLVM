@@ -36,7 +36,7 @@ namespace ast
     class Symbol
     {
         public:
-            Symbol(TokenType tokenType, std::string name, AstManipulationAction actionAfterFind, NodeType nodeType);
+            Symbol(TokenType tokenType, std::string name, ActionAfterParserEvent actionAfterFind, NodeType nodeType);
             virtual ~Symbol();
 
             virtual void addNextSymbol(SP<Symbol> nextSymbol, int precedence);
@@ -47,11 +47,11 @@ namespace ast
 
             std::string name;
 
-            AstManipulationAction actionAfterFind;
+            ActionAfterParserEvent actionAfterFind;
 
             NodeType nodeType;
 
-            AstManipulationAction noFind;
+            ActionAfterParserEvent noFind;
 
             std::vector<SP<ast::Symbol>> possibleNextSymbols;
 

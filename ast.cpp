@@ -19,5 +19,5 @@
 
 namespace ast
 {
-    AstManipulationAction symbolFoundDoNothing = [] (parser::TokenManager& tm) { };
+    ActionAfterParserEvent symbolFoundDoNothing = [] (parser::TokenManager& tm) { };
 }

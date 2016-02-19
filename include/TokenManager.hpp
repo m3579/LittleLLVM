@@ -56,6 +56,8 @@ namespace parser
 
             virtual bool hasMoreTokens();
 
+            bool exit;
+
         protected:
             std::vector<token::Token> tokens;
 
