@@ -37,7 +37,7 @@ namespace parser
     extern bool exit;
 
     enum class RecursiveSearchResult {
-        NOTFOUND, NOTFOUNDALREADYHANDLED, FINISHED
+        NOTFOUNDERRORHANDLED, FINISHED
     };
 
     class Parser

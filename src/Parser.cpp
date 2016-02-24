@@ -53,9 +53,9 @@ namespace parser
 
         int statementCounter = 0;
         while (!tm.exit) {
-            bool found = false;
             statementCounter++;
 
+            bool found = false;
             for (iterate_over(construct, constructs)) {
                 std::cout << "Currently on " << (*construct)->getName() << "\n";
 
@@ -76,6 +76,9 @@ namespace parser
                     }
                     found = true;
                     break;
+                }
+                else if (result == RecursiveSearchResult::NOTFOUNDERRORHANDLED) {
+                    continue;
                 }
             }
 
@@ -180,43 +183,49 @@ namespace parser
         std::cout << "Looking for " << c->getName() << "\n";
         std::cout << c->getComponents().size() << "\n";
 
-        std::vector<SP<ast::Construct>> components(c->getComponents());
+        if (c->isLeaf()) {
+            std::cout << "Construct is leaf\n";
+            if (tm.found(c->getTokenType())) {
+                nodeList->addFlatNodeListItem(SP<FlatNode> (new FlatNode(c->getName(), tm.getCurrentToken(), c->getNodeType())));
+                tm.moveToNextToken();
 
-        int i = 0;
-        for (iterate_over(construct, components)) {
-            std::cout << "Iteration " << ++i << "\n";
-            if ((*construct)->isLeaf()) {
-                if (tm.found((*construct)->getTokenType())) {
-                    std::cout << "Found " << tm.getCurrentToken().getText() << " of type " << tm.getCurrentToken().getType() << "\n";
-                    nodeList->addFlatNodeListItem(SP<FlatNode> (new FlatNode((*construct)->getName(), tm.getCurrentToken(), (*construct)->getNodeType())));
-                    tm.moveToNextToken();
+                std::cout << "Found\n";
 
-                    if ((*construct)->found != 0) {
-                        (*construct)->found(tm);
-                    }
-                }
-                else {
-                    std::cout << "Not found " << (*construct)->getTokenType() << "\n";
-                    if ((*construct)->notFound != 0) {
-                        (*construct)->notFound(tm);
-                    }
-                    return RecursiveSearchResult::NOTFOUND;
+                if (c->found != 0) {
+                    c->found(tm);
                 }
             }
             else {
-                SP<FlatNodeList> constructNodeList(new FlatNodeList((*construct)->getName()));
-                constructNodeList->treeForm = (*construct)->treeForm;
-                RecursiveSearchResult result = lookFor(*construct, constructNodeList, tm);
-                if (result == RecursiveSearchResult::NOTFOUND) {
-                    (*construct)->notFound(tm);
-                    return RecursiveSearchResult::NOTFOUNDALREADYHANDLED;
+                std::cout << "Not found " << c->getTokenType() << "\n";
+
+                if (c->notFound != 0) {
+                    c->notFound(tm);
                 }
-                else if (result == RecursiveSearchResult::NOTFOUNDALREADYHANDLED) {
-                    return RecursiveSearchResult::NOTFOUNDALREADYHANDLED;
+
+                return RecursiveSearchResult::NOTFOUNDERRORHANDLED;
+            }
+        }
+        else {
+            std::cout << "Construct is not leaf\n";
+
+            std::vector<SP<ast::Construct>> components(c->getComponents());
+
+            int i = 0;
+            for (iterate_over(component, components)) {
+                std::cout << "Iteration " << ++i << "\n";
+
+                SP<FlatNodeList> componentNodeList(new FlatNodeList((*component)->getName()));
+                componentNodeList->treeForm = (*component)->treeForm;
+                RecursiveSearchResult result = lookFor(*component, componentNodeList, tm);
+
+                if (result == RecursiveSearchResult::NOTFOUNDERRORHANDLED) {
+                    return RecursiveSearchResult::NOTFOUNDERRORHANDLED;
                 }
                 else {
-                    nodeList->addFlatNodeListItem(constructNodeList);
-                    (*construct)->found(tm);
+                    nodeList->addFlatNodeListItem(componentNodeList);
+                    if ((*component)->found != 0) {
+                        (*component)->found(tm);
+                    }
                 }
             }
         }

@@ -30,7 +30,7 @@ namespace ast
     Construct::Construct(std::string name, std::vector<SP<Construct>> constructs, ActionAfterParserEvent found, ActionAfterParserEvent notFound) :
         found(found), notFound(notFound), constructs(constructs), name(name)
     {
-
+        containsOtherConstructs = true;
     }
 
     Construct::~Construct()
