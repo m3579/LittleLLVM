@@ -56,10 +56,10 @@ namespace ast
 
             bool isOptional();
 
+            bool optional;
+
         private:
             bool containsOtherConstructs;
-
-            bool optional;
 
             std::vector<SP<Construct>> constructs;
 

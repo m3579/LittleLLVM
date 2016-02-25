@@ -240,9 +240,25 @@ namespace parser
                 RecursiveSearchResult result = lookFor(*component, componentNodeList, tm);
 
                 if (result == RecursiveSearchResult::NOTFOUNDERRORHANDLED) {
-                    return RecursiveSearchResult::NOTFOUNDERRORHANDLED;
+                    if (!((*component)->isOptional())) {
+                        std::cout << "Not found, and construct '" << c->getName() << "' is not optional\n";
+                        return RecursiveSearchResult::NOTFOUNDERRORHANDLED;
+                    }
+                    else {
+                        std::cout << "Not found, but construct '" << c->getName() << "' is optional\n";
+                    }
                 }
                 else {
+                    // We found a node belonging to this construct, we have
+                    // to find the rest of it (or at least the non-optional parts)
+                    // If we leave it as optional, then the compiler will continue if we don't find
+                    // the rest of it
+                    // So we make it non-optional
+                    if (c->isOptional()) {
+                        c->optional = false;
+                        std::cout << "Set optional construct to not optional\n";
+                    }
+
                     nodeList->addFlatNodeListItem(componentNodeList);
                     if ((*component)->found != 0) {
                         (*component)->found(tm);
