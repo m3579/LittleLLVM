@@ -28,9 +28,12 @@ namespace ast
     class Construct
     {
         public:
-            // TODO rename arguments tokenType and nodeType
-            Construct(std::string name, TokenType tokenType, NodeType nodeType, ActionAfterParserEvent found, ActionAfterParserEvent notFound);
-            Construct(std::string name, std::vector<SP<Construct>> constructs, ActionAfterParserEvent found, ActionAfterParserEvent notFound);
+            // TODO: make checks to make sure that the programmer does not list an optional Construct in a
+            // treeForm
+            // TODO: rename arguments tokenType and nodeType
+            Construct(std::string name, TokenType tokenType, NodeType nodeType, ActionAfterParserEvent found, ActionAfterParserEvent notFound, bool optional);
+            Construct(std::string name, std::vector<TokenType> tokenTypes, std::vector<NodeType> nodeTypes, ActionAfterParserEvent found, ActionAfterParserEvent notFound, bool optional);
+            Construct(std::string name, std::vector<SP<Construct>> constructs, ActionAfterParserEvent found, ActionAfterParserEvent notFound, bool optional);
             ~Construct();
 
             Construct setTreeForm(SP<ConstructTreeFormNode> treeForm);
@@ -38,8 +41,8 @@ namespace ast
             bool isLeaf();
             bool isBranch();
 
-            TokenType getTokenType();
-            NodeType getNodeType();
+            std::vector<TokenType> getTokenTypes();
+            std::vector<NodeType> getNodeTypes();
 
             std::string getName();
 
@@ -51,13 +54,17 @@ namespace ast
 
             SP<ConstructTreeFormNode> treeForm;
 
+            bool isOptional();
+
         private:
             bool containsOtherConstructs;
 
+            bool optional;
+
             std::vector<SP<Construct>> constructs;
 
-            TokenType tokenType;
-            NodeType nodeType;
+            std::vector<TokenType> tokenTypes;
+            std::vector<NodeType> nodeTypes;
 
             std::string name;
     };

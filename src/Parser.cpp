@@ -185,24 +185,45 @@ namespace parser
 
         if (c->isLeaf()) {
             std::cout << "Construct is leaf\n";
-            if (tm.found(c->getTokenType())) {
-                nodeList->addFlatNodeListItem(SP<FlatNode> (new FlatNode(c->getName(), tm.getCurrentToken(), c->getNodeType())));
-                tm.moveToNextToken();
+            bool foundConstruct = false;
+            std::vector<TokenType> tokenTypes(c->getTokenTypes());
 
-                std::cout << "Found\n";
+            std::cout << "Currently on |" << tm.getCurrentToken().getText() << "|\n";
 
-                if (c->found != 0) {
-                    c->found(tm);
+            int i = -1;
+            for (iterate_over(tokenType, tokenTypes)) {
+                i++;
+                if (tm.found(*tokenType)) {
+                    // TODO: decide whether optional nodes should be added to the flat node list
+                    if (!(c->isOptional())) {
+                        nodeList->addFlatNodeListItem(SP<FlatNode> (new FlatNode(c->getName(), tm.getCurrentToken(), c->getNodeTypes().at(i))));
+                    }
+                    tm.moveToNextToken();
+
+                    std::cout << "Found\n";
+
+                    if (c->found != 0) {
+                        c->found(tm);
+                    }
+
+                    foundConstruct = true;
                 }
             }
-            else {
-                std::cout << "Not found " << c->getTokenType() << "\n";
 
-                if (c->notFound != 0) {
-                    c->notFound(tm);
+            if (!foundConstruct) {
+                std::cout << "Not found " << c->getName() << "\n";
+
+                if (!(c->isOptional())) {
+                    std::cout << "Construct is not optional\n";
+                    if (c->notFound != 0) {
+                        c->notFound(tm);
+                    }
+
+                    return RecursiveSearchResult::NOTFOUNDERRORHANDLED;
                 }
-
-                return RecursiveSearchResult::NOTFOUNDERRORHANDLED;
+                else {
+                    std::cout << "Construct is optional\n";
+                }
             }
         }
         else {

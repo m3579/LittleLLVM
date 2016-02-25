@@ -21,14 +21,20 @@
 
 namespace ast
 {
-    Construct::Construct(std::string name, TokenType tokenType, NodeType nodeType, ActionAfterParserEvent found, ActionAfterParserEvent notFound) :
-        found(found), notFound(notFound), tokenType(tokenType), nodeType(nodeType), name(name)
+    Construct::Construct(std::string name, TokenType tokenType, NodeType nodeType, ActionAfterParserEvent found, ActionAfterParserEvent notFound, bool optional) :
+        found(found), notFound(notFound), optional(optional), tokenTypes(std::vector<TokenType> { tokenType }), nodeTypes(std::vector<TokenType> { nodeType }), name(name)
     {
         containsOtherConstructs = false;
     }
 
-    Construct::Construct(std::string name, std::vector<SP<Construct>> constructs, ActionAfterParserEvent found, ActionAfterParserEvent notFound) :
-        found(found), notFound(notFound), constructs(constructs), name(name)
+    Construct::Construct(std::string name, std::vector<TokenType> tokenTypes, std::vector<NodeType> nodeTypes, ActionAfterParserEvent found, ActionAfterParserEvent notFound, bool optional) :
+        found(found), notFound(notFound), optional(optional), tokenTypes(tokenTypes), nodeTypes(nodeTypes)
+    {
+        containsOtherConstructs = false;
+    }
+
+    Construct::Construct(std::string name, std::vector<SP<Construct>> constructs, ActionAfterParserEvent found, ActionAfterParserEvent notFound, bool optional) :
+        found(found), notFound(notFound), optional(optional), constructs(constructs), name(name)
     {
         containsOtherConstructs = true;
     }
@@ -55,14 +61,14 @@ namespace ast
     }
 
     // TODO rename these to something better
-    TokenType Construct::getTokenType()
+    std::vector<TokenType> Construct::getTokenTypes()
     {
-        return tokenType;
+        return tokenTypes;
     }
 
-    NodeType Construct::getNodeType()
+    std::vector<NodeType> Construct::getNodeTypes()
     {
-        return nodeType;
+        return nodeTypes;
     }
 
     std::string Construct::getName()
@@ -73,6 +79,11 @@ namespace ast
     std::vector<SP<Construct>> Construct::getComponents()
     {
         return constructs;
+    }
+
+    bool Construct::isOptional()
+    {
+        return optional;
     }
 
 }
