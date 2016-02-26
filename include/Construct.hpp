@@ -31,9 +31,9 @@ namespace ast
             // TODO: make checks to make sure that the programmer does not list an optional Construct in a
             // treeForm
             // TODO: rename arguments tokenType and nodeType
-            Construct(std::string name, TokenType tokenType, NodeType nodeType, ActionAfterParserEvent found, ActionAfterParserEvent notFound, bool optional);
-            Construct(std::string name, std::vector<TokenType> tokenTypes, std::vector<NodeType> nodeTypes, ActionAfterParserEvent found, ActionAfterParserEvent notFound, bool optional);
-            Construct(std::string name, std::vector<SP<Construct>> constructs, ActionAfterParserEvent found, ActionAfterParserEvent notFound, bool optional);
+            Construct(std::string name, TokenType tokenType, NodeType nodeType, ActionAfterParserEvent found, ActionAfterParserEvent notFound);
+            Construct(std::string name, std::vector<TokenType> tokenTypes, std::vector<NodeType> nodeTypes, ActionAfterParserEvent found, ActionAfterParserEvent notFound);
+            Construct(std::string name, std::vector<SP<Construct>> constructs, ActionAfterParserEvent found, ActionAfterParserEvent notFound);
             ~Construct();
 
             Construct setTreeForm(SP<ConstructTreeFormNode> treeForm);
@@ -49,16 +49,20 @@ namespace ast
             // TODO: rename this
             std::vector<SP<Construct>> getComponents();
 
+            SP<Construct> getOptionalForm();
+
+            void setOptional(bool optional);
+
+            bool isOptional();
+
             ActionAfterParserEvent found;
             ActionAfterParserEvent notFound;
 
             SP<ConstructTreeFormNode> treeForm;
 
-            bool isOptional();
-
+        private:
             bool optional;
 
-        private:
             bool containsOtherConstructs;
 
             std::vector<SP<Construct>> constructs;

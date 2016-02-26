@@ -22,7 +22,7 @@ namespace ast
     ConstructTreeFormNode::ConstructTreeFormNode(std::string constructName) :
         constructName(constructName)
     {
-
+        std::cout << constructName << "\n";
     }
 
     ConstructTreeFormNode::~ConstructTreeFormNode()

@@ -214,7 +214,7 @@ namespace parser
             }
 
             if (!foundConstruct) {
-                std::cout << "Not found " << c->getName() << "\n";
+                std::cout << "Not found " << c->getName() << " with token type " << c->getTokenTypes()[0] << "\n";
 
                 if (!(c->isOptional())) {
                     std::cout << "Construct is not optional\n";
@@ -258,7 +258,7 @@ namespace parser
                     // the rest of it
                     // So we make it non-optional
                     if (c->isOptional()) {
-                        c->optional = false;
+                        c->setOptional(false);
                         std::cout << "Set optional construct to not optional\n";
                     }
 

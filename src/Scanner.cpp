@@ -15,6 +15,8 @@
  *
  */
 
+// TODO: remove iostream includes from files that don't need it
+#include <iostream>
 #include <cstring>
 
 #include "Scanner.hpp"
@@ -23,7 +25,7 @@ namespace scanner
 {
 
 	Scanner::Scanner(const char* sourceCode) :
-        finished(false), sourceCodePointer(sourceCode)
+        finished(false), sourceCodePointer(sourceCode), movementCounter(0)
 	{
 		currentChar = *sourceCodePointer;
 
@@ -67,6 +69,8 @@ namespace scanner
 				columnNumber = 1;
 			}
 
+            movementCounter++;
+
 			if (currentChar == '\0') {
 				hasMore = false;
 			}
@@ -106,6 +110,27 @@ namespace scanner
 	int Scanner::getCurrentIndex()
 	{
 		return currentIndex;
+	}
+
+	void Scanner::startCountingMovements()
+	{
+        movementCounter = 0;
+        movementStartedColumnNumber = getColumnNumber();
+        movementStartedLineNumber = getLineNumber();
+	}
+
+	void Scanner::reset()
+	{
+        for (int i = movementCounter; i > 0; i--) {
+
+            sourceCodePointer--;
+            currentChar = *sourceCodePointer;
+
+            currentIndex--;
+        }
+
+        columnNumber = movementStartedColumnNumber;
+        lineNumber = movementStartedLineNumber;
 	}
 
 } /* namespace scanner */

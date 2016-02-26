@@ -21,20 +21,24 @@
 
 namespace ast
 {
-    Construct::Construct(std::string name, TokenType tokenType, NodeType nodeType, ActionAfterParserEvent found, ActionAfterParserEvent notFound, bool optional) :
-        found(found), notFound(notFound), optional(optional), tokenTypes(std::vector<TokenType> { tokenType }), nodeTypes(std::vector<TokenType> { nodeType }), name(name)
+    // TODO: make way for Constructs to be shallow-copied into the parser instead of deep copied so that each construct
+    // behaves the same for different occurrences throughout the source code
+    // rather than being changed after one occurrence and affecting all of the other occurrences because it is a deep
+    // copy
+    Construct::Construct(std::string name, TokenType tokenType, NodeType nodeType, ActionAfterParserEvent found, ActionAfterParserEvent notFound) :
+        found(found), notFound(notFound), optional(false), tokenTypes(std::vector<TokenType> { tokenType }), nodeTypes(std::vector<TokenType> { nodeType }), name(name)
     {
         containsOtherConstructs = false;
     }
 
-    Construct::Construct(std::string name, std::vector<TokenType> tokenTypes, std::vector<NodeType> nodeTypes, ActionAfterParserEvent found, ActionAfterParserEvent notFound, bool optional) :
-        found(found), notFound(notFound), optional(optional), tokenTypes(tokenTypes), nodeTypes(nodeTypes), name(name)
+    Construct::Construct(std::string name, std::vector<TokenType> tokenTypes, std::vector<NodeType> nodeTypes, ActionAfterParserEvent found, ActionAfterParserEvent notFound) :
+        found(found), notFound(notFound), optional(false), tokenTypes(tokenTypes), nodeTypes(nodeTypes), name(name)
     {
         containsOtherConstructs = false;
     }
 
-    Construct::Construct(std::string name, std::vector<SP<Construct>> constructs, ActionAfterParserEvent found, ActionAfterParserEvent notFound, bool optional) :
-        found(found), notFound(notFound), optional(optional), constructs(constructs), name(name)
+    Construct::Construct(std::string name, std::vector<SP<Construct>> constructs, ActionAfterParserEvent found, ActionAfterParserEvent notFound) :
+        found(found), notFound(notFound), optional(false), constructs(constructs), name(name)
     {
         containsOtherConstructs = true;
     }
@@ -81,9 +85,20 @@ namespace ast
         return constructs;
     }
 
+    SP<Construct> Construct::getOptionalForm()
+    {
+        SP<Construct> copyConstruct(new Construct(*this));
+        copyConstruct->setOptional(true);
+        return copyConstruct;
+    }
+
+    void Construct::setOptional(bool optional)
+    {
+        this->optional = optional;
+    }
+
     bool Construct::isOptional()
     {
         return optional;
     }
-
 }
