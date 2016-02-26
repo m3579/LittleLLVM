@@ -108,7 +108,8 @@ namespace parser
             SP<FlatNodeList> statementFlatNodeList(*it);
             SP<ast::ConstructTreeFormNode> statementTreeForm(statementFlatNodeList->treeForm);
 
-            std::cout << "Length of statement flat node list: " << statementFlatNodeList->getNodes().size() << "\n";
+            std::cout << "Statement flat node list:\n";
+            statementFlatNodeList->print("");
 
             std::vector<SP<FlatNode>> flatNodePool;
             statementFlatNodeList->populateFlatNodePool(flatNodePool);
@@ -120,7 +121,8 @@ namespace parser
             SP<FlatNode> matchingFlatNode(findMatchingFlatNode(rootConstructTreeFormNode, flatNodePool));
             if (!matchingFlatNode) {
                 // TODO: make flag so that if none of the roots are found, then an error occurs
-                continue;
+                utilities::logError("Could not find matching flat node for construct " + rootConstructTreeFormNode->getConstructName());
+                break;
             }
             SP<node::Node> rootNode(new node::Node(matchingFlatNode->getToken(), matchingFlatNode->getNodeType()));
 
@@ -180,7 +182,7 @@ namespace parser
 
     RecursiveSearchResult Parser::lookFor(SP<ast::Construct> c, SP<parser::FlatNodeList> nodeList, TokenManager& tm)
     {
-        std::cout << "Looking for " << c->getName() << "\n";
+        std::cout << "\nLooking for " << c->getName() << "\n";
         std::cout << c->getComponents().size() << "\n";
 
         if (c->isLeaf()) {
@@ -196,6 +198,7 @@ namespace parser
                 if (tm.found(*tokenType)) {
                     // TODO: decide whether optional nodes should be added to the flat node list
                     if (!(c->isOptional())) {
+                        std::cout << "Found leaf construct |" << c->getName() << "|\n";
                         nodeList->addFlatNodeListItem(SP<FlatNode> (new FlatNode(c->getName(), tm.getCurrentToken(), c->getNodeTypes().at(i))));
                     }
                     tm.moveToNextToken();

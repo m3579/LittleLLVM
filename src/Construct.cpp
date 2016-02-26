@@ -28,7 +28,7 @@ namespace ast
     }
 
     Construct::Construct(std::string name, std::vector<TokenType> tokenTypes, std::vector<NodeType> nodeTypes, ActionAfterParserEvent found, ActionAfterParserEvent notFound, bool optional) :
-        found(found), notFound(notFound), optional(optional), tokenTypes(tokenTypes), nodeTypes(nodeTypes)
+        found(found), notFound(notFound), optional(optional), tokenTypes(tokenTypes), nodeTypes(nodeTypes), name(name)
     {
         containsOtherConstructs = false;
     }

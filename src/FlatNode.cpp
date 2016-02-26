@@ -33,8 +33,10 @@ namespace parser
 
     void FlatNode::print(std::string tabs)
     {
-        std::cout << tabs << "Node:"
-                  << tabs << "\t" << token.getText()
+        std::cout << tabs << "Flat Node |" << name << "|:\n"
+                  << tabs << "\t|" << token.getText() << "|\n"
+                  << tabs << "\t" << token.getType() << "\n"
+                  << tabs << "\tAt line " << token.getLineNumber() << " column " << token.getColumnNumber()
                   << "\n";
     }
 
