@@ -26,19 +26,23 @@ namespace ast
     // rather than being changed after one occurrence and affecting all of the other occurrences because it is a deep
     // copy
     Construct::Construct(std::string name, TokenType tokenType, NodeType nodeType, ActionAfterParserEvent found, ActionAfterParserEvent notFound) :
-        found(found), notFound(notFound), optional(false), tokenTypes(std::vector<TokenType> { tokenType }), nodeTypes(std::vector<TokenType> { nodeType }), name(name)
+        found(found), notFound(notFound), treeForm(0), optional(false), tokenTypes(std::vector<TokenType> { tokenType }), nodeTypes(std::vector<TokenType> { nodeType }),
+        name(name)
+        // TODO: something like treeForm(new ConstructTreeFormNode(tokenType)) instead of initializing it to 0
     {
         containsOtherConstructs = false;
     }
 
     Construct::Construct(std::string name, std::vector<TokenType> tokenTypes, std::vector<NodeType> nodeTypes, ActionAfterParserEvent found, ActionAfterParserEvent notFound) :
-        found(found), notFound(notFound), optional(false), tokenTypes(tokenTypes), nodeTypes(nodeTypes), name(name)
+        found(found), notFound(notFound), treeForm(0), optional(false), tokenTypes(tokenTypes), nodeTypes(nodeTypes),
+        name(name)
     {
         containsOtherConstructs = false;
     }
 
     Construct::Construct(std::string name, std::vector<SP<Construct>> constructs, ActionAfterParserEvent found, ActionAfterParserEvent notFound) :
-        found(found), notFound(notFound), optional(false), constructs(constructs), name(name)
+        found(found), notFound(notFound), treeForm(0), optional(false), constructs(constructs),
+        name(name)
     {
         containsOtherConstructs = true;
     }

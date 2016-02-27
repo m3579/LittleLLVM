@@ -22,7 +22,8 @@ namespace ast
     ConstructTreeFormNode::ConstructTreeFormNode(std::string constructName) :
         constructName(constructName)
     {
-        std::cout << constructName << "\n";
+        std::cout << "Created construct node: |" << constructName << "|\n";
+        std::cout << "Construct node name (from getConstructName()): |" << getConstructName() << "|\n";
     }
 
     ConstructTreeFormNode::~ConstructTreeFormNode()

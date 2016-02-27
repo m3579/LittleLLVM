@@ -115,8 +115,8 @@ namespace parser
             statementFlatNodeList->populateFlatNodePool(flatNodePool);
 
             SP<ast::ConstructTreeFormNode> rootConstructTreeFormNode(statementTreeForm);
-
-            std::cout << "Testing with root " << rootConstructTreeFormNode->getConstructName() << "\n";
+            
+            std::cout << "Testing root construct tree form node |" << rootConstructTreeFormNode->constructName << "|\n";
 
             SP<FlatNode> matchingFlatNode(findMatchingFlatNode(rootConstructTreeFormNode, flatNodePool));
             if (!matchingFlatNode) {

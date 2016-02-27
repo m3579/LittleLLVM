@@ -40,9 +40,9 @@ namespace ast
 
             std::string getConstructName();
 
-        private:
             std::string constructName;
 
+        private:
             std::vector<SP<ConstructTreeFormNode>> subnodes;
     };
 }
