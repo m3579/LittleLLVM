@@ -57,9 +57,9 @@ namespace parser
 
             bool found = false;
             for (iterate_over(construct, constructs)) {
-                std::cout << "Currently on " << (*construct)->getName() << "\n";
+                std::cout << "Currently on " << (*construct)->name << "\n";
 
-                SP<FlatNodeList> flatNodeList(new FlatNodeList((*construct)->getName()));
+                SP<FlatNodeList> flatNodeList(new FlatNodeList((*construct)->name));
                 flatNodeList->treeForm = (*construct)->treeForm;
 
                 RecursiveSearchResult result = lookFor(*construct, flatNodeList, tm);
@@ -115,7 +115,7 @@ namespace parser
             statementFlatNodeList->populateFlatNodePool(flatNodePool);
 
             SP<ast::ConstructTreeFormNode> rootConstructTreeFormNode(statementTreeForm);
-            
+
             std::cout << "Testing root construct tree form node |" << rootConstructTreeFormNode->constructName << "|\n";
 
             SP<FlatNode> matchingFlatNode(findMatchingFlatNode(rootConstructTreeFormNode, flatNodePool));
@@ -182,93 +182,118 @@ namespace parser
 
     RecursiveSearchResult Parser::lookFor(SP<ast::Construct> c, SP<parser::FlatNodeList> nodeList, TokenManager& tm)
     {
-        std::cout << "\nLooking for " << c->getName() << "\n";
-        std::cout << c->getComponents().size() << "\n";
+        std::cout << "\nLooking for " << c->name << "\n";
+        std::cout << c->components.size() << "\n";
 
-        if (c->isLeaf()) {
-            std::cout << "Construct is leaf\n";
-            bool foundConstruct = false;
-            std::vector<TokenType> tokenTypes(c->getTokenTypes());
+        if (c->constructs.size() > 0) {
+            std::vector<SP<ast::Construct>> constructs(c->constructs);
 
-            std::cout << "Currently on |" << tm.getCurrentToken().getText() << "|\n";
+            bool found = false;
 
-            int i = -1;
-            for (iterate_over(tokenType, tokenTypes)) {
-                i++;
-                if (tm.found(*tokenType)) {
-                    // TODO: decide whether optional nodes should be added to the flat node list
-                    if (!(c->isOptional())) {
-                        std::cout << "Found leaf construct |" << c->getName() << "|\n";
-                        nodeList->addFlatNodeListItem(SP<FlatNode> (new FlatNode(c->getName(), tm.getCurrentToken(), c->getNodeTypes().at(i))));
-                    }
-                    tm.moveToNextToken();
-
-                    std::cout << "Found\n";
-
-                    if (c->found != 0) {
-                        c->found(tm);
-                    }
-
-                    foundConstruct = true;
+            for (iterate_over(construct, constructs)) {
+                RecursiveSearchResult result = lookFor(*construct, nodeList, tm);
+                if (result == RecursiveSearchResult::FINISHED) {
+                    found = true;
+                    break;
+                }
+                else {
+                    continue;
                 }
             }
 
-            if (!foundConstruct) {
-                std::cout << "Not found " << c->getName() << " with token type " << c->getTokenTypes()[0] << "\n";
-
-                if (!(c->isOptional())) {
-                    std::cout << "Construct is not optional\n";
-                    if (c->notFound != 0) {
-                        c->notFound(tm);
-                    }
-
-                    return RecursiveSearchResult::NOTFOUNDERRORHANDLED;
-                }
-                else {
-                    std::cout << "Construct is optional\n";
+            if (!found) {
+                if (c->notFound != 0) {
+                    c->notFound(tm);
                 }
             }
         }
         else {
-            std::cout << "Construct is not leaf\n";
+            if (c->isLeaf()) {
+                std::cout << "Construct is leaf\n";
+                bool foundConstruct = false;
+                std::vector<TokenType> tokenTypes(c->tokenTypes);
 
-            std::vector<SP<ast::Construct>> components(c->getComponents());
+                std::cout << "Currently on |" << tm.getCurrentToken().getText() << "|\n";
 
-            int i = 0;
-            for (iterate_over(component, components)) {
-                std::cout << "Iteration " << ++i << "\n";
+                int i = -1;
+                for (iterate_over(tokenType, tokenTypes)) {
+                    i++;
+                    if (tm.found(*tokenType)) {
+                        // TODO: decide whether optional nodes should be added to the flat node list
+                        if (!(c->optional)) {
+                            std::cout << "Found leaf construct |" << c->name << "|\n";
+                            nodeList->addFlatNodeListItem(SP<FlatNode> (new FlatNode(c->name, tm.getCurrentToken(), c->nodeTypes.at(i))));
+                        }
+                        tm.moveToNextToken();
 
-                SP<FlatNodeList> componentNodeList(new FlatNodeList((*component)->getName()));
-                componentNodeList->treeForm = (*component)->treeForm;
-                RecursiveSearchResult result = lookFor(*component, componentNodeList, tm);
+                        std::cout << "Found\n";
 
-                if (result == RecursiveSearchResult::NOTFOUNDERRORHANDLED) {
-                    if (!((*component)->isOptional())) {
-                        std::cout << "Not found, and construct '" << c->getName() << "' is not optional\n";
+                        if (c->found != 0) {
+                            c->found(tm);
+                        }
+
+                        foundConstruct = true;
+                    }
+                }
+
+                if (!foundConstruct) {
+                    std::cout << "Not found " << c->name << " with token type " << c->tokenTypes.at(0) << "\n";
+
+                    if (!(c->optional)) {
+                        std::cout << "Construct is not optional\n";
+                        if (c->notFound != 0) {
+                            c->notFound(tm);
+                        }
+
                         return RecursiveSearchResult::NOTFOUNDERRORHANDLED;
                     }
                     else {
-                        std::cout << "Not found, but construct '" << c->getName() << "' is optional\n";
+                        std::cout << "Construct is optional\n";
                     }
                 }
-                else {
-                    // We found a node belonging to this construct, we have
-                    // to find the rest of it (or at least the non-optional parts)
-                    // If we leave it as optional, then the compiler will continue if we don't find
-                    // the rest of it
-                    // So we make it non-optional
-                    if (c->isOptional()) {
-                        c->setOptional(false);
-                        std::cout << "Set optional construct to not optional\n";
-                    }
+            }
+            else {
+                std::cout << "Construct is not leaf\n";
 
-                    nodeList->addFlatNodeListItem(componentNodeList);
-                    if ((*component)->found != 0) {
-                        (*component)->found(tm);
+                std::vector<SP<ast::Construct>> components(c->components);
+
+                int i = 0;
+                for (iterate_over(component, components)) {
+                    std::cout << "Iteration " << ++i << "\n";
+
+                    SP<FlatNodeList> componentNodeList(new FlatNodeList((*component)->name));
+                    componentNodeList->treeForm = (*component)->treeForm;
+                    RecursiveSearchResult result = lookFor(*component, componentNodeList, tm);
+
+                    if (result == RecursiveSearchResult::NOTFOUNDERRORHANDLED) {
+                        if (!((*component)->optional)) {
+                            std::cout << "Not found, and construct '" << c->name << "' is not optional\n";
+                            return RecursiveSearchResult::NOTFOUNDERRORHANDLED;
+                        }
+                        else {
+                            std::cout << "Not found, but construct '" << c->name << "' is optional\n";
+                        }
+                    }
+                    else {
+                        // We found a node belonging to this construct, we have
+                        // to find the rest of it (or at least the non-optional parts)
+                        // If we leave it as optional, then the compiler will continue if we don't find
+                        // the rest of it
+                        // So we make it non-optional
+                        if (c->optional) {
+                            c->optional = false;
+                            std::cout << "Set optional construct to not optional\n";
+                        }
+
+                        nodeList->addFlatNodeListItem(componentNodeList);
+                        if ((*component)->found != 0) {
+                            (*component)->found(tm);
+                        }
                     }
                 }
             }
         }
+
 
         return RecursiveSearchResult::FINISHED;
     }

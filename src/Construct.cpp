@@ -41,7 +41,13 @@ namespace ast
     }
 
     Construct::Construct(std::string name, std::vector<SP<Construct>> constructs, ActionAfterParserEvent found, ActionAfterParserEvent notFound) :
-        found(found), notFound(notFound), treeForm(0), optional(false), constructs(constructs),
+        found(found), notFound(notFound), constructs(constructs), name(name)
+    {
+
+    }
+
+    Construct::Construct(std::vector<SP<Construct>> components, std::string name, ActionAfterParserEvent found, ActionAfterParserEvent notFound) :
+        found(found), notFound(notFound), treeForm(0), optional(false), components(components),
         name(name)
     {
         containsOtherConstructs = true;
@@ -52,12 +58,6 @@ namespace ast
 
     }
 
-    Construct Construct::setTreeForm(SP<ConstructTreeFormNode> treeForm)
-    {
-        this->treeForm = treeForm;
-        return *this;
-    }
-
     bool Construct::isLeaf()
     {
         return !containsOtherConstructs;
@@ -66,43 +66,5 @@ namespace ast
     bool Construct::isBranch()
     {
         return containsOtherConstructs;
-    }
-
-    // TODO rename these to something better
-    std::vector<TokenType> Construct::getTokenTypes()
-    {
-        return tokenTypes;
-    }
-
-    std::vector<NodeType> Construct::getNodeTypes()
-    {
-        return nodeTypes;
-    }
-
-    std::string Construct::getName()
-    {
-        return name;
-    }
-
-    std::vector<SP<Construct>> Construct::getComponents()
-    {
-        return constructs;
-    }
-
-    SP<Construct> Construct::getOptionalForm()
-    {
-        SP<Construct> copyConstruct(new Construct(*this));
-        copyConstruct->setOptional(true);
-        return copyConstruct;
-    }
-
-    void Construct::setOptional(bool optional)
-    {
-        this->optional = optional;
-    }
-
-    bool Construct::isOptional()
-    {
-        return optional;
     }
 }

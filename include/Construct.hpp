@@ -33,44 +33,36 @@ namespace ast
             // TODO: rename arguments tokenType and nodeType
             Construct(std::string name, TokenType tokenType, NodeType nodeType, ActionAfterParserEvent found, ActionAfterParserEvent notFound);
             Construct(std::string name, std::vector<TokenType> tokenTypes, std::vector<NodeType> nodeTypes, ActionAfterParserEvent found, ActionAfterParserEvent notFound);
-            Construct(std::string name, std::vector<SP<Construct>> constructs, ActionAfterParserEvent found, ActionAfterParserEvent notFound);
+            Construct(std::vector<SP<Construct>> constructs, std::string name, ActionAfterParserEvent found, ActionAfterParserEvent notFound);
+            Construct(std::string name, std::vector<SP<Construct>> components, ActionAfterParserEvent found, ActionAfterParserEvent notFound);
             ~Construct();
 
-            Construct setTreeForm(SP<ConstructTreeFormNode> treeForm);
+            // TODO: make function to create copy of Construct shared pointer
+            // (duplicate the memory so that the copy does not point to the
+            // original object)
 
             bool isLeaf();
             bool isBranch();
-
-            std::vector<TokenType> getTokenTypes();
-            std::vector<NodeType> getNodeTypes();
-
-            std::string getName();
-
-            // TODO: rename this
-            std::vector<SP<Construct>> getComponents();
-
-            SP<Construct> getOptionalForm();
-
-            void setOptional(bool optional);
-
-            bool isOptional();
 
             ActionAfterParserEvent found;
             ActionAfterParserEvent notFound;
 
             SP<ConstructTreeFormNode> treeForm;
 
-        private:
             bool optional;
 
-            bool containsOtherConstructs;
-
             std::vector<SP<Construct>> constructs;
+
+            std::vector<SP<Construct>> components;
 
             std::vector<TokenType> tokenTypes;
             std::vector<NodeType> nodeTypes;
 
             std::string name;
+
+        private:
+            bool containsOtherConstructs;
+
     };
 }
 
