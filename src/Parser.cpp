@@ -232,6 +232,8 @@ namespace parser
         return RecursiveSearchResult::FINISHED;
     }
 
+    // TODO: make way to ensure that user sets the Construct::treeForm member by the time they add
+    // the construct to the parser
     SP<ast::SyntaxTree> Parser::assembleSyntaxTree(std::vector<SP<parser::FlatNodeList>> statements)
     {
         SP<ast::SyntaxTree> syntaxTree(new ast::SyntaxTree());
@@ -255,7 +257,7 @@ namespace parser
             SP<FlatNode> matchingFlatNode(findMatchingFlatNode(rootConstructTreeFormNode, flatNodePool));
             if (!matchingFlatNode) {
                 // TODO: make flag so that if none of the roots are found, then an error occurs
-                utilities::logError("Could not find matching flat node for construct " + rootConstructTreeFormNode->getConstructName());
+                utilities::logError("Could not find matching flat node for construct " + rootConstructTreeFormNode->constructName);
                 break;
             }
             SP<node::Node> rootNode(new node::Node(matchingFlatNode->getToken(), matchingFlatNode->getNodeType()));
