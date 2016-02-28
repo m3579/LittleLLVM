@@ -102,11 +102,11 @@ namespace parser
     {
         std::cout << "\nLooking for " << c->name << "\n";
         std::cout << "Construct's component list size: " << c->components.size() << "\n";
-//
-//        if (c->instantiator != 0) {
-//            std::cout << "Used instantiator\n";
-//            c = c->instantiator();
-//        }
+
+        if (c->instantiator != 0) {
+            std::cout << "Used instantiator\n";
+            c = c->instantiator();
+        }
 
         if (c->constructs.size() > 0) {
             std::cout << "Alternate constructs' size is greater than 0\n";
@@ -115,7 +115,15 @@ namespace parser
             bool found = false;
 
             for (iterate_over(construct, constructs)) {
-                RecursiveSearchResult result = lookFor(*construct, nodeList, tm);
+                // I make this new construct because otherwise,
+                // the construct will go by its name (i.e. "Number")
+                // instead of the generic name the alternating construct
+                // was given (i.e. "Value") and the treeForm (which uses the alternating
+                // construct's name) will be confused
+                SP<ast::Construct> properlyNamedConstruct(*construct);
+                properlyNamedConstruct->name = c->name;
+
+                RecursiveSearchResult result = lookFor(properlyNamedConstruct, nodeList, tm);
                 if (result == RecursiveSearchResult::FINISHED) {
                     found = true;
                     break;
