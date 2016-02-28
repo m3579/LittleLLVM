@@ -53,6 +53,13 @@ namespace ast
         containsOtherConstructs = true;
     }
 
+    // TODO: initialize all of the other members (do this in the other constructors as well)
+    Construct::Construct(LinkConstructReferenceInstantiator instantiator) :
+        instantiator(instantiator)
+    {
+
+    }
+
     Construct::~Construct()
     {
 

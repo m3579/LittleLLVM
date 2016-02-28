@@ -185,6 +185,10 @@ namespace parser
         std::cout << "\nLooking for " << c->name << "\n";
         std::cout << c->components.size() << "\n";
 
+        if (c->instantiator != 0) {
+            c = c->instantiator();
+        }
+
         if (c->constructs.size() > 0) {
             std::vector<SP<ast::Construct>> constructs(c->constructs);
 

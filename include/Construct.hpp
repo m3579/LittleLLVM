@@ -25,6 +25,11 @@
 
 namespace ast
 {
+    // Declare here for LinkConstructReferenceInstantiator declaration
+    class Construct;
+
+    typedef std::function<SP<ast::Construct>()> LinkConstructReferenceInstantiator;
+
     class Construct
     {
         public:
@@ -35,6 +40,7 @@ namespace ast
             Construct(std::string name, std::vector<TokenType> tokenTypes, std::vector<NodeType> nodeTypes, ActionAfterParserEvent found, ActionAfterParserEvent notFound);
             Construct(std::vector<SP<Construct>> constructs, std::string name, ActionAfterParserEvent found, ActionAfterParserEvent notFound);
             Construct(std::string name, std::vector<SP<Construct>> components, ActionAfterParserEvent found, ActionAfterParserEvent notFound);
+            Construct(LinkConstructReferenceInstantiator instantiator);
             ~Construct();
 
             // TODO: make function to create copy of Construct shared pointer
@@ -46,6 +52,8 @@ namespace ast
 
             ActionAfterParserEvent found;
             ActionAfterParserEvent notFound;
+
+            LinkConstructReferenceInstantiator instantiator;
 
             SP<ConstructTreeFormNode> treeForm;
 
