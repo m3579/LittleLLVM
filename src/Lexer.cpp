@@ -62,7 +62,7 @@ namespace lexer
         bool lexing = true;
 
 		while (lexing) {
-
+            std::cout << "Iterating in lexer...\n";
             bool found = false;
 
             for (auto test = testFunctions.begin(); test != testFunctions.end(); ++test) {
