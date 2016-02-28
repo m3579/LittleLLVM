@@ -57,7 +57,7 @@ namespace parser
 
             bool found = false;
             for (iterate_over(construct, constructs)) {
-                std::cout << "Currently on " << (*construct)->name << "\n";
+                std::cout << "\nCurrently on top level construct " << (*construct)->name << "\n";
 
                 SP<FlatNodeList> flatNodeList(new FlatNodeList((*construct)->name));
                 flatNodeList->treeForm = (*construct)->treeForm;
@@ -98,98 +98,18 @@ namespace parser
         return syntaxTree;
     }
 
-    SP<ast::SyntaxTree> Parser::assembleSyntaxTree(std::vector<SP<parser::FlatNodeList>> statements)
-    {
-        SP<ast::SyntaxTree> syntaxTree(new ast::SyntaxTree());
-
-        for (iterate_over(it, statements))
-        {
-            std::cout << "Iterating over statements...\n";
-            SP<FlatNodeList> statementFlatNodeList(*it);
-            SP<ast::ConstructTreeFormNode> statementTreeForm(statementFlatNodeList->treeForm);
-
-            std::cout << "Statement flat node list:\n";
-            statementFlatNodeList->print("");
-
-            std::vector<SP<FlatNode>> flatNodePool;
-            statementFlatNodeList->populateFlatNodePool(flatNodePool);
-
-            SP<ast::ConstructTreeFormNode> rootConstructTreeFormNode(statementTreeForm);
-
-            std::cout << "Testing root construct tree form node |" << rootConstructTreeFormNode->constructName << "|\n";
-
-            SP<FlatNode> matchingFlatNode(findMatchingFlatNode(rootConstructTreeFormNode, flatNodePool));
-            if (!matchingFlatNode) {
-                // TODO: make flag so that if none of the roots are found, then an error occurs
-                utilities::logError("Could not find matching flat node for construct " + rootConstructTreeFormNode->getConstructName());
-                break;
-            }
-            SP<node::Node> rootNode(new node::Node(matchingFlatNode->getToken(), matchingFlatNode->getNodeType()));
-
-            assembleSyntaxTreeBranch(rootConstructTreeFormNode, rootNode, flatNodePool);
-
-            syntaxTree->add(rootNode);
-        }
-
-        return syntaxTree;
-    }
-
-    void Parser::assembleSyntaxTreeBranch(SP<ast::ConstructTreeFormNode> rootTreeFormNode, SP<node::Node> rootNode, std::vector<SP<FlatNode>> flatNodePool)
-    {
-        std::cout << "Testing with root " << rootTreeFormNode->getConstructName() << "\n";
-
-        std::vector<SP<ast::ConstructTreeFormNode>> treeFormNodeSubnodes(rootTreeFormNode->getSubnodes());
-
-        std::cout << "[";
-        for (iterate_over(it, treeFormNodeSubnodes))
-        {
-            std::cout << (*it)->getConstructName() << ", ";
-        }
-        std::cout << "]\n";
-
-        for (iterate_over(it, treeFormNodeSubnodes))
-        {
-            SP<ast::ConstructTreeFormNode> treeFormSubnode(*it);
-            std::cout << "Searching for " << treeFormSubnode->getConstructName() << "\n";
-            SP<FlatNode> matchingFlatNode(findMatchingFlatNode(treeFormSubnode, flatNodePool));
-            if (!matchingFlatNode) {
-                // TODO: make flag so that if none of the roots are found, then an error occurs
-                continue;
-            }
-
-            SP<node::Node> subnode(new node::Node(matchingFlatNode->getToken(), matchingFlatNode->getNodeType()));
-            rootNode->add(subnode);
-
-            assembleSyntaxTreeBranch(treeFormSubnode, subnode, flatNodePool);
-        }
-    }
-
-    SP<FlatNode> Parser::findMatchingFlatNode(SP<ast::ConstructTreeFormNode> constructTreeFormNode, std::vector<SP<FlatNode>> flatNodePool)
-    {
-        for (iterate_over(it, flatNodePool))
-        {
-            SP<FlatNode> flatNode(*it);
-            std::cout << "Testing flat node: " << flatNode->getName() << "\n";
-
-            if (flatNode->getName() == constructTreeFormNode->getConstructName()) {
-                std::cout << "Found match with " << flatNode->getName() << "\n";
-                return flatNode;
-            }
-        }
-
-        return SP<FlatNode>();
-    }
-
     RecursiveSearchResult Parser::lookFor(SP<ast::Construct> c, SP<parser::FlatNodeList> nodeList, TokenManager& tm)
     {
         std::cout << "\nLooking for " << c->name << "\n";
-        std::cout << c->components.size() << "\n";
-
-        if (c->instantiator != 0) {
-            c = c->instantiator();
-        }
+        std::cout << "Construct's component list size: " << c->components.size() << "\n";
+//
+//        if (c->instantiator != 0) {
+//            std::cout << "Used instantiator\n";
+//            c = c->instantiator();
+//        }
 
         if (c->constructs.size() > 0) {
+            std::cout << "Alternate constructs' size is greater than 0\n";
             std::vector<SP<ast::Construct>> constructs(c->constructs);
 
             bool found = false;
@@ -212,6 +132,8 @@ namespace parser
             }
         }
         else {
+            std::cout << "Alternate constructs' size is not greater than 0\n";
+
             if (c->isLeaf()) {
                 std::cout << "Construct is leaf\n";
                 bool foundConstruct = false;
@@ -300,6 +222,88 @@ namespace parser
 
 
         return RecursiveSearchResult::FINISHED;
+    }
+
+    SP<ast::SyntaxTree> Parser::assembleSyntaxTree(std::vector<SP<parser::FlatNodeList>> statements)
+    {
+        SP<ast::SyntaxTree> syntaxTree(new ast::SyntaxTree());
+
+        for (iterate_over(it, statements))
+        {
+            std::cout << "Iterating over statements...\n";
+            SP<FlatNodeList> statementFlatNodeList(*it);
+            SP<ast::ConstructTreeFormNode> statementTreeForm(statementFlatNodeList->treeForm);
+
+            std::cout << "Statement flat node list:\n";
+            statementFlatNodeList->print("");
+
+            std::vector<SP<FlatNode>> flatNodePool;
+            statementFlatNodeList->populateFlatNodePool(flatNodePool);
+
+            SP<ast::ConstructTreeFormNode> rootConstructTreeFormNode(statementTreeForm);
+
+            std::cout << "Testing root construct tree form node |" << rootConstructTreeFormNode->constructName << "|\n";
+
+            SP<FlatNode> matchingFlatNode(findMatchingFlatNode(rootConstructTreeFormNode, flatNodePool));
+            if (!matchingFlatNode) {
+                // TODO: make flag so that if none of the roots are found, then an error occurs
+                utilities::logError("Could not find matching flat node for construct " + rootConstructTreeFormNode->getConstructName());
+                break;
+            }
+            SP<node::Node> rootNode(new node::Node(matchingFlatNode->getToken(), matchingFlatNode->getNodeType()));
+
+            assembleSyntaxTreeBranch(rootConstructTreeFormNode, rootNode, flatNodePool);
+
+            syntaxTree->add(rootNode);
+        }
+
+        return syntaxTree;
+    }
+
+    void Parser::assembleSyntaxTreeBranch(SP<ast::ConstructTreeFormNode> rootTreeFormNode, SP<node::Node> rootNode, std::vector<SP<FlatNode>> flatNodePool)
+    {
+        std::cout << "Testing with root " << rootTreeFormNode->getConstructName() << "\n";
+
+        std::vector<SP<ast::ConstructTreeFormNode>> treeFormNodeSubnodes(rootTreeFormNode->getSubnodes());
+
+        std::cout << "[";
+        for (iterate_over(it, treeFormNodeSubnodes))
+        {
+            std::cout << (*it)->getConstructName() << ", ";
+        }
+        std::cout << "]\n";
+
+        for (iterate_over(it, treeFormNodeSubnodes))
+        {
+            SP<ast::ConstructTreeFormNode> treeFormSubnode(*it);
+            std::cout << "Searching for " << treeFormSubnode->getConstructName() << "\n";
+            SP<FlatNode> matchingFlatNode(findMatchingFlatNode(treeFormSubnode, flatNodePool));
+            if (!matchingFlatNode) {
+                // TODO: make flag so that if none of the roots are found, then an error occurs
+                continue;
+            }
+
+            SP<node::Node> subnode(new node::Node(matchingFlatNode->getToken(), matchingFlatNode->getNodeType()));
+            rootNode->add(subnode);
+
+            assembleSyntaxTreeBranch(treeFormSubnode, subnode, flatNodePool);
+        }
+    }
+
+    SP<FlatNode> Parser::findMatchingFlatNode(SP<ast::ConstructTreeFormNode> constructTreeFormNode, std::vector<SP<FlatNode>> flatNodePool)
+    {
+        for (iterate_over(it, flatNodePool))
+        {
+            SP<FlatNode> flatNode(*it);
+            std::cout << "Testing flat node: " << flatNode->getName() << "\n";
+
+            if (flatNode->getName() == constructTreeFormNode->getConstructName()) {
+                std::cout << "Found match with " << flatNode->getName() << "\n";
+                return flatNode;
+            }
+        }
+
+        return SP<FlatNode>();
     }
 
     void Parser::addConstruct(SP<ast::Construct> construct)

@@ -40,17 +40,19 @@ namespace ast
         containsOtherConstructs = false;
     }
 
-    Construct::Construct(std::string name, std::vector<SP<Construct>> constructs, ActionAfterParserEvent found, ActionAfterParserEvent notFound) :
-        found(found), notFound(notFound), constructs(constructs), name(name)
-    {
-
-    }
-
-    Construct::Construct(std::vector<SP<Construct>> components, std::string name, ActionAfterParserEvent found, ActionAfterParserEvent notFound) :
-        found(found), notFound(notFound), treeForm(0), optional(false), components(components),
-        name(name)
+    Construct::Construct(std::string name, std::vector<SP<Construct>> components, ActionAfterParserEvent found, ActionAfterParserEvent notFound) :
+        found(found), notFound(notFound), components(components), name(name)
     {
         containsOtherConstructs = true;
+    }
+
+    // TODO: automatically create construct tree form for this case, where the tree form should always just be
+    // the construct itself
+    Construct::Construct(std::vector<SP<Construct>> constructs, std::string name, ActionAfterParserEvent found, ActionAfterParserEvent notFound) :
+        found(found), notFound(notFound), treeForm(0), optional(false), constructs(constructs),
+        name(name)
+    {
+        containsOtherConstructs = false;
     }
 
     // TODO: initialize all of the other members (do this in the other constructors as well)
